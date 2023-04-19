@@ -26,6 +26,8 @@ then
     ./configure --prefix=$PYTHON_INSTALL_DIR
     make -j 4 && make install
     popd
+
+    $PYTHON_INSTALL_DIR/bin/pip3 install numpy
 fi
 
 popd

@@ -18,7 +18,7 @@ mkdir -p $INSTALL_DIR
 
 # 
 BUILD_TCL=0
-BUILD_QT=1
+BUILD_QT=0
 BUILD_HDF5=0
 BUILD_TINYXML2=0
 BUILD_PYTHON=0
@@ -35,7 +35,7 @@ BUILD_MITK=1
 # as they set relevant env variables
 mkdir -p output
 source scripts/build_tcl.sh > output/tcl.out
-source scripts/build_qt.sh # > output/qt.out
+source scripts/build_qt.sh > output/qt.out
 source scripts/build_hdf5.sh > output/hdf5.out
 source scripts/build_tinyxml2.sh > output/tinyxml2.out
 source scripts/build_python.sh > output/python.out
@@ -46,4 +46,4 @@ source scripts/build_gdcm.sh > output/gdcm.out
 source scripts/build_vtk.sh > output/vtk.out
 source scripts/build_itk.sh > output/itk.out
 source scripts/build_opencascade.sh > output/opencascade.out
-source scripts/build_mitk.sh # > output/mitk.out
+source scripts/build_mitk.sh > output/mitk.out
