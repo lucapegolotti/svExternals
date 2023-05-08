@@ -24,7 +24,7 @@ then
 
     pushd opencascade-$OPENCASCADE_VERSION
     rm -r build
-    mkdir build
+    mkdir -p build
     cd build
 
     # removed options like these:

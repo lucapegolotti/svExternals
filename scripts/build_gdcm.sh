@@ -5,6 +5,7 @@ pushd $SRC_DIR
 GDCM_MAJOR_VERSION=${GDCM_VERSION%.*}
 
 export GDCM_INSTALL_DIR=$INSTALL_DIR/gdcm-$GDCM_VERSION
+export GDCM_INCLUDE_DIR=$GDCM_INSTALL_DIR/include/gdcm-$GDCM_MAJOR_VERSION
 export GDCM_CMAKE_DIR=$GDCM_INSTALL_DIR/lib/gdcm-$GDCM_MAJOR_VERSION
 
 if [[ $BUILD_GDCM -eq 1 ]]
@@ -28,7 +29,10 @@ then
 		patch -p1 < $PATCH_DIR/gdcm-$GDCM_VERSION-clang.patch
 	fi
 	mkdir -p build && cd build
-	cmake -DCMAKE_INSTALL_PREFIX=$GDCM_INSTALL_DIR ..
+	cmake \
+	  -DCMAKE_INSTALL_PREFIX=$GDCM_INSTALL_DIR \
+	  -DCMAKE_POSITION_INDEPENDENT_CODE:BOOL=true \
+	 ..
 	make -j 4 && make install
 	popd
 fi

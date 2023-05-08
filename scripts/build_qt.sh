@@ -3,6 +3,7 @@
 pushd $SRC_DIR
 
 export QT_INSTALL_DIR=$INSTALL_DIR/qt-$QT_VERSION
+export QT_INSTALL_DIR_CMAKE=$QT_INSTALL_DIR/lib/cmake/Qt5/
 
 if [[ $BUILD_QT -eq 1 ]]
 then

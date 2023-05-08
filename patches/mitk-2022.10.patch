@@ -1,0 +1,253 @@
+Only in MITK-2022.10: build
+diff -ur MITK-2022.10/Modules/Annotation/src/mitkLogoAnnotation.cpp MITK-2022.10-patch/Modules/Annotation/src/mitkLogoAnnotation.cpp
+--- MITK-2022.10/Modules/Annotation/src/mitkLogoAnnotation.cpp	2022-10-29 01:08:41.000000000 -0700
++++ MITK-2022.10-patch/Modules/Annotation/src/mitkLogoAnnotation.cpp	2023-05-08 04:43:10.787754113 -0700
+@@ -12,7 +12,7 @@
+ 
+ #include "mitkLogoAnnotation.h"
+ #include <mitkIOUtil.h>
+-#include "vtkUnicodeString.h"
++// #include "vtkUnicodeString.h"
+ #include <vtkImageData.h>
+ #include <vtkImageData.h>
+ #include <vtkImageMapper.h>
+diff -ur MITK-2022.10/Modules/Annotation/src/mitkTextAnnotation2D.cpp MITK-2022.10-patch/Modules/Annotation/src/mitkTextAnnotation2D.cpp
+--- MITK-2022.10/Modules/Annotation/src/mitkTextAnnotation2D.cpp	2022-10-29 01:08:41.000000000 -0700
++++ MITK-2022.10-patch/Modules/Annotation/src/mitkTextAnnotation2D.cpp	2023-05-08 04:44:39.954035716 -0700
+@@ -11,7 +11,7 @@
+ ============================================================================*/
+ 
+ #include "mitkTextAnnotation2D.h"
+-#include "vtkUnicodeString.h"
++// #include "vtkUnicodeString.h"
+ #include <vtkPropAssembly.h>
+ #include <vtkTextActor.h>
+ #include <vtkTextProperty.h>
+diff -ur MITK-2022.10/Modules/Core/include/itkVtkAbstractTransform.h MITK-2022.10-patch/Modules/Core/include/itkVtkAbstractTransform.h
+--- MITK-2022.10/Modules/Core/include/itkVtkAbstractTransform.h	2022-10-29 01:08:41.000000000 -0700
++++ MITK-2022.10-patch/Modules/Core/include/itkVtkAbstractTransform.h	2023-05-08 03:49:40.544238485 -0700
+@@ -74,7 +74,7 @@
+     void SetParameters(const ParametersType &) override;
+     void SetFixedParameters(const ParametersType &) override;
+     void ComputeJacobianWithRespectToParameters(const InputPointType &, JacobianType &) const override;
+-    void ComputeJacobianWithRespectToPosition(const InputPointType &, JacobianPositionType &) const override;
++    // virtual void ComputeJacobianWithRespectToPosition(const InputPointType &, JacobianPositionType &) const override;
+ 
+     itk::ModifiedTimeType GetMTime() const override;
+ 
+diff -ur MITK-2022.10/Modules/Core/include/itkVtkAbstractTransform.txx MITK-2022.10-patch/Modules/Core/include/itkVtkAbstractTransform.txx
+--- MITK-2022.10/Modules/Core/include/itkVtkAbstractTransform.txx	2022-10-29 01:08:41.000000000 -0700
++++ MITK-2022.10-patch/Modules/Core/include/itkVtkAbstractTransform.txx	2023-05-08 02:50:04.799114925 -0700
+@@ -226,11 +226,5 @@
+     // TODO
+   }
+ 
+-  template <class TScalarType>
+-  void itk::VtkAbstractTransform<TScalarType>::ComputeJacobianWithRespectToPosition(const InputPointType &,
+-                                                                                    JacobianPositionType &) const
+-  {
+-    // TODO
+-  }
+ 
+ } // namespace itk
+diff -ur MITK-2022.10/Modules/DICOM/src/legacy/mitkDicomSeriesReader.h MITK-2022.10-patch/Modules/DICOM/src/legacy/mitkDicomSeriesReader.h
+--- MITK-2022.10/Modules/DICOM/src/legacy/mitkDicomSeriesReader.h	2022-10-29 01:08:41.000000000 -0700
++++ MITK-2022.10-patch/Modules/DICOM/src/legacy/mitkDicomSeriesReader.h	2023-05-08 04:52:55.568220501 -0700
+@@ -26,7 +26,7 @@
+ #undef NOMINMAX
+ #endif
+ 
+-#include <gdcmConfigure.h>
++// #include <gdcmConfigure.h>
+ 
+ #ifdef DEF_NOMINMAX
+ #ifndef NOMINMAX
+diff -ur MITK-2022.10/Modules/Multilabel/mitkLabelSetImageHelper.cpp MITK-2022.10-patch/Modules/Multilabel/mitkLabelSetImageHelper.cpp
+--- MITK-2022.10/Modules/Multilabel/mitkLabelSetImageHelper.cpp	2022-10-29 01:08:41.000000000 -0700
++++ MITK-2022.10-patch/Modules/Multilabel/mitkLabelSetImageHelper.cpp	2023-05-08 07:35:28.643664859 -0700
+@@ -23,7 +23,7 @@
+ namespace
+ {
+   template <typename T>
+-  std::array<int, 3> QuantizeColor(const T* color)
++  std::array<int, 3> QuantizeColor(const T& color)
+   {
+     return {
+       static_cast<int>(std::round(color[0] * 255)),
+@@ -116,7 +116,7 @@
+       if (std::regex_match(labelName, match, genericLabelNameRegEx))
+         maxGenericLabelNumber = std::max(maxGenericLabelNumber, std::stoi(match[1].str()));
+ 
+-      const auto quantizedLabelColor = QuantizeColor(label->GetColor().data());
++      const auto quantizedLabelColor = QuantizeColor(label->GetColor());
+ 
+       if (std::find(colorsInUse.begin(), colorsInUse.end(), quantizedLabelColor) == std::end(colorsInUse))
+         colorsInUse.push_back(quantizedLabelColor);
+diff -ur MITK-2022.10/Modules/QtWidgets/src/QmitkMxNMultiWidget.cpp MITK-2022.10-patch/Modules/QtWidgets/src/QmitkMxNMultiWidget.cpp
+--- MITK-2022.10/Modules/QtWidgets/src/QmitkMxNMultiWidget.cpp	2022-10-29 01:08:41.000000000 -0700
++++ MITK-2022.10-patch/Modules/QtWidgets/src/QmitkMxNMultiWidget.cpp	2023-05-08 08:27:15.342860078 -0700
+@@ -240,7 +240,7 @@
+     return;
+   }
+ 
+-  mitk::RenderingManager::GetInstance()->InitializeViewByBoundingObjects(renderWindow->GetRenderWindow(), dataStorage);
++  mitk::RenderingManager::GetInstance()->InitializeViewByBoundingObjects(renderWindow->GetVtkRenderWindow(), dataStorage);
+ 
+   SetWidgetPlaneMode(mitk::InteractionSchemeSwitcher::MITKStandard);
+ }
+diff -ur MITK-2022.10/Modules/QtWidgetsExt/src/QmitkPlotWidget.cpp MITK-2022.10-patch/Modules/QtWidgetsExt/src/QmitkPlotWidget.cpp
+--- MITK-2022.10/Modules/QtWidgetsExt/src/QmitkPlotWidget.cpp	2022-10-29 01:08:41.000000000 -0700
++++ MITK-2022.10-patch/Modules/QtWidgetsExt/src/QmitkPlotWidget.cpp	2023-05-08 13:56:58.825834343 -0700
+@@ -100,7 +100,7 @@
+   double *rawDataX = ConvertToRawArray(xValues);
+   double *rawDataY = ConvertToRawArray(yValues);
+   std::get<0>(m_PlotCurveVector[curveId])
+-    ->setSamples(new QwtPointArrayData(rawDataX, rawDataY, static_cast<int>(xValues.size())));
++    ->setSamples(new QwtPointArrayData<double>(rawDataX, rawDataY, static_cast<size_t>(xValues.size())));
+   delete[] rawDataX;
+   delete[] rawDataY;
+   return true;
+@@ -140,7 +140,7 @@
+   double *rawDataX = ConvertToRawArray(data, 0);
+   double *rawDataY = ConvertToRawArray(data, 1);
+   std::get<0>(m_PlotCurveVector[curveId])
+-    ->setData(new QwtPointArrayData(rawDataX, rawDataY, static_cast<int>(data.size())));
++    ->setData(new QwtPointArrayData<double>(rawDataX, rawDataY, static_cast<size_t>(data.size())));
+   delete[] rawDataX;
+   delete[] rawDataY;
+   return true;
+diff -ur MITK-2022.10/Modules/Segmentation/Algorithms/mitkGrowCutSegmentationFilter.cpp MITK-2022.10-patch/Modules/Segmentation/Algorithms/mitkGrowCutSegmentationFilter.cpp
+--- MITK-2022.10/Modules/Segmentation/Algorithms/mitkGrowCutSegmentationFilter.cpp	2022-10-29 01:08:41.000000000 -0700
++++ MITK-2022.10-patch/Modules/Segmentation/Algorithms/mitkGrowCutSegmentationFilter.cpp	2023-05-08 12:33:45.851503736 -0700
+@@ -10,7 +10,7 @@
+ 
+ ============================================================================*/
+ 
+-#include "itkFastGrowCut.h"
++// #include "itkFastGrowCut.h"
+ #include "mitkStringProperty.h"
+ #include "mitkLabel.h"
+ #include "mitkLabelSetImage.h"
+@@ -18,34 +18,34 @@
+ #include "mitkImageCast.h"
+ #include "mitkGrowCutSegmentationFilter.h"
+ 
+-template <typename TPixel, unsigned int VImageDimension>
+-void AccessItkGrowCutFilter(const itk::Image<TPixel, VImageDimension> *inputImage,
+-                            const itk::Image<mitk::Label::PixelType, VImageDimension> *seedImage,
+-                            const double distancePenalty,
+-                            mitk::Image::Pointer output)
+-{
+-  using ImageType = itk::Image<TPixel, VImageDimension>;
+-  using LabelType = itk::Image<mitk::Label::PixelType, VImageDimension>;
+-
+-  using FGCType = itk::FastGrowCut<ImageType, LabelType>;
+-  typename FGCType::Pointer fgcFilter = FGCType::New();
+-
+-  fgcFilter->SetInput(inputImage);
+-  fgcFilter->SetSeedImage(seedImage);
+-  fgcFilter->SetDistancePenalty(distancePenalty);
+-
+-  try
+-  {
+-    fgcFilter->Update();
+-  }
+-  catch (...)
+-  {
+-    mitkThrow() << "An error occurred while using the itkFastGrowCut filter Update()-Method.";
+-  }
+-
+-  mitk::CastToMitkImage<LabelType>(fgcFilter->GetOutput(), output);
+-  return;
+-}
++// template <typename TPixel, unsigned int VImageDimension>
++// void AccessItkGrowCutFilter(const itk::Image<TPixel, VImageDimension> *inputImage,
++//                             const itk::Image<mitk::Label::PixelType, VImageDimension> *seedImage,
++//                             const double distancePenalty,
++//                             mitk::Image::Pointer output)
++// {
++//   using ImageType = itk::Image<TPixel, VImageDimension>;
++//   using LabelType = itk::Image<mitk::Label::PixelType, VImageDimension>;
++
++//   using FGCType = itk::FastGrowCut<ImageType, LabelType>;
++//   typename FGCType::Pointer fgcFilter = FGCType::New();
++
++//   fgcFilter->SetInput(inputImage);
++//   fgcFilter->SetSeedImage(seedImage);
++//   fgcFilter->SetDistancePenalty(distancePenalty);
++
++//   try
++//   {
++//     fgcFilter->Update();
++//   }
++//   catch (...)
++//   {
++//     mitkThrow() << "An error occurred while using the itkFastGrowCut filter Update()-Method.";
++//   }
++
++//   mitk::CastToMitkImage<LabelType>(fgcFilter->GetOutput(), output);
++//   return;
++// }
+ 
+ namespace mitk
+ {
+@@ -55,20 +55,20 @@
+ 
+   GrowCutSegmentationFilter::~GrowCutSegmentationFilter() {}
+ 
+-  void GrowCutSegmentationFilter::GenerateData()
+-  {
+-    if (nullptr == m_itkSeedImage)
+-    {
+-      return;
+-    }
+-
+-    mitk::Image::ConstPointer mitkInputImage = GetInput();
+-
+-    AccessFixedDimensionByItk_n(mitkInputImage,
+-                                AccessItkGrowCutFilter,
+-                                3,
+-                                (m_itkSeedImage.GetPointer(),
+-                                 m_DistancePenalty,
+-                                 this->GetOutput()));
+-  }
++  // void GrowCutSegmentationFilter::GenerateData()
++  // {
++  //   if (nullptr == m_itkSeedImage)
++  //   {
++  //     return;
++  //   }
++
++  //   mitk::Image::ConstPointer mitkInputImage = GetInput();
++
++  //   AccessFixedDimensionByItk_n(mitkInputImage,
++  //                               AccessItkGrowCutFilter,
++  //                               3,
++  //                               (m_itkSeedImage.GetPointer(),
++  //                                m_DistancePenalty,
++  //                                this->GetOutput()));
++  // }
+ } // namespace mitk
+diff -ur MITK-2022.10/Modules/Segmentation/Algorithms/mitkGrowCutSegmentationFilter.h MITK-2022.10-patch/Modules/Segmentation/Algorithms/mitkGrowCutSegmentationFilter.h
+--- MITK-2022.10/Modules/Segmentation/Algorithms/mitkGrowCutSegmentationFilter.h	2022-10-29 01:08:41.000000000 -0700
++++ MITK-2022.10-patch/Modules/Segmentation/Algorithms/mitkGrowCutSegmentationFilter.h	2023-05-08 12:33:40.091435286 -0700
+@@ -44,7 +44,7 @@
+   protected:
+     GrowCutSegmentationFilter();
+     ~GrowCutSegmentationFilter() override;
+-    void GenerateData() override;
++    // void GenerateData() override;
+ 
+   private:
+     itk::Image<mitk::Label::PixelType, 3>::Pointer m_itkSeedImage = nullptr;
+diff -ur MITK-2022.10/Modules/Segmentation/CMakeLists.txt MITK-2022.10-patch/Modules/Segmentation/CMakeLists.txt
+--- MITK-2022.10/Modules/Segmentation/CMakeLists.txt	2022-10-29 01:08:41.000000000 -0700
++++ MITK-2022.10-patch/Modules/Segmentation/CMakeLists.txt	2023-05-08 12:48:29.858185198 -0700
+@@ -4,7 +4,6 @@
+   PACKAGE_DEPENDS
+     PUBLIC ITK|QuadEdgeMesh+RegionGrowing
+     PRIVATE ITK|LabelMap+MathematicalMorphology VTK|ImagingGeneral
+-  TARGET_DEPENDS PRIVATE GrowCut
+ )
+ 
+ add_subdirectory(Testing)

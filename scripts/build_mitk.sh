@@ -4,9 +4,17 @@ pushd $SRC_DIR
 
 export MITK_INSTALL_DIR=$INSTALL_DIR/mitk-$MITK_VERSION
 
+# for some reason these directories are not found
+export PATH=$QT_INSTALL_DIR_CMAKE:$PATH
+export PATH=$PYTHON_INSTALL_DIR/bin:$PATH
+export PATH=$TINYXML2_INSTALL_DIR_CMAKE:$PATH
+export PATH=$TINYXML2_INSTALL_DIR/lib:$PATH
+export PATH=$TINYXML2_INSTALL_DIR/include:$PATH
+export PATH=$GDCM_INCLUDE_DIR:$PATH
+export PATH=$VTK_INSTALL_DIR/lib:$PATH
 if [[ $BUILD_MITK -eq 1 ]]
 then
-    # download tar 
+    # # download tar 
     wget https://github.com/MITK/MITK/archive/refs/tags/v$MITK_VERSION.tar.gz
 
     # extract source
@@ -19,8 +27,12 @@ then
     mkdir -p $MITK_INSTALL_DIR
 
     pushd MITK-$MITK_VERSION
+
+    # apply patch
+    patch -p1 < $PATCH_DIR/mitk-$MITK_VERSION.patch
+
     rm -r -f build
-    mkdir build
+    mkdir -p build
     cd build
 
     # removed flags
@@ -28,8 +40,12 @@ then
     # REPLACEME_CMAKE_C_COMPILER \
     # REPLACEME_CMAKE_CXX_COMPILER \
     # -DQt5Script_DIR:PATH=$QT_INSTALL_DIR/lib/cmake/Qt5Script \
+    #         -DMITK_ADDITIONAL_CXX_FLAGS:STRING="-fpermissive -DVCL_CAN_STATIC_CONST_INIT_FLOAT=0 -isystem /usr/local/sv/ext/2022.10/release/gl2/bin/gnu/7.5/x64/gdcm-2.6.3/include/gdcm-2.6/" \
+    # -DMITK_ADDITIONAL_C_FLAGS:STRING="-fpermissive -DVCL_CAN_STATIC_CONST_INIT_FLOAT=0 -isystem /usr/local/sv/ext/2022.10/release/gl2/bin/gnu/7.5/x64/gdcm-2.6.3/include/gdcm-2.6/" \
+    #         -Dtinyxml2_DIR:PATH=$TINYXML2_INSTALL_DIR \
+    
+    echo $PATH
 
-    echo $ITK_INSTALL_DIR_CMAKE
     cmake \
         -DMITK_USE_SUPERBUILD=1 \
         -DMITK_USE_GDCM=1 \
@@ -38,16 +54,13 @@ then
         -DMITK_USE_Python3=1 \
         -DMITK_USE_SWIG=1 \
         -DBUILD_SHARED_LIBS=1 \
-        -DMITK_ADDITIONAL_CXX_FLAGS:STRING="-fpermissive -DVCL_CAN_STATIC_CONST_INIT_FLOAT=0 -isystem /usr/local/sv/ext/2022.10/release/gl2/bin/gnu/7.5/x64/gdcm-2.6.3/include/gdcm-2.6/" \
-        -DMITK_ADDITIONAL_C_FLAGS:STRING="-fpermissive -DVCL_CAN_STATIC_CONST_INIT_FLOAT=0 -isystem /usr/local/sv/ext/2022.10/release/gl2/bin/gnu/7.5/x64/gdcm-2.6.3/include/gdcm-2.6/" \
         -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON \
-        -DGDCM_DIR:PATH=$GDCM_INSTALL_DIR/lib \
-        -DEXTERNAL_ITK_DIR:PATH=$ITK_INSTALL_DIR/lib \
-        -DEXTERNAL_VTK_DIR:PATH=$VTK_INSTALL_DIR/lib \
-        -DSWIG_EXECUTABLE:FILEPATH=$SWIG_EXECUTABLE \
+        -DEXTERNAL_GDCM_DIR:PATH=$GDCM_INSTALL_DIR \
+        -DEXTERNAL_ITK_DIR:PATH=$ITK_INSTALL_DIR \
+        -DEXTERNAL_VTK_DIR:PATH=$VTK_INSTALL_DIR \
+        -DSWIG_EXECUTABLE:PATH=$SWIG_EXECUTABLE \
         -DSWIG_DIR:PATH=$SWIG_INSTALL_DIR \
-        -Dtinyxml2_DIR:FILEPATH=$TINYXML2_INSTALL_DIR \
-        -D_Python3_EXECUTABLE:FILEPATH=$PYTHON_INSTALL_DIR/$PYTHON_EXECUTABLE \
+        -D_Python3_EXECUTABLE:PATH=$PYTHON_INSTALL_DIR/$PYTHON_EXECUTABLE \
         -D_Python3_INCLUDE_DIR:PATH=$PYTHON_INSTALL_DIR/$PYTHON_INCLUDE_DIR \
         -DQt5_DIR:PATH=$QT_INSTALL_DIR/lib/cmake/Qt5 \
         -DQt5Concurrent_DIR:PATH=$QT_INSTALL_DIR/lib/cmake/Qt5Concurrent \
@@ -68,8 +81,12 @@ then
         -DCMAKE_BUILD_TYPE:STRING=Release \
         -DCMAKE_OBJECT_PATH_MAX:STRING=1000 \
         -DPython3_ROOT_DIR=$PYTHON_INSTALL_DIR \
-        -DCMAKE_PREFIX_PATH:PATH=$ITK_INSTALL_DIR_CMAKE \
+        -DCMAKE_PREFIX_PATH:PATH="$ITK_INSTALL_DIR_CMAKE" \
+        -DQt5_DIR:PATH=$QT_INSTALL_DIR_CMAKE \
+        -DCMAKE_C_FLAGS=-I$GDCM_INCLUDE_DIR \
+        -DCMAKE_CXX_FLAGS=-I$GDCM_INCLUDE_DIR \
     ..
+
     make -j 8
     make install
     popd

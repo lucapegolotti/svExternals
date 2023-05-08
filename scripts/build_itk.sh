@@ -22,8 +22,8 @@ then
     mkdir -p $ITK_INSTALL_DIR
 
     pushd InsightToolkit-$ITK_VERSION
-    rm -r build
-    mkdir build
+    # rm -r -p build
+    mkdir -p build
     cd build
 
     # this option makes compilation fail

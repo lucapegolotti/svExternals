@@ -20,7 +20,7 @@ then
     mkdir -p $VTK_INSTALL_DIR
 
     pushd VTK-$VTK_VERSION
-    mkdir build
+    mkdir -p build
     cd build
 
     cmake \
@@ -40,7 +40,7 @@ then
         -DQt5Gui_DIR=$QT_INSTALL_DIR/lib/cmake/Qt5Gui \
         -DQt5OpenGL_DIR=$QT_INSTALL_DIR/lib/cmake/Qt5OpenGL \
         -DQt5Widgets_DIR=$QT_INSTALL_DIR/lib/cmake/Qt5Widgets \
-        -DQt5_DIR=$QT_INSTALL_DIR/lib/cmake/Qt5 \
+        -DQt5_DIR=$QT_INSTALL_DIR_CMAKE \
         -DVTK_MODULE_ENABLE_VTK_GUISupportQt=YES \
         -DVTK_MODULE_ENABLE_VTK_ViewsQt=YES \
         -DVTK_MODULE_ENABLE_VTK_RenderingQt=YES \

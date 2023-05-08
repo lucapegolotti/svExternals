@@ -24,7 +24,7 @@ then
 
     # build and install
     pushd hdf5-$HDF5_VERSION
-    mkdir build && cd build
+    mkdir -p build && cd build
     cmake \
         -DHDF5_BUILD_SHARED_LIBS=1 \
         -DHDF5_BUILD_HL_LIB:BOOL=ON \

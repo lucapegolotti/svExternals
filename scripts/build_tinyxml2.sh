@@ -3,6 +3,7 @@
 pushd $SRC_DIR
 
 export TINYXML2_INSTALL_DIR=$INSTALL_DIR/tinyxml2-$TINYXML2_VERSION
+export TINYXML2_INSTALL_DIR_CMAKE=$TINYXML2_INSTALL_DIR/lib/cmake/tinyxml2/
 
 if [[ $BUILD_TINYXML2 -eq 1 ]]
 then
