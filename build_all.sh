@@ -16,8 +16,8 @@ export PATCH_DIR=$CUR_DIR'/patches'
 mkdir -p $SRC_DIR
 mkdir -p $INSTALL_DIR
 
-export CC=gcc-8
-export CXX=g++-8
+# export CC=gcc-8
+# export CXX=g++-8
 
 # 
 BUILD_TCL=1
