@@ -32,9 +32,9 @@ BUILD_SWIG=1
 BUILD_MMG=1
 BUILD_GDCM=1
 BUILD_VTK=1
-BUILD_ITK=0
-BUILD_OPENCASCADE=0
-BUILD_MITK=0
+BUILD_ITK=1
+BUILD_OPENCASCADE=1
+BUILD_MITK=1
 
 # build libraries. Even if the bool above are 0, we enter the scripts
 # as they set relevant env variables
