@@ -20,6 +20,7 @@ mkdir -p $INSTALL_DIR
 # export CXX=g++-8
 
 # 
+BUILD_TK=1
 BUILD_TCL=1
 BUILD_QT=1
 BUILD_HDF5=1
@@ -37,6 +38,7 @@ BUILD_MITK=0
 # build libraries. Even if the bool above are 0, we enter the scripts
 # as they set relevant env variables
 mkdir -p output
+source scripts/build_tk.sh > output/tk.out
 source scripts/build_tcl.sh > output/tcl.out
 source scripts/build_qt.sh > output/qt.out
 source scripts/build_hdf5.sh > output/hdf5.out
