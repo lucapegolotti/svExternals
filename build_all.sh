@@ -39,8 +39,8 @@ BUILD_MITK=0
 # build libraries. Even if the bool above are 0, we enter the scripts
 # as they set relevant env variables
 mkdir -p output
-source scripts/build_tk.sh > output/tk.out
 source scripts/build_tcl.sh > output/tcl.out
+source scripts/build_tk.sh > output/tk.out
 source scripts/build_qt.sh > output/qt.out
 source scripts/build_hdf5.sh > output/hdf5.out
 source scripts/build_tinyxml2.sh > output/tinyxml2.out
