@@ -1,0 +1,66 @@
+# This is a basic workflow that is manually triggered
+
+name: Build SimVascular Externals - Linux
+
+# Controls when the action will run.
+on:
+  # Workflow runs when manually triggered using the UI or API.
+  workflow_dispatch:
+        
+  # This is to schedule run every Monday at 5:30 UTC
+  schedule:
+    # Runs every monday at 5:30 UTC
+    - cron: '30 5 * * 1'
+    
+  push:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build_libaries_ubuntu"
+  build-libraries-ubuntu-20:
+    # The type of runner that the job will run on
+    # ubuntu-20.04 == ubuntu latest
+    runs-on: ubuntu-20.04
+
+    steps:
+    # Checkout the repository first
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Build libraries for Ubuntu
+      shell: bash
+      run: |
+        sudo apt-get install
+        sudo apt-get install llvm 
+        sudo apt-get install libpcre3 
+        sudo apt-get install libpcre3-dev 
+        sudo apt-get install automake
+        sudo apt-get install build-essential
+        sudo apt-get install libgl1-mesa-dev
+        sudo apt-get install libglu1-mesa-dev
+        sudo apt-get install libxcb-render0-dev
+        sudo apt-get install libdbus-1-dev libnss3-dev
+        sudo apt-get install libxcb-xfixes0-dev
+        sudo apt-get install bison flex
+        sudo apt-get install byacc
+        sudo apt-get install libxi-dev libxcomposite-dev libxcursor-dev libxtst-dev 
+        sudo apt-get install libatspi2.0-dev
+        bash build_all.sh
+        tar -cf SVExternals-Ubuntu-20.04.tar install
+        tar -cf BuildOutput-Ubuntu-20.04.tar output
+        
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: SVExternals Ubuntu 20.04
+        path: SVExternals-Ubuntu-20.04.tar
+        if-no-files-found: error
+
+    - name: Upload output artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: Output Ubuntu 20.04
+        path: BuildOutput-Ubuntu-20.04.tar
+        if-no-files-found: error
+        
+    
