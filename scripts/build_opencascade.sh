@@ -23,7 +23,6 @@ then
     mkdir -p $OPENCASCADE_INSTALL_DIR
 
     pushd opencascade-$OPENCASCADE_VERSION
-    rm -r build
     mkdir -p build
     cd build
 

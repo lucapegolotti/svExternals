@@ -31,7 +31,6 @@ then
     # apply patch
     patch -p1 < $PATCH_DIR/mitk-$MITK_VERSION.patch
 
-    rm -r -f build
     mkdir -p build
     cd build
 
