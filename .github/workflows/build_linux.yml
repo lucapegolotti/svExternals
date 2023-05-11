@@ -50,7 +50,7 @@ jobs:
     - name: Install TCL
       shell: bash
       run: |
-        source scripts/library_versions.sh
+        source env_variables.sh
         source scripts/build_tcl.sh
         
     - name: Upload build artifact

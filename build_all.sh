@@ -3,7 +3,7 @@
 # halt on error
 set -e
 
-source scripts/library_versions.sh
+source env_variables.sh
 
 # create directories
 mkdir -p $SRC_DIR
