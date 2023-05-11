@@ -46,17 +46,12 @@ jobs:
         sudo apt-get install byacc
         sudo apt-get install libxi-dev libxcomposite-dev libxcursor-dev libxtst-dev 
         sudo apt-get install libatspi2.0-dev
-        bash build_all.sh
-        tar -cf SVExternals-Ubuntu-20.04.tar install
-        tar -cf BuildOutput-Ubuntu-20.04.tar output
 
     - name: Install TCL
       shell: bash
       run: |
         source scripts/library_versions.sh
         source scripts/build_tcl.sh
-        tar -cf SVExternals-Ubuntu-20.04.tar install/
-        tar -cf BuildOutput-Ubuntu-20.04.tar output
         
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
