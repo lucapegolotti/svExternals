@@ -2,34 +2,32 @@
 
 pushd $SRC_DIR
 
+# download tar 
+wget  https://sourceforge.net/projects/tcl/files/Tcl/$TCL_VERSION/tcl$TCL_VERSION-src.tar.gz
 
-TCL_MAJOR_VERSION=${TCL_VERSION%.*}
+# extract source
+tar -xf tcl$TCL_VERSION-src.tar.gz
 
-#this is needed to link vtk to TCL
-export TCL_LIB_NAME=libtcl$TCL_MAJOR_VERSION.so
-export TCL_EXE_NAME=tclsh$TCL_MAJOR_VERSION
-export TCL_INSTALL_DIR=$INSTALL_DIR/tcl-$TCL_VERSION
+# delete tar
+rm tcl$TCL_VERSION-src.tar.gz
 
-if [[ $BUILD_TCL -eq 1 ]]
-then
-    # download tar 
-    wget  https://sourceforge.net/projects/tcl/files/Tcl/$TCL_VERSION/tcl$TCL_VERSION-src.tar.gz
+# create install directory 
+mkdir -p $TCL_INSTALL_DIR
 
-    # extract source
-    tar -xf tcl$TCL_VERSION-src.tar.gz
+# build and install
+pushd tcl$TCL_VERSION/unix
+./configure --prefix=$TCL_INSTALL_DIR
+make -j 2 install
+popd
 
-    # delete tar
-    rm tcl$TCL_VERSION-src.tar.gz
-
-    # create install directory 
-    export TCL_INSTALL_DIR=$INSTALL_DIR/tcl-$TCL_VERSION
-    mkdir -p $TCL_INSTALL_DIR
-
-    # build and install
-    pushd tcl$TCL_VERSION/unix
-    ./configure --prefix=$TCL_INSTALL_DIR
-    make -j 2 install
-    popd
-fi
+echo $TCL_INSTALL_DIR
 
 popd
+
+mkdir -p tar
+
+# create tar
+cd install
+tar -cf tcl.tar tcl-$TCL_VERSION
+mv tcl.tar ../tar/
+cd ..

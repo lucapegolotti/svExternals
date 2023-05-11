@@ -17,7 +17,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build_libaries_ubuntu"
-  build-libraries-ubuntu-20:
+  build-tcl-ubuntu-20:
     # The type of runner that the job will run on
     # ubuntu-20.04 == ubuntu latest
     runs-on: ubuntu-20.04
@@ -27,7 +27,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Build libraries for Ubuntu
+    - name: Install dependencies
       shell: bash
       run: |
         sudo apt-get install
@@ -49,19 +49,20 @@ jobs:
         bash build_all.sh
         tar -cf SVExternals-Ubuntu-20.04.tar install
         tar -cf BuildOutput-Ubuntu-20.04.tar output
+
+    - name: Install TCL
+      shell: bash
+      run: |
+        source scripts/library_versions.sh
+        source scripts/build_tcl.sh
+        tar -cf SVExternals-Ubuntu-20.04.tar install/
+        tar -cf BuildOutput-Ubuntu-20.04.tar output
         
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
       with:
-        name: SVExternals Ubuntu 20.04
-        path: SVExternals-Ubuntu-20.04.tar
-        if-no-files-found: error
-
-    - name: Upload output artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: Output Ubuntu 20.04
-        path: BuildOutput-Ubuntu-20.04.tar
+        name: TCL Install
+        path: tar/tcl.tar
         if-no-files-found: error
         
     
