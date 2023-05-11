@@ -51,6 +51,7 @@ jobs:
       shell: bash
       run: |
         source env_variables.sh
+        echo $SRC_DIR
         source scripts/build_tcl.sh
         
     - name: Upload build artifact
