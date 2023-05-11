@@ -592,6 +592,11 @@ jobs:
         with:
           name: QT Install
 
+      - name: Get TINYXML2 artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: TINYXML2 Install
+
       - name: Extract dependencies
         shell: bash
         run: |
@@ -609,6 +614,8 @@ jobs:
           tar -xvf python.tar
           mv ../qt.tar .
           tar -xvf qt.tar
+          mv ../tinyxml2.tar .
+          tar -xvf tinyxml2.tar
           cd ..
 
       - name: Install MITK
