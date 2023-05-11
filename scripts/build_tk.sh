@@ -21,3 +21,8 @@ make -j 2 install
 popd
 
 popd
+
+# create tar
+cd install
+tar -cf tk.tar tk-$TK_VERSION
+cd ..

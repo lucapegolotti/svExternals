@@ -16,14 +16,10 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build_libaries_ubuntu"
-  build-tcl-ubuntu-20:
-    # The type of runner that the job will run on
-    # ubuntu-20.04 == ubuntu latest
+  build-tcltk-ubuntu-20:
     runs-on: ubuntu-20.04
 
     steps:
-    # Checkout the repository first
     - name: Checkout
       uses: actions/checkout@v2
 
@@ -47,18 +43,279 @@ jobs:
         sudo apt-get install libxi-dev libxcomposite-dev libxcursor-dev libxtst-dev 
         sudo apt-get install libatspi2.0-dev
 
-    - name: Install TCL
+    - name: Install TCL and TK
       shell: bash
       run: |
         mkdir -p src
         source env_variables.sh
         source scripts/build_tcl.sh
+        source scripts/build_tk.sh
         
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
       with:
-        name: TCL Install
-        path: tar/tcl.tar
+        name: Tcl Install
+        path: install/tcl.tar
+        if-no-files-found: error
+
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: Tk Install
+        path: install/tk.tar
+        if-no-files-found: error
+
+  build-qt-ubuntu-20:
+    runs-on: ubuntu-20.04
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
+      shell: bash
+      run: |
+        sudo apt-get install
+        sudo apt-get install llvm 
+        sudo apt-get install libpcre3 
+        sudo apt-get install libpcre3-dev 
+        sudo apt-get install automake
+        sudo apt-get install build-essential
+        sudo apt-get install libgl1-mesa-dev
+        sudo apt-get install libglu1-mesa-dev
+        sudo apt-get install libxcb-render0-dev
+        sudo apt-get install libdbus-1-dev libnss3-dev
+        sudo apt-get install libxcb-xfixes0-dev
+        sudo apt-get install gperf
+        sudo apt-get install bison flex
+        sudo apt-get install byacc
+        sudo apt-get install libxi-dev libxcomposite-dev libxcursor-dev libxtst-dev 
+        sudo apt-get install libatspi2.0-dev
+
+    - name: Install Qt
+      shell: bash
+      run: |
+        mkdir -p src
+        source env_variables.sh
+        source scripts/build_qt.sh
+        
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: Qt Install
+        path: install/qt.tar
         if-no-files-found: error
         
+
+  build-hdf5-ubuntu-20:
+    runs-on: ubuntu-20.04
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
+      shell: bash
+      run: |
+        sudo apt-get install
+        sudo apt-get install llvm 
+        sudo apt-get install libpcre3 
+        sudo apt-get install libpcre3-dev 
+        sudo apt-get install automake
+        sudo apt-get install build-essential
+        sudo apt-get install libgl1-mesa-dev
+        sudo apt-get install libglu1-mesa-dev
+        sudo apt-get install libxcb-render0-dev
+        sudo apt-get install libdbus-1-dev libnss3-dev
+        sudo apt-get install libxcb-xfixes0-dev
+        sudo apt-get install gperf
+        sudo apt-get install bison flex
+        sudo apt-get install byacc
+        sudo apt-get install libxi-dev libxcomposite-dev libxcursor-dev libxtst-dev 
+        sudo apt-get install libatspi2.0-dev
+
+    - name: Install HDF5
+      shell: bash
+      run: |
+        mkdir -p src
+        source env_variables.sh
+        source scripts/build_hdf5.sh
+        
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: HDF5 Install
+        path: install/hdf5.tar
+        if-no-files-found: error
+
+  build-tinyxml2-ubuntu-20:
+    runs-on: ubuntu-20.04
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Install Tinyxml2
+      shell: bash
+      run: |
+        mkdir -p src
+        source env_variables.sh
+        source scripts/build_tinyxml2.sh
+        
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: Tinyxml2 Install
+        path: install/tinyxml2.tar
+        if-no-files-found: error
+
+  build-python-ubuntu-20:
+    runs-on: ubuntu-20.04
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
+      shell: bash
+      run: |
+        sudo apt-get install
+        sudo apt-get install llvm 
+        sudo apt-get install libpcre3 
+        sudo apt-get install libpcre3-dev 
+        sudo apt-get install automake
+        sudo apt-get install build-essential
+        sudo apt-get install libgl1-mesa-dev
+        sudo apt-get install libglu1-mesa-dev
+        sudo apt-get install libxcb-render0-dev
+        sudo apt-get install libdbus-1-dev libnss3-dev
+        sudo apt-get install libxcb-xfixes0-dev
+        sudo apt-get install gperf
+        sudo apt-get install bison flex
+        sudo apt-get install byacc
+        sudo apt-get install libxi-dev libxcomposite-dev libxcursor-dev libxtst-dev 
+        sudo apt-get install libatspi2.0-dev
+
+    - name: Install Python
+      shell: bash
+      run: |
+        mkdir -p src
+        source env_variables.sh
+        source scripts/build_python.sh
+        
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: Python Install
+        path: install/python.tar
+        if-no-files-found: error
+
+  build-freetype-ubuntu-20:
+    runs-on: ubuntu-20.04
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
+      shell: bash
+      run: |
+        sudo apt-get install
+        sudo apt-get install llvm 
+        sudo apt-get install libpcre3 
+        sudo apt-get install libpcre3-dev 
+        sudo apt-get install automake
+        sudo apt-get install build-essential
+        sudo apt-get install libgl1-mesa-dev
+        sudo apt-get install libglu1-mesa-dev
+        sudo apt-get install libxcb-render0-dev
+        sudo apt-get install libdbus-1-dev libnss3-dev
+        sudo apt-get install libxcb-xfixes0-dev
+        sudo apt-get install gperf
+        sudo apt-get install bison flex
+        sudo apt-get install byacc
+        sudo apt-get install libxi-dev libxcomposite-dev libxcursor-dev libxtst-dev 
+        sudo apt-get install libatspi2.0-dev
+
+    - name: Install Freetype
+      shell: bash
+      run: |
+        mkdir -p src
+        source env_variables.sh
+        source scripts/build_freetype.sh
+        
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: Freetype Install
+        path: install/freetype.tar
+        if-no-files-found: error
+
+  build-swig-ubuntu-20:
+    runs-on: ubuntu-20.04
+
+    steps:
+      # Checkout the repository first
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
+      shell: bash
+      run: |
+        sudo apt-get install
+        sudo apt-get install llvm 
+        sudo apt-get install libpcre3 
+        sudo apt-get install libpcre3-dev 
+        sudo apt-get install automake
+        sudo apt-get install build-essential
+        sudo apt-get install libgl1-mesa-dev
+        sudo apt-get install libglu1-mesa-dev
+        sudo apt-get install libxcb-render0-dev
+        sudo apt-get install libdbus-1-dev libnss3-dev
+        sudo apt-get install libxcb-xfixes0-dev
+        sudo apt-get install gperf
+        sudo apt-get install bison flex
+        sudo apt-get install byacc
+        sudo apt-get install libxi-dev libxcomposite-dev libxcursor-dev libxtst-dev 
+        sudo apt-get install libatspi2.0-dev
+
+    - name: Install Swig
+      shell: bash
+      run: |
+        mkdir -p src
+        source env_variables.sh
+        source scripts/build_swig.sh
+          
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: Swig Install
+        path: install/swig.tar
+        if-no-files-found: error
+
+  build-mmg-ubuntu-20:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install Mmg
+        shell: bash
+        run: |
+          mkdir -p src
+          source env_variables.sh
+          source scripts/build_mmg.sh
+          
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Mmg Install
+          path: install/mmg.tar
+          if-no-files-found: error
+
+  
+        
+    
+
     

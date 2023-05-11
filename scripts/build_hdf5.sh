@@ -32,3 +32,8 @@ make install
 popd
 
 popd
+
+# create tar
+cd install
+tar -cf hdf5.tar hdf5-$HDF5_VERSION
+cd ..

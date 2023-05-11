@@ -22,3 +22,8 @@ make -j 4 && make install
 popd
 
 popd
+
+# create tar
+cd install
+tar -cf tinyxml2.tar tinyxml2-$TINYXML2_VERSION
+cd ..

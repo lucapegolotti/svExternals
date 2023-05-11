@@ -29,5 +29,4 @@ mkdir -p tar
 # create tar
 cd install
 tar -cf tcl.tar tcl-$TCL_VERSION
-mv tcl.tar ../tar/
 cd ..

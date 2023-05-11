@@ -24,3 +24,8 @@ popd
 $PYTHON_INSTALL_DIR/bin/pip3 install numpy
 
 popd
+
+# create tar
+cd install
+tar -cf python.tar python-$PYTHON_VERSION
+cd ..

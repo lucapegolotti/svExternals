@@ -21,3 +21,8 @@ make -j 4 && make install
 popd
 
 popd
+
+# create tar
+cd install
+tar -cf freetype.tar freetype-$FREETYPE_VERSION
+cd ..

@@ -24,3 +24,8 @@ make install
 popd
 
 popd
+
+# create tar
+cd install
+tar -cf swig.tar swig-$SWIG_VERSION
+cd ..
