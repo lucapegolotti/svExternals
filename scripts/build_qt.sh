@@ -24,9 +24,9 @@ make -j 4
 make install
 popd
 
+popd
+
 # create tar
 cd install
 tar -cf qt.tar qt-$QT_VERSION
 cd ..
-
-popd

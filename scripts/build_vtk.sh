@@ -51,3 +51,8 @@ make install
 popd
 
 popd
+
+# create tar
+cd install
+tar -cf vtk.tar vtk-$VTK_VERSION
+cd ..

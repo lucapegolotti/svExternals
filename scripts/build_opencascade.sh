@@ -48,3 +48,8 @@ make install
 popd
 
 popd
+
+# create tar
+cd install
+tar -cf opencascade.tar itk-$OPECASCADE_VERSION
+cd ..

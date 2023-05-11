@@ -22,3 +22,9 @@ make -j 4 && make install
 popd
 
 popd
+
+# create tar
+cd install
+tar -cf mmg.tar mmg-$MMG_VERSION
+cd ..
+

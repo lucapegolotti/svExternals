@@ -29,3 +29,9 @@ make -j 4 && make install
 popd
 
 popd
+
+# create tar
+cd install
+tar -cf gdcm.tar gdcm-$GDCM_VERSION
+cd ..
+

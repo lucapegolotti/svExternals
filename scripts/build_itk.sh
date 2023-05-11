@@ -45,3 +45,9 @@ make install
 popd
 
 popd
+
+# create tar
+cd install
+tar -cf itk.tar itk-$ITK_VERSION
+cd ..
+

@@ -88,3 +88,8 @@ make install
 popd
 
 popd
+
+# create tar
+cd install
+tar -cf mitk.tar mitk-$MITK_VERSION
+cd ..

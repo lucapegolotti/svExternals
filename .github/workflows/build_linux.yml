@@ -23,26 +23,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Install dependencies
-      shell: bash
-      run: |
-        sudo apt-get install
-        sudo apt-get install llvm 
-        sudo apt-get install libpcre3 
-        sudo apt-get install libpcre3-dev 
-        sudo apt-get install automake
-        sudo apt-get install build-essential
-        sudo apt-get install libgl1-mesa-dev
-        sudo apt-get install libglu1-mesa-dev
-        sudo apt-get install libxcb-render0-dev
-        sudo apt-get install libdbus-1-dev libnss3-dev
-        sudo apt-get install libxcb-xfixes0-dev
-        sudo apt-get install gperf
-        sudo apt-get install bison flex
-        sudo apt-get install byacc
-        sudo apt-get install libxi-dev libxcomposite-dev libxcursor-dev libxtst-dev 
-        sudo apt-get install libatspi2.0-dev
-
     - name: Install TCL and TK
       shell: bash
       run: |
@@ -54,14 +34,14 @@ jobs:
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
       with:
-        name: Tcl Install
+        name: TCL Install
         path: install/tcl.tar
         if-no-files-found: error
 
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
       with:
-        name: Tk Install
+        name: TK Install
         path: install/tk.tar
         if-no-files-found: error
 
@@ -92,7 +72,7 @@ jobs:
         sudo apt-get install libxi-dev libxcomposite-dev libxcursor-dev libxtst-dev 
         sudo apt-get install libatspi2.0-dev
 
-    - name: Install Qt
+    - name: Install QT
       shell: bash
       run: |
         mkdir -p src
@@ -102,7 +82,7 @@ jobs:
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
       with:
-        name: Qt Install
+        name: QT Install
         path: install/qt.tar
         if-no-files-found: error
         
@@ -155,7 +135,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Install Tinyxml2
+    - name: Install TINYXML2
       shell: bash
       run: |
         mkdir -p src
@@ -165,7 +145,7 @@ jobs:
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
       with:
-        name: Tinyxml2 Install
+        name: TINYXML2 Install
         path: install/tinyxml2.tar
         if-no-files-found: error
 
@@ -196,7 +176,7 @@ jobs:
         sudo apt-get install libxi-dev libxcomposite-dev libxcursor-dev libxtst-dev 
         sudo apt-get install libatspi2.0-dev
 
-    - name: Install Python
+    - name: Install PYTHON
       shell: bash
       run: |
         mkdir -p src
@@ -206,7 +186,7 @@ jobs:
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
       with:
-        name: Python Install
+        name: PYTHON Install
         path: install/python.tar
         if-no-files-found: error
 
@@ -237,7 +217,7 @@ jobs:
         sudo apt-get install libxi-dev libxcomposite-dev libxcursor-dev libxtst-dev 
         sudo apt-get install libatspi2.0-dev
 
-    - name: Install Freetype
+    - name: Install FREETYPE
       shell: bash
       run: |
         mkdir -p src
@@ -247,7 +227,7 @@ jobs:
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
       with:
-        name: Freetype Install
+        name: FREETYPE Install
         path: install/freetype.tar
         if-no-files-found: error
 
@@ -255,31 +235,10 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-      # Checkout the repository first
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Install dependencies
-      shell: bash
-      run: |
-        sudo apt-get install
-        sudo apt-get install llvm 
-        sudo apt-get install libpcre3 
-        sudo apt-get install libpcre3-dev 
-        sudo apt-get install automake
-        sudo apt-get install build-essential
-        sudo apt-get install libgl1-mesa-dev
-        sudo apt-get install libglu1-mesa-dev
-        sudo apt-get install libxcb-render0-dev
-        sudo apt-get install libdbus-1-dev libnss3-dev
-        sudo apt-get install libxcb-xfixes0-dev
-        sudo apt-get install gperf
-        sudo apt-get install bison flex
-        sudo apt-get install byacc
-        sudo apt-get install libxi-dev libxcomposite-dev libxcursor-dev libxtst-dev 
-        sudo apt-get install libatspi2.0-dev
-
-    - name: Install Swig
+    - name: Install SWIG
       shell: bash
       run: |
         mkdir -p src
@@ -289,7 +248,7 @@ jobs:
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
       with:
-        name: Swig Install
+        name: SWIG Install
         path: install/swig.tar
         if-no-files-found: error
 
@@ -300,7 +259,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Install Mmg
+      - name: Install MMG
         shell: bash
         run: |
           mkdir -p src
@@ -310,8 +269,347 @@ jobs:
       - name: Upload build artifact
         uses: actions/upload-artifact@v3
         with:
-          name: Mmg Install
+          name: MMG Install
           path: install/mmg.tar
+          if-no-files-found: error
+
+  build-gdcm-ubuntu-20:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install GDCM
+        shell: bash
+        run: |
+          mkdir -p src
+          source env_variables.sh
+          source scripts/build_gdcm.sh
+          
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: GDCM Install
+          path: install/gdcm.tar
+          if-no-files-found: error
+
+  build-vtk-ubuntu-20:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        shell: bash
+        run: |
+          sudo apt-get install
+          sudo apt-get install llvm 
+          sudo apt-get install libpcre3 
+          sudo apt-get install libpcre3-dev 
+          sudo apt-get install automake
+          sudo apt-get install build-essential
+          sudo apt-get install libgl1-mesa-dev
+          sudo apt-get install libglu1-mesa-dev
+          sudo apt-get install libxcb-render0-dev
+          sudo apt-get install libdbus-1-dev libnss3-dev
+          sudo apt-get install libxcb-xfixes0-dev
+          sudo apt-get install gperf
+          sudo apt-get install bison flex
+          sudo apt-get install byacc
+          sudo apt-get install libxi-dev libxcomposite-dev libxcursor-dev libxtst-dev 
+          sudo apt-get install libatspi2.0-dev
+
+      - name: Get TCL artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: TCL Install
+
+      - name: Get TK artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: TK Install
+
+      - name: Get QT artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: QT Install
+
+      - name: Get PYTHON artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: PYTHON Install
+
+      - name: Extract dependencies
+        shell: bash
+        run: |
+          mkdir -p install
+          cd install
+          mv ../tcl.tar .
+          tar -xvf tcl.tar
+          mv ../tk.tar .
+          tar -xvf tk.tar
+          mv ../qt.tar .
+          tar -xvf qt.tar
+          mv ../python.tar .
+          tar -xvf python.tar
+          cd ..
+
+      - name: Install VTK
+        shell: bash
+        run: |
+          mkdir -p src
+          source env_variables.sh
+          source scripts/build_vtk.sh
+          
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: VTK Install
+          path: install/vtk.tar
+          if-no-files-found: error
+
+  build-itk-ubuntu-20:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        shell: bash
+        run: |
+          sudo apt-get install
+          sudo apt-get install llvm 
+          sudo apt-get install libpcre3 
+          sudo apt-get install libpcre3-dev 
+          sudo apt-get install automake
+          sudo apt-get install build-essential
+          sudo apt-get install libgl1-mesa-dev
+          sudo apt-get install libglu1-mesa-dev
+          sudo apt-get install libxcb-render0-dev
+          sudo apt-get install libdbus-1-dev libnss3-dev
+          sudo apt-get install libxcb-xfixes0-dev
+          sudo apt-get install gperf
+          sudo apt-get install bison flex
+          sudo apt-get install byacc
+          sudo apt-get install libxi-dev libxcomposite-dev libxcursor-dev libxtst-dev 
+          sudo apt-get install libatspi2.0-dev
+
+      - name: Get GDCM artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: GDCM Install
+
+      - name: Get HDF5 artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: HDF5 Install
+
+      - name: Get QT artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: QT Install
+
+      - name: Get PYTHON artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: PYTHON Install
+
+      - name: Get VTK artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: VTK Install
+
+      - name: Extract dependencies
+        shell: bash
+        run: |
+          mkdir -p install
+          cd install
+          mv ../gdcm.tar .
+          tar -xvf gdcm.tar
+          mv ../hdf5.tar .
+          tar -xvf hdf5.tar
+          mv ../qt.tar .
+          tar -xvf qt.tar
+          mv ../python.tar .
+          tar -xvf python.tar
+          mv ../vtk.tar .
+          tar -xvf vtk.tar
+          cd ..
+
+      - name: Install ITK
+        shell: bash
+        run: |
+          mkdir -p src
+          source env_variables.sh
+          source scripts/build_itk.sh
+          
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ITK Install
+          path: install/itk.tar
+          if-no-files-found: error
+
+  build-opencascade-ubuntu-20:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        shell: bash
+        run: |
+          sudo apt-get install
+          sudo apt-get install llvm 
+          sudo apt-get install libpcre3 
+          sudo apt-get install libpcre3-dev 
+          sudo apt-get install automake
+          sudo apt-get install build-essential
+          sudo apt-get install libgl1-mesa-dev
+          sudo apt-get install libglu1-mesa-dev
+          sudo apt-get install libxcb-render0-dev
+          sudo apt-get install libdbus-1-dev libnss3-dev
+          sudo apt-get install libxcb-xfixes0-dev
+          sudo apt-get install gperf
+          sudo apt-get install bison flex
+          sudo apt-get install byacc
+          sudo apt-get install libxi-dev libxcomposite-dev libxcursor-dev libxtst-dev 
+          sudo apt-get install libatspi2.0-dev
+
+      - name: Get FREETYPE artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: FREETYPE Install
+
+      - name: Get TCL artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: TCL Install
+
+      - name: Get VTK artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: VTK Install
+
+      - name: Extract dependencies
+        shell: bash
+        run: |
+          mkdir -p install
+          cd install
+          mv ../freetype.tar .
+          tar -xvf freetype.tar
+          mv ../tcl.tar .
+          tar -xvf tcl.tar
+          mv ../vtk.tar .
+          tar -xvf vtk.tar
+          cd ..
+
+      - name: Install OPENCASCADE
+        shell: bash
+        run: |
+          mkdir -p src
+          source env_variables.sh
+          source scripts/build_opencascade.sh
+          
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: OPENCASCADE Install
+          path: install/opencascade.tar
+          if-no-files-found: error
+
+  build-mitk-ubuntu-20:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        shell: bash
+        run: |
+          sudo apt-get install
+          sudo apt-get install llvm 
+          sudo apt-get install libpcre3 
+          sudo apt-get install libpcre3-dev 
+          sudo apt-get install automake
+          sudo apt-get install build-essential
+          sudo apt-get install libgl1-mesa-dev
+          sudo apt-get install libglu1-mesa-dev
+          sudo apt-get install libxcb-render0-dev
+          sudo apt-get install libdbus-1-dev libnss3-dev
+          sudo apt-get install libxcb-xfixes0-dev
+          sudo apt-get install gperf
+          sudo apt-get install bison flex
+          sudo apt-get install byacc
+          sudo apt-get install libxi-dev libxcomposite-dev libxcursor-dev libxtst-dev 
+          sudo apt-get install libatspi2.0-dev
+
+      - name: Get GDCM artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: GDCM Install
+
+      - name: Get ITK artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: ITK Install
+
+      - name: Get VTK artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: VTK Install
+
+      - name: Get SWIG artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: SWIG Install
+
+      - name: Get PYTHON artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: PYTHON Install
+
+      - name: Get QT artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: QT Install
+
+      - name: Extract dependencies
+        shell: bash
+        run: |
+          mkdir -p install
+          cd install
+          mv ../gdcm.tar .
+          tar -xvf gdcm.tar
+          mv ../itk.tar .
+          tar -xvf itk.tar
+          mv ../vtk.tar .
+          tar -xvf vtk.tar
+          mv ../swig.tar .
+          tar -xvf swig.tar
+          mv ../python.tar .
+          tar -xvf python.tar
+          mv ../qt.tar .
+          tar -xvf qt.tar
+          cd ..
+
+      - name: Install MITK
+        shell: bash
+        run: |
+          mkdir -p src
+          source env_variables.sh
+          source scripts/build_mitk.sh
+          
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: MITK Install
+          path: install/mitk.tar
           if-no-files-found: error
 
   
