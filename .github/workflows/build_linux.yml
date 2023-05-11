@@ -50,8 +50,8 @@ jobs:
     - name: Install TCL
       shell: bash
       run: |
+        mkdir -p src
         source env_variables.sh
-        echo $SRC_DIR
         source scripts/build_tcl.sh
         
     - name: Upload build artifact

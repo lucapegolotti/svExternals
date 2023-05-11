@@ -20,7 +20,7 @@ export MITK_VERSION=2022.10
 # set library location environment variables
 
 CUR_DIR=$(pwd)
-echo $CUR_DIR
+
 # set directories
 export SRC_DIR=$CUR_DIR'/src'
 export INSTALL_DIR=$CUR_DIR'/install'
