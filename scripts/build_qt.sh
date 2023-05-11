@@ -20,7 +20,7 @@ mkdir -p $QT_INSTALL_DIR
 pushd qt-everywhere-src-$QT_VERSION
 ./configure -opensource -confirm-license --prefix=$QT_INSTALL_DIR -v 
 patch -p1 < $PATCH_DIR/qt-$QT_VERSION-clang.patch
-make -j 8
+make -j 4
 make install
 popd
 
