@@ -536,7 +536,8 @@ jobs:
   build-mitk-ubuntu-20:
     runs-on: ubuntu-20.04
     needs: [build-gdcm-ubuntu-20, build-itk-ubuntu-20, build-vtk-ubuntu-20,
-            build-swig-ubuntu-20, build-python-ubuntu-20, build-qt-ubuntu-20]
+            build-swig-ubuntu-20, build-python-ubuntu-20, build-qt-ubuntu-20,
+            build-tinyxml2-ubuntu-20]
   
     steps:
       - name: Checkout
