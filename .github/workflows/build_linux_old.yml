@@ -12,14 +12,18 @@ on:
     # Runs every monday at 5:30 UTC
     - cron: '30 5 * * 1'
     
-  # push:
+  push:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  build-qt-ubuntu-20:
+  # This workflow contains a single job called "build_libaries_ubuntu"
+  build-tcl-ubuntu-20:
+    # The type of runner that the job will run on
+    # ubuntu-20.04 == ubuntu latest
     runs-on: ubuntu-20.04
 
     steps:
+    # Checkout the repository first
     - name: Checkout
       uses: actions/checkout@v2
 
@@ -42,17 +46,21 @@ jobs:
         sudo apt-get install byacc
         sudo apt-get install libxi-dev libxcomposite-dev libxcursor-dev libxtst-dev 
         sudo apt-get install libatspi2.0-dev
+        bash build_all.sh
+        tar -cf SVExternals-Ubuntu-20.04.tar install
+        tar -cf BuildOutput-Ubuntu-20.04.tar output
 
-    - name: Install QT
+    - name: Install TCL
       shell: bash
       run: |
-        mkdir -p src
-        source env_variables.sh
-        source scripts/build_qt.sh > qt.out
+        source scripts/library_versions.sh
+        source scripts/build_tcl.sh
+        tar -cf SVExternals-Ubuntu-20.04.tar install/
+        tar -cf BuildOutput-Ubuntu-20.04.tar output
         
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
       with:
-        name: QT Install
-        path: install/qt.tar
+        name: TCL Install
+        path: tar/tcl.tar
         if-no-files-found: error
