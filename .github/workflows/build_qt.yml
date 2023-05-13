@@ -37,7 +37,6 @@ jobs:
         sudo apt-get install libxcb-render0-dev
         sudo apt-get install libdbus-1-dev libnss3-dev
         sudo apt-get install libxcb-xfixes0-dev
-        sudo apt-get install gperf
         sudo apt-get install bison flex
         sudo apt-get install byacc
         sudo apt-get install libxi-dev libxcomposite-dev libxcursor-dev libxtst-dev 
