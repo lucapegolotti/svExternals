@@ -18,10 +18,10 @@ mkdir -p $QT_INSTALL_DIR
 # apply patch 
 # build and install
 pushd qt-everywhere-src-$QT_VERSION
-./configure -opensource -confirm-license --prefix=$QT_INSTALL_DIR -v -nomake examples -nomake tests -feature-qtcreator -feature-qtscript -feature-qtcharts -feature-qtdatavis3d -feature-qtnetworkauth -feature-qtpurchasing -feature-qtremoteobjects -feature-qtvirtualkeyboard -feature-qtwebengine -feature-qtwebglplugin
+./configure -opensource -confirm-license --prefix=$QT_INSTALL_DIR -nomake examples -nomake tests # -feature-creator -feature-qtscript -feature-qtcharts -feature-qtdatavis3d -feature-qtnetworkauth -feature-qtpurchasing -feature-qtremoteobjects -feature-qtvirtualkeyboard -feature-qtwebengine -feature-qtwebglplugin
 patch -p1 < $PATCH_DIR/qt-$QT_VERSION-clang.patch
-make -j 4
-make install
+# make -j 4
+# make install
 popd
 
 popd
