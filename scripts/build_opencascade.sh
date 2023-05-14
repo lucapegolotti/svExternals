@@ -43,7 +43,7 @@ cmake \
     -DINSTALL_DIR_LIB:PATH=lib \
 ..
 
-make -j 4 
+make -j 2
 make install
 popd
 

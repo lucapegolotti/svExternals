@@ -40,7 +40,7 @@ cmake \
     -DPython3_ROOT_DIR=$PYTHON_INSTALL_DIR \
 ..
 
-make -j 8
+make -j 2
 make install
 popd
 

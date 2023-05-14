@@ -83,7 +83,7 @@ cmake \
     -DCMAKE_CXX_FLAGS=-I$GDCM_INCLUDE_DIR \
 ..
 
-make -j 8
+make -j 2
 make install
 popd
 

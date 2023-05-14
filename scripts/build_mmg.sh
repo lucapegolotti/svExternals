@@ -18,7 +18,7 @@ echo $MMG_INSTALL_DIR
 pushd mmg-$MMG_VERSION
 mkdir -p build && cd build
 cmake -DCMAKE_INSTALL_PREFIX=$MMG_INSTALL_DIR ..
-make -j 4 && make install
+make -j 2 && make install
 popd
 
 popd

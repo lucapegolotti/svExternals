@@ -19,7 +19,7 @@ pushd swig-$SWIG_VERSION
 source autogen.sh # need automake for Mac (brew install automake)
 cd ..
 ./configure --prefix=$SWIG_INSTALL_DIR
-make -j 4
+make -j 2
 make install
 popd
 

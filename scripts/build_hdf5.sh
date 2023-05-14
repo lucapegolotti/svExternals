@@ -27,7 +27,7 @@ cmake \
     -DCMAKE_INSTALL_PREFIX=$HDF5_INSTALL_DIR \
     -DCMAKE_BUILD_TYPE=Release \
 ..
-make -j 4
+make -j 2
 make install
 popd
 

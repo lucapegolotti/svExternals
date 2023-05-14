@@ -17,7 +17,7 @@ echo $FREETYPE_INSTALL_DIR
 # build and install
 pushd freetype-$FREETYPE_VERSION
 ./configure --prefix=$FREETYPE_INSTALL_DIR
-make -j 4 && make install
+make -j 2 && make install
 popd
 
 popd

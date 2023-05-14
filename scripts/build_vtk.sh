@@ -46,7 +46,7 @@ cmake \
     -DVTK_USE_TK=YES \
     ..
 
-make -j 8
+make -j 2
 make install
 popd
 

@@ -18,7 +18,7 @@ echo $PYTHON_INSTALL_DIR
 pushd Python-$PYTHON_VERSION
 
 ./configure --enable-shared --prefix=$PYTHON_INSTALL_DIR
-make -j 4 && make install
+make -j 2 && make install
 popd
 
 $PYTHON_INSTALL_DIR/bin/pip3 install numpy

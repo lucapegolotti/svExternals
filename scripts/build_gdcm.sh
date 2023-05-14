@@ -25,7 +25,7 @@ cmake \
 	-DCMAKE_INSTALL_PREFIX=$GDCM_INSTALL_DIR \
 	-DCMAKE_POSITION_INDEPENDENT_CODE:BOOL=true \
 	..
-make -j 4 && make install
+make -j 2 && make install
 popd
 
 popd
