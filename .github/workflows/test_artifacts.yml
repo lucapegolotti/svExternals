@@ -1,0 +1,68 @@
+# This is a basic workflow that is manually triggered
+
+name: Build SimVascular Externals - Linux
+
+# Controls when the action will run.
+on:
+  # Workflow runs when manually triggered using the UI or API.
+  workflow_dispatch:
+        
+  # This is to schedule run every Monday at 5:30 UTC
+  schedule:
+    # Runs every monday at 5:30 UTC
+    - cron: '30 5 * * 1'
+    
+  push:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+
+  build-tinyxml2-ubuntu-20:
+    runs-on: ubuntu-20.04
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Install TINYXML2
+      shell: bash
+      run: |
+        mkdir -p src
+        source env_variables.sh
+        source scripts/build_tinyxml2.sh  > out.txt
+        
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: TINYXML2 Install
+        path: install/tinyxml2.tar
+        if-no-files-found: error
+
+  build-mitk-ubuntu-20:
+    runs-on: ubuntu-20.04
+    needs: [build-tinyxml2-ubuntu-20]
+  
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Get TINYXML2 artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: TINYXML2 Install
+
+      - name: Extract dependencies
+        shell: bash
+        run: |
+          ls
+          mkdir -p install
+          cd install
+          mv ../tinyxml2.tar .
+          tar -xvf tinyxml2.tar
+          cd ..
+
+  
+        
+    
+
+    

@@ -18,7 +18,6 @@ on:
 jobs:
   build-tcltk-ubuntu-20:
     runs-on: ubuntu-20.04
-    needs: build-qt-ubuntu-20
 
     steps:
     - name: Checkout
@@ -29,8 +28,8 @@ jobs:
       run: |
         mkdir -p src
         source env_variables.sh
-        source scripts/build_tcl.sh
-        source scripts/build_tk.sh
+        source scripts/build_tcl.sh > out.txt
+        source scripts/build_tk.sh > out.txt
         
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
@@ -78,7 +77,7 @@ jobs:
       run: |
         mkdir -p src
         source env_variables.sh
-        source scripts/build_qt.sh
+        source scripts/build_qt.sh  > out.txt
         
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
@@ -90,7 +89,6 @@ jobs:
 
   build-hdf5-ubuntu-20:
     runs-on: ubuntu-20.04
-    needs: build-qt-ubuntu-20
 
     steps:
     - name: Checkout
@@ -121,7 +119,7 @@ jobs:
       run: |
         mkdir -p src
         source env_variables.sh
-        source scripts/build_hdf5.sh
+        source scripts/build_hdf5.sh  > out.txt
         
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
@@ -132,7 +130,6 @@ jobs:
 
   build-tinyxml2-ubuntu-20:
     runs-on: ubuntu-20.04
-    needs: build-qt-ubuntu-20
 
     steps:
     - name: Checkout
@@ -143,7 +140,7 @@ jobs:
       run: |
         mkdir -p src
         source env_variables.sh
-        source scripts/build_tinyxml2.sh
+        source scripts/build_tinyxml2.sh  > out.txt
         
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
@@ -154,7 +151,6 @@ jobs:
 
   build-python-ubuntu-20:
     runs-on: ubuntu-20.04
-    needs: build-qt-ubuntu-20
 
     steps:
     - name: Checkout
@@ -185,7 +181,7 @@ jobs:
       run: |
         mkdir -p src
         source env_variables.sh
-        source scripts/build_python.sh
+        source scripts/build_python.sh  > out.txt
         
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
@@ -196,7 +192,6 @@ jobs:
 
   build-freetype-ubuntu-20:
     runs-on: ubuntu-20.04
-    needs: build-qt-ubuntu-20
 
     steps:
     - name: Checkout
@@ -227,7 +222,7 @@ jobs:
       run: |
         mkdir -p src
         source env_variables.sh
-        source scripts/build_freetype.sh
+        source scripts/build_freetype.sh  > out.txt
         
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
@@ -238,7 +233,6 @@ jobs:
 
   build-swig-ubuntu-20:
     runs-on: ubuntu-20.04
-    needs: build-qt-ubuntu-20
 
     steps:
     - name: Checkout
@@ -249,7 +243,7 @@ jobs:
       run: |
         mkdir -p src
         source env_variables.sh
-        source scripts/build_swig.sh
+        source scripts/build_swig.sh  > out.txt
           
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
@@ -260,7 +254,6 @@ jobs:
 
   build-mmg-ubuntu-20:
     runs-on: ubuntu-20.04
-    needs: build-qt-ubuntu-20
 
     steps:
       - name: Checkout
@@ -271,7 +264,7 @@ jobs:
         run: |
           mkdir -p src
           source env_variables.sh
-          source scripts/build_mmg.sh
+          source scripts/build_mmg.sh  > out.txt
           
       - name: Upload build artifact
         uses: actions/upload-artifact@v3
@@ -293,7 +286,7 @@ jobs:
         run: |
           mkdir -p src
           source env_variables.sh
-          source scripts/build_gdcm.sh
+          source scripts/build_gdcm.sh  > out.txt
           
       - name: Upload build artifact
         uses: actions/upload-artifact@v3
@@ -370,7 +363,7 @@ jobs:
         run: |
           mkdir -p src
           source env_variables.sh
-          source scripts/build_vtk.sh
+          source scripts/build_vtk.sh  > out.txt
           
       - name: Upload build artifact
         uses: actions/upload-artifact@v3
@@ -381,7 +374,7 @@ jobs:
 
   build-itk-ubuntu-20:
     runs-on: ubuntu-20.04
-    needs: [build-gdcm-ubuntu-20, build-hdf5-ubuntu-20, build-qt-ubuntu-20, build-python-ubuntu-20, build-vtk-ubuntu-20]
+    needs: [build-gdcm-ubuntu-20, build-hdf5-ubuntu-20, build-qt-ubuntu-20,    build-python-ubuntu-20, build-vtk-ubuntu-20]
 
     steps:
       - name: Checkout
@@ -454,7 +447,7 @@ jobs:
         run: |
           mkdir -p src
           source env_variables.sh
-          source scripts/build_itk.sh
+          source scripts/build_itk.sh  > out.txt
           
       - name: Upload build artifact
         uses: actions/upload-artifact@v3
@@ -524,7 +517,7 @@ jobs:
         run: |
           mkdir -p src
           source env_variables.sh
-          source scripts/build_opencascade.sh
+          source scripts/build_opencascade.sh  > out.txt
           
       - name: Upload build artifact
         uses: actions/upload-artifact@v3
@@ -624,7 +617,7 @@ jobs:
         run: |
           mkdir -p src
           source env_variables.sh
-          source scripts/build_mitk.sh
+          source scripts/build_mitk.sh  > out.txt
           
       - name: Upload build artifact
         uses: actions/upload-artifact@v3
