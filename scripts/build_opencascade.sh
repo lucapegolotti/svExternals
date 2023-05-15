@@ -51,5 +51,5 @@ popd
 
 # create tar
 cd install
-tar -cf opencascade.tar itk-$OPECASCADE_VERSION
+tar -cf opencascade.tar opencascade-$OPECASCADE_VERSION
 cd ..
