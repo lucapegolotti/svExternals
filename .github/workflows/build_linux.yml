@@ -535,7 +535,9 @@ jobs:
     runs-on: ubuntu-20.04
     needs: [build-gdcm-ubuntu-20, build-itk-ubuntu-20, build-vtk-ubuntu-20,
             build-swig-ubuntu-20, build-python-ubuntu-20, build-qt-ubuntu-20,
-            build-tinyxml2-ubuntu-20]
+            build-tinyxml2-ubuntu-20, build-hdf5-ubuntu-20,
+            build-swig-ubuntu-20, build-freetype-ubuntu-20,
+            build-mmg-ubuntu-20]
   
     steps:
       - name: Checkout
@@ -596,6 +598,26 @@ jobs:
         with:
           name: TINYXML2 Install
 
+      - name: Get HDF5 artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: HDF5 Install
+
+      - name: Get SWIG artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: SWIG Install
+
+      - name: Get FREETYPE artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: FREETYPE Install
+
+      - name: Get MMG artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: MMG Install
+
       - name: Extract dependencies
         shell: bash
         run: |
@@ -615,6 +637,14 @@ jobs:
           tar -xvf qt.tar
           mv ../tinyxml2.tar .
           tar -xvf tinyxml2.tar
+          mv ../hdf5.tar .
+          tar -xvf hdf5.tar
+          mv ../swig.tar .
+          tar -xvf swig.tar
+          mv ../freetype.tar .
+          tar -xvf freetype.tar
+          mv ../mmg.tar .
+          tar -xvf mmg.tar
           cd ..
 
       - name: Install MITK
