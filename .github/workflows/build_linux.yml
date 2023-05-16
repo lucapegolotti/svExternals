@@ -639,8 +639,6 @@ jobs:
           tar -xvf tinyxml2.tar
           mv ../hdf5.tar .
           tar -xvf hdf5.tar
-          mv ../swig.tar .
-          tar -xvf swig.tar
           mv ../freetype.tar .
           tar -xvf freetype.tar
           mv ../mmg.tar .
