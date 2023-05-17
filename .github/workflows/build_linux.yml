@@ -546,6 +546,7 @@ jobs:
       - name: Install dependencies
         shell: bash
         run: |
+        sudo apt-get install
         sudo apt-get install llvm 
         sudo apt-get install libpcre3 
         sudo apt-get install libpcre3-dev 
