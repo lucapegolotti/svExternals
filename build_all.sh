@@ -12,7 +12,6 @@ mkdir -p $INSTALL_DIR
 # export CC=gcc-8
 # export CXX=g++-8
 
-
 BUILD_TCL=1
 BUILD_TK=1
 BUILD_QT=1
@@ -83,5 +82,5 @@ then
 fi
 if [[ $BUILD_MITK -eq 1 ]]
 then
-    source scripts/build_mitk.sh > output/mitk.out
+    source scripts/build_mitk.sh # > output/mitk.out
 fi

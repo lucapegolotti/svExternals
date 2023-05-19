@@ -2,3 +2,7 @@ tar
 src
 install
 output
+*.zip
+*.tar.gz
+*.tar
+
