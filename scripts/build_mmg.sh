@@ -17,7 +17,15 @@ echo $MMG_INSTALL_DIR
 # build and install
 pushd mmg-$MMG_VERSION
 mkdir -p build && cd build
-cmake -DCMAKE_INSTALL_PREFIX=$MMG_INSTALL_DIR ..
+cmake \
+    -DCMAKE_INSTALL_PREFIX=$MMG_INSTALL_DIR \
+    -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
+    -DLIBMMG2D_SHARED=0 \
+    -DLIBMMG3D_SHARED=0 \
+    -DLIBMMGS_SHARED=0 \
+    -DLIBMMG_SHARED=0 \
+    -DCMAKE_BUILD_TYPE=Release \
+    ..
 make -j 2 && make install
 popd
 
