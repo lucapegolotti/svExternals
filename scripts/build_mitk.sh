@@ -25,7 +25,7 @@ mkdir -p $MITK_INSTALL_DIR
 
 pushd MITK-$MITK_VERSION
 
-apply patch
+# apply patch
 patch -p1 < $PATCH_DIR/mitk-$MITK_VERSION.patch
 
 mkdir -p build
