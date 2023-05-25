@@ -100,9 +100,9 @@ GMV=mv
 
 # paths
 
-export MITK_SRCDIR=src/MITK-$MITK_VERSION
-export MITK_BINDIR=$MITK_INSTALL_DIR
-export MITK_BLDDIR=src/MITK-$MITK_VERSION/build
+export MITK_SRCDIR=${ROOT_DIR}/src/MITK-$MITK_VERSION
+export MITK_BINDIR=${ROOT_DIR}/$MITK_INSTALL_DIR
+export MITK_BLDDIR=${ROOT_DIR}/src/MITK-$MITK_VERSION/build
 
 # build type not used on linux
 export MITK_BLDTYPE=
