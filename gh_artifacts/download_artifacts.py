@@ -1,7 +1,7 @@
 import os
 import json
 
-gh_token = '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'
+gh_token = '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'
 gh_repo = 'https://api.github.com/repos/lucapegolotti/SVExternals/actions/artifacts'
 
 zip_prefix = 'ubuntu.20.04.gnu.7.5.x64.release.2022.10.13.'
