@@ -35,6 +35,7 @@ jobs:
           cd src
           wget https://github.com/MITK/MITK/archive/refs/tags/v2022.10.tar.gz
           tar -xf v2022.10.tar.gz
+          echo '$(ls)'
 
       - name: Install MITK
         shell: bash
