@@ -39,6 +39,9 @@ $GCP -Rfl $MITK_BLDDIR/ep/lib $MITK_BINDIR 2>/dev/null
 $GCP -Rfl $MITK_BLDDIR/ep/include $MITK_BINDIR 2>/dev/null
 $GCP -Rfl $MITK_BLDDIR/ep/share $MITK_BINDIR 2>/dev/null
 $GCP -Rfl $MITK_BLDDIR/ep/plugins $MITK_BINDIR 2>/dev/null
+
+echo '3'
+
 $GCP -Rfl $MITK_BLDDIR/ep/src/CTK-build/CMakeExternals/Install/include $MITK_BINDIR 2>/dev/null
 $GCP -Rfl $MITK_BLDDIR/ep/src/CTK-build/CMakeExternals/Install/lib $MITK_BINDIR 2>/dev/null
 $GCP -Rfl $MITK_BLDDIR/ep/src/CTK-build/qRestAPI-build/*.so $MITK_BINDIR/lib 2>/dev/null
