@@ -23,10 +23,14 @@ export MITK_BLDTYPE=
 
 echo '1'
 
+echo '$GMKDIR -p $MITK_BINDIR/bin'
+
 $GMKDIR -p $MITK_BINDIR/bin
 $GMKDIR -p $MITK_BINDIR/lib
 $GMKDIR -p $MITK_BINDIR/lib/plugins
 $GMKDIR -p $MITK_BINDIR/include
+
+echo '2'
 
 $GCP -Rfl $MITK_BLDDIR/MITK-build/bin $MITK_BINDIR 2>/dev/null
 $GCP -Rfl $MITK_BLDDIR/MITK-build/lib $MITK_BINDIR 2>/dev/null
