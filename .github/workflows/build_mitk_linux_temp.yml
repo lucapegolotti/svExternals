@@ -67,7 +67,7 @@ jobs:
         run: |
           mkdir -p src
           source env_variables.sh
-          source scripts/build_mitk.sh  > out.txt
+          source scripts/build_mitk.sh
           
       - name: Upload build artifact
         uses: actions/upload-artifact@v3
