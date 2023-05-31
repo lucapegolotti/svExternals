@@ -31,16 +31,15 @@ jobs:
           cd install
           wget http://simvascular.stanford.edu/downloads/public/simvascular/externals/2022.10/linux/ubuntu/20.04/gnu/7.5/x64/release/2022.10.13/ubuntu.20.04.gnu.7.5.x64.release.2022.10.13.mitk.2022.10.tar.gz_old.tar.gz
           tar -xvf ubuntu.20.04.gnu.7.5.x64.release.2022.10.13.mitk.2022.10.tar.gz_old.tar.gz
-          mkdir src
-          cd src
-          wget https://github.com/MITK/MITK/archive/refs/tags/v2022.10.tar.gz
-          tar -xf v2022.10.tar.gz
-          ls
-
+          
       - name: Install MITK
         shell: bash
         run: |
           mkdir -p src
+          cd src
+          wget https://github.com/MITK/MITK/archive/refs/tags/v2022.10.tar.gz
+          tar -xf v2022.10.tar.gz
+          cd ..
           source env_variables.sh
           source scripts/post-install-mitk.sh
           
