@@ -33,7 +33,7 @@ $GMKDIR -p $MITK_BINDIR/include
 echo '2'
 
 echo "$GCP -Rfl $MITK_BLDDIR/MITK-build/bin $MITK_BINDIR 2>/dev/null"
-$GCP -Rfl $MITK_BLDDIR/MITK-build/bin $MITK_BINDIR 2>/dev/null
+$GCP -Rfl $MITK_BLDDIR/MITK-build/bin $MITK_BINDIR
 
 echo '2.1'
 
