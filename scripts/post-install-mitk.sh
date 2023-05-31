@@ -23,7 +23,7 @@ export MITK_BLDTYPE=
 
 echo '1'
 
-echo '$GMKDIR -p $MITK_BINDIR/bin'
+echo "$GMKDIR -p $MITK_BINDIR/bin"
 
 $GMKDIR -p $MITK_BINDIR/bin
 $GMKDIR -p $MITK_BINDIR/lib
