@@ -12,7 +12,7 @@ on:
     # Runs every monday at 5:30 UTC
     - cron: '30 5 * * 1'
     
-  # push:
+  push:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -655,7 +655,8 @@ jobs:
         run: |
           mkdir -p src
           source env_variables.sh
-          source scripts/build_mitk.sh  > out.txt
+          source scripts/build_mitk.sh
+          source scripts/post-install-mitk.sh
           
       - name: Upload build artifact
         uses: actions/upload-artifact@v3
