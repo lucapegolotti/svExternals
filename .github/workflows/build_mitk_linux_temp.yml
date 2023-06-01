@@ -24,28 +24,51 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Install dependencies
+        shell: bash
+        run: |
+          sudo apt-get install
+          sudo apt-get install llvm 
+          sudo apt-get install libpcre3 
+          sudo apt-get install libpcre3-dev 
+          sudo apt-get install automake
+          sudo apt-get install build-essential
+          sudo apt-get install libgl1-mesa-dev
+          sudo apt-get install libglu1-mesa-dev
+          sudo apt-get install libxcb-render0-dev
+          sudo apt-get install libdbus-1-dev libnss3-dev
+          sudo apt-get install libxcb-xfixes0-dev
+          sudo apt-get install gperf
+          sudo apt-get install bison flex
+          sudo apt-get install byacc
+          sudo apt-get install libxi-dev libxcomposite-dev libxcursor-dev libxtst-dev 
+          sudo apt-get install libatspi2.0-dev
+          sudo apt-get install libx11-xcb-dev libxcb-util0-dev libxcb-keysyms1-dev libxcb-image0-dev libxcb-shm0-dev libxcb-icccm4-dev libxcb-sync-dev libxcb-render-util0-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev
+          sudo apt-get install libxcomposite-dev
+          sudo apt-get install libdrm-dev
+          sudo apt-get install libxdamage-dev
+          sudo apt-get install libxrandr-dev
+          sudo apt-get install rsync
+
       - name: Extract dependencies
         shell: bash
         run: |
           mkdir -p install
           cd install
-          wget http://simvascular.stanford.edu/downloads/public/simvascular/externals/2022.10/linux/ubuntu/20.04/gnu/7.5/x64/release/2022.10.13/ubuntu.20.04.gnu.7.5.x64.release.2022.10.13.mitk.2022.10.tar.gz_old.tar.gz
-          tar -xvf ubuntu.20.04.gnu.7.5.x64.release.2022.10.13.mitk.2022.10.tar.gz_old.tar.gz
-          
+          wget http://simvascular.stanford.edu/downloads/public/simvascular/externals/2022.10/linux/ubuntu/20.04/gnu/7.5/x64/release/temp.tar.gz
+          tar -xvf temp.tar.gz
+          cd temp
+          mv * ..
+          cd ..
+          rm -r temp*
+          for f in *.tar.gz; do tar xf "$f"; done
+
       - name: Install MITK
         shell: bash
         run: |
           mkdir -p src
-          cd src
-          wget https://github.com/MITK/MITK/archive/refs/tags/v2022.10.tar.gz
-          tar -xf v2022.10.tar.gz
-          cd MITK-2022.10
-          wget http://simvascular.stanford.edu/downloads/public/simvascular/externals/2022.10/linux/ubuntu/20.04/gnu/7.5/x64/release/2022.10.13/mitk-build.tar
-          tar -xf mitk-build.tar
-          cd ..
-          cd ..
           source env_variables.sh
-          source scripts/post-install-mitk.sh
+          source scripts/build_mitk.sh  > out.txt
           
       - name: Upload build artifact
         uses: actions/upload-artifact@v3
