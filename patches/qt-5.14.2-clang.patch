@@ -34,15 +34,3 @@ diff -ur a/qtvirtualkeyboard/src/plugins/hunspell/hunspellinputmethod/hunspellwo
  #include <QtHunspellInputMethod/qhunspellinputmethod_global.h>
  
  QT_BEGIN_NAMESPACE
-diff -ur a/qtvirtualkeyboard/src/plugins/hunspell/hunspellinputmethod/hunspellinputmethod_p.cpp b/qtvirtualkeyboard/src/plugins/hunspell/hunspellinputmethod/hunspellinputmethod_p.cpp
---- a/qtvirtualkeyboard/src/plugins/hunspell/hunspellinputmethod/hunspellinputmethod_p.cpp	2020-03-03 05:10:30.000000000 -0800
-+++ b/qtvirtualkeyboard/src/plugins/hunspell/hunspellinputmethod/hunspellinputmethod_p.cpp	2023-04-16 14:31:19.000000000 -0700
-@@ -29,7 +29,7 @@
- 
- #include <QtHunspellInputMethod/private/hunspellinputmethod_p_p.h>
- #include <QtVirtualKeyboard/qvirtualkeyboardinputcontext.h>
--#include <hunspell/hunspell.h>
-+#include <hunspell.h>
- #include <QStringList>
- #include <QDir>
- #include <QTextCodec>
