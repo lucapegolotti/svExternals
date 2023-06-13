@@ -30,19 +30,12 @@ jobs:
         source env_variables.sh
         source scripts/build_tcl.sh > out.txt
         source scripts/build_tk.sh > out.txt
-        
+  
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
       with:
-        name: TCL Install
-        path: install/tcl.tar
-        if-no-files-found: error
-
-    - name: Upload build artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: TK Install
-        path: install/tk.tar
+        name: TCLTK Install
+        path: install/tcltk.tar
         if-no-files-found: error
 
   build-qt-ubuntu-20:
@@ -328,15 +321,10 @@ jobs:
           sudo apt-get install libxi-dev libxcomposite-dev libxcursor-dev libxtst-dev 
           sudo apt-get install libatspi2.0-dev
 
-      - name: Get TCL artifact
+      - name: Get TCLTK artifact
         uses: actions/download-artifact@v3
         with:
-          name: TCL Install
-
-      - name: Get TK artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: TK Install
+          name: TCLTK Install
 
       - name: Get QT artifact
         uses: actions/download-artifact@v3
@@ -353,10 +341,8 @@ jobs:
         run: |
           mkdir -p install
           cd install
-          mv ../tcl.tar .
-          tar -xvf tcl.tar
-          mv ../tk.tar .
-          tar -xvf tk.tar
+          mv ../tcltk.tar .
+          tar -xvf tcltk.tar
           mv ../qt.tar .
           tar -xvf qt.tar
           mv ../python.tar .
@@ -494,10 +480,10 @@ jobs:
         with:
           name: FREETYPE Install
 
-      - name: Get TCL artifact
+      - name: Get TCLTK artifact
         uses: actions/download-artifact@v3
         with:
-          name: TCL Install
+          name: TCLTK Install
 
       - name: Get VTK artifact
         uses: actions/download-artifact@v3
@@ -511,8 +497,8 @@ jobs:
           cd install
           mv ../freetype.tar .
           tar -xvf freetype.tar
-          mv ../tcl.tar .
-          tar -xvf tcl.tar
+          mv ../tcltk.tar .
+          tar -xvf tcltk.tar
           mv ../vtk.tar .
           tar -xvf vtk.tar
           cd ..

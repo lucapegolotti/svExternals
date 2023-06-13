@@ -20,13 +20,11 @@ pushd tcl$TCL_VERSION/unix
 make -j 2 install
 popd
 
-echo $TCL_INSTALL_DIR
-
 popd
 
-mkdir -p tar
+# mkdir -p tar
 
-# create tar
-cd install
-tar -cf tcl.tar tcl-$TCL_VERSION
-cd ..
+# # create tar
+# cd install
+# tar -cf tcl.tar tcl-$TCL_VERSION
+# cd ..

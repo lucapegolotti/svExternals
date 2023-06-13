@@ -22,8 +22,8 @@ popd
 
 popd
 
-rsync -a install/tk-$TK_VERSION/ install/tcl-$TK_VERSION/
-cp -r install/tcl-$TCL_VERSION install/tcltk-$TCL_VERSION 
+# rsync -a install/tk-$TK_VERSION/ install/tcl-$TK_VERSION/
+# cp -r install/tcl-$TCL_VERSION install/tcltk-$TCL_VERSION 
 
 # create tar
 cd install
