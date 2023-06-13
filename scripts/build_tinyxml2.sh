@@ -25,5 +25,7 @@ popd
 
 # create tar
 cd install
+# this is required for simvascular installation
+sed -i 's|'${ROOT_DIR}/install'|\$\{SV_EXTERNALS_TOPLEVEL_BIN_DIR\}|g' tinyxml2-$TINYXML2_VERSION/lib/cmake/tinyxml2/tinyxml2Targets.cmake
 tar -cf tinyxml2.tar tinyxml2-$TINYXML2_VERSION
 cd ..
