@@ -5,4 +5,5 @@ output
 *.zip
 *.tar.gz
 *.tar
+gh_artifacts/download_artifacts.py
 

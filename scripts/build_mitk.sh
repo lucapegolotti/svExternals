@@ -85,6 +85,7 @@ cmake \
 ..
 
 make -j 4
+
 make install
 popd
 
