@@ -1,7 +1,7 @@
 import os
 import json
 
-gh_token = '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'
+gh_token = # add github token here
 gh_repo = 'https://api.github.com/repos/lucapegolotti/SVExternals/actions/artifacts'
 
 zip_prefix = 'ubuntu.20.04.gnu.7.5.x64.release.2022.10.13.'
@@ -51,7 +51,7 @@ if __name__ == "__main__":
         if '.json' not in lib and '.py' not in lib:
             tar_name = zip_prefix + lib.replace('-','.') + '.tar.gz'
             os.system('tar -czvf {:} {:}'.format(tar_name, lib))
-            os.system('rm -r {:}'.format(lib))
+            os.system('rm -rf {:}'.format(lib))
 
 
         
