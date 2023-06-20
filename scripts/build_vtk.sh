@@ -44,6 +44,7 @@ cmake \
     -DVTK_MODULE_ENABLE_VTK_RenderingQt=YES \
     -DVTK_MODULE_ENABLE_VTK_RenderingTk=YES \
     -DVTK_USE_TK=YES \
+    -DCMAKE_BUILD_TYPE=Debug \
     ..
 
 make -j 2

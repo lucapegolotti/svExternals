@@ -3,7 +3,7 @@
 pushd $SRC_DIR
 
 # download tar 
-wget https://download-mirror.savannah.gnu.org/releases/freetype/freetype-old/freetype-$FREETYPE_VERSION.tar.gz
+wget https://download-mirror.savannah.gnu.org/releases/freetype/freetype-$FREETYPE_VERSION.tar.gz
 
 # extract source
 tar -xf freetype-$FREETYPE_VERSION.tar.gz

@@ -82,6 +82,7 @@ cmake \
     -DQt5_DIR:PATH=$QT_INSTALL_DIR_CMAKE \
     -DCMAKE_C_FLAGS="-I$GDCM_INCLUDE_DIR -Wl,-rpath=$GDCM_LIB_DIR" \
     -DCMAKE_CXX_FLAGS="-I$GDCM_INCLUDE_DIR -Wl,-rpath=$GDCM_LIB_DIR" \
+    -DCMAKE_BUILD_TYPE=Debug \
 ..
 
 make -j 4
