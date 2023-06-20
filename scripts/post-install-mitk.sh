@@ -265,8 +265,7 @@ echo "fi" >> ${MITK_INSTALL_DIR}/bin/workbench-wrapper
 chmod u+w,a+rx ${MITK_INSTALL_DIR}/bin/workbench-wrapper
 
 # org_mitk_gui_qt_segmentation_Export.h is missing in mitk-2022.10 for some reason
-
-cp ../patches/files/org_mitk_gui_qt_segmentation_Export.h ${MITK_INSTALL_DIR}/include/mitk/plugins/org.mitk.gui.qt.segmentation/
+cp ${ROOT_DIR}/patches/files/org_mitk_gui_qt_segmentation_Export.h ${MITK_INSTALL_DIR}/include/mitk/plugins/org.mitk.gui.qt.segmentation/
 
 # create tar
 cd install
