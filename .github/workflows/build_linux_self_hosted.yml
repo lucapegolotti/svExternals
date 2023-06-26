@@ -123,7 +123,7 @@ jobs:
         path: install/python.tar
         if-no-files-found: error
     
-    build-freetype-ubuntu-20:
+  build-freetype-ubuntu-20:
     runs-on: self-hosted
 
     steps:
