@@ -1,0 +1,481 @@
+# This is a basic workflow that is manually triggered
+
+name: Build SimVascular Externals - Linux
+
+# Controls when the action will run.
+on:
+  # Workflow runs when manually triggered using the UI or API.
+  workflow_dispatch:
+        
+  # This is to schedule run every Monday at 5:30 UTC
+  schedule:
+    # Runs every monday at 5:30 UTC
+    - cron: '30 5 * * 1'
+    
+  push:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build-tcltk-ubuntu-20:
+    runs-on: self-hosted
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Install TCL and TK
+      shell: bash
+      run: |
+        mkdir -p src
+        source env_variables.sh
+        source scripts/build_tcl.sh > out.txt
+        source scripts/build_tk.sh > out.txt
+  
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: TCLTK Install
+        path: install/tcltk.tar
+        if-no-files-found: error
+
+  build-qt-ubuntu-20:
+    runs-on: self-hosted
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Install QT
+      shell: bash
+      run: |
+        mkdir -p src
+        source env_variables.sh
+        source scripts/build_qt.sh > qt.out
+        
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: QT Install
+        path: install/qt.tar
+        if-no-files-found: error
+        
+
+  build-hdf5-ubuntu-20:
+    runs-on: self-hosted
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Install HDF5
+      shell: bash
+      run: |
+        mkdir -p src
+        source env_variables.sh
+        source scripts/build_hdf5.sh  > out.txt
+        
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: HDF5 Install
+        path: install/hdf5.tar
+        if-no-files-found: error
+
+  build-tinyxml2-ubuntu-20:
+    runs-on: self-hosted
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Install TINYXML2
+      shell: bash
+      run: |
+        mkdir -p src
+        source env_variables.sh
+        source scripts/build_tinyxml2.sh  > out.txt
+        
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: TINYXML2 Install
+        path: install/tinyxml2.tar
+        if-no-files-found: error
+
+  build-python-ubuntu-20:
+    runs-on: self-hosted
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Install PYTHON
+      shell: bash
+      run: |
+        mkdir -p src
+        source env_variables.sh
+        source scripts/build_python.sh  > out.txt
+        
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: PYTHON Install
+        path: install/python.tar
+        if-no-files-found: error
+
+    - name: Install FREETYPE
+      shell: bash
+      run: |
+        mkdir -p src
+        source env_variables.sh
+        source scripts/build_freetype.sh  > out.txt
+        
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: FREETYPE Install
+        path: install/freetype.tar
+        if-no-files-found: error
+
+  build-swig-ubuntu-20:
+    runs-on: self-hosted
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Install SWIG
+      shell: bash
+      run: |
+        mkdir -p src
+        source env_variables.sh
+        source scripts/build_swig.sh  > out.txt
+          
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: SWIG Install
+        path: install/swig.tar
+        if-no-files-found: error
+
+  build-mmg-ubuntu-20:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install MMG
+        shell: bash
+        run: |
+          mkdir -p src
+          source env_variables.sh
+          source scripts/build_mmg.sh  > out.txt
+          
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: MMG Install
+          path: install/mmg.tar
+          if-no-files-found: error
+
+  build-gdcm-ubuntu-20:
+    runs-on: self-hosted
+    needs: build-qt-ubuntu-20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install GDCM
+        shell: bash
+        run: |
+          mkdir -p src
+          source env_variables.sh
+          source scripts/build_gdcm.sh  > out.txt
+          
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: GDCM Install
+          path: install/gdcm.tar
+          if-no-files-found: error
+
+  build-vtk-ubuntu-20:
+    runs-on: self-hosted
+    needs: [build-tcltk-ubuntu-20, build-qt-ubuntu-20, build-python-ubuntu-20]
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Get TCLTK artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: TCLTK Install
+
+      - name: Get QT artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: QT Install
+
+      - name: Get PYTHON artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: PYTHON Install
+
+      - name: Extract dependencies
+        shell: bash
+        run: |
+          mkdir -p install
+          cd install
+          mv ../tcltk.tar .
+          tar -xvf tcltk.tar
+          mv ../qt.tar .
+          tar -xvf qt.tar
+          mv ../python.tar .
+          tar -xvf python.tar
+          cd ..
+
+      - name: Install VTK
+        shell: bash
+        run: |
+          mkdir -p src
+          source env_variables.sh
+          source scripts/build_vtk.sh  > out.txt
+          
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: VTK Install
+          path: install/vtk.tar
+          if-no-files-found: error
+
+  build-itk-ubuntu-20:
+    runs-on: self-hosted
+    needs: [build-gdcm-ubuntu-20, build-hdf5-ubuntu-20, build-qt-ubuntu-20,    build-python-ubuntu-20, build-vtk-ubuntu-20]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Get GDCM artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: GDCM Install
+
+      - name: Get HDF5 artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: HDF5 Install
+
+      - name: Get QT artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: QT Install
+
+      - name: Get PYTHON artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: PYTHON Install
+
+      - name: Get VTK artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: VTK Install
+
+      - name: Extract dependencies
+        shell: bash
+        run: |
+          mkdir -p install
+          cd install
+          mv ../gdcm.tar .
+          tar -xvf gdcm.tar
+          mv ../hdf5.tar .
+          tar -xvf hdf5.tar
+          mv ../qt.tar .
+          tar -xvf qt.tar
+          mv ../python.tar .
+          tar -xvf python.tar
+          mv ../vtk.tar .
+          tar -xvf vtk.tar
+          cd ..
+
+      - name: Install ITK
+        shell: bash
+        run: |
+          mkdir -p src
+          source env_variables.sh
+          source scripts/build_itk.sh  > out.txt
+          
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ITK Install
+          path: install/itk.tar
+          if-no-files-found: error
+
+  build-opencascade-ubuntu-20:
+    runs-on: self-hosted
+    needs: [build-freetype-ubuntu-20, build-tcltk-ubuntu-20, build-vtk-ubuntu-20,build-qt-ubuntu-20]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Get FREETYPE artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: FREETYPE Install
+
+      - name: Get TCLTK artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: TCLTK Install
+
+      - name: Get VTK artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: VTK Install
+
+      - name: Extract dependencies
+        shell: bash
+        run: |
+          mkdir -p install
+          cd install
+          mv ../freetype.tar .
+          tar -xvf freetype.tar
+          mv ../tcltk.tar .
+          tar -xvf tcltk.tar
+          mv ../vtk.tar .
+          tar -xvf vtk.tar
+          cd ..
+
+      - name: Install OPENCASCADE
+        shell: bash
+        run: |
+          mkdir -p src
+          source env_variables.sh
+          source scripts/build_opencascade.sh  > out.txt
+          
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: OPENCASCADE Install
+          path: install/opencascade.tar
+          if-no-files-found: error
+
+  build-mitk-ubuntu-20:
+    runs-on: self-hosted
+    needs: [build-gdcm-ubuntu-20, build-itk-ubuntu-20, build-vtk-ubuntu-20,
+            build-swig-ubuntu-20, build-python-ubuntu-20, build-qt-ubuntu-20,
+            build-tinyxml2-ubuntu-20, build-hdf5-ubuntu-20,
+            build-swig-ubuntu-20, build-freetype-ubuntu-20,
+            build-mmg-ubuntu-20]
+  
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Get GDCM artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: GDCM Install
+
+      - name: Get ITK artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: ITK Install
+
+      - name: Get VTK artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: VTK Install
+
+      - name: Get SWIG artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: SWIG Install
+
+      - name: Get PYTHON artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: PYTHON Install
+
+      - name: Get QT artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: QT Install
+
+      - name: Get TINYXML2 artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: TINYXML2 Install
+
+      - name: Get HDF5 artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: HDF5 Install
+
+      - name: Get SWIG artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: SWIG Install
+
+      - name: Get FREETYPE artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: FREETYPE Install
+
+      - name: Get MMG artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: MMG Install
+
+      - name: Extract dependencies
+        shell: bash
+        run: |
+          mkdir -p install
+          cd install
+          mv ../gdcm.tar .
+          tar -xvf gdcm.tar
+          mv ../itk.tar .
+          tar -xvf itk.tar
+          mv ../vtk.tar .
+          tar -xvf vtk.tar
+          mv ../swig.tar .
+          tar -xvf swig.tar
+          mv ../python.tar .
+          tar -xvf python.tar
+          mv ../qt.tar .
+          tar -xvf qt.tar
+          mv ../tinyxml2.tar .
+          tar -xvf tinyxml2.tar
+          mv ../hdf5.tar .
+          tar -xvf hdf5.tar
+          mv ../freetype.tar .
+          tar -xvf freetype.tar
+          mv ../mmg.tar .
+          tar -xvf mmg.tar
+          cd ..
+
+      - name: Install MITK
+        shell: bash
+        run: |
+          mkdir -p src
+          source env_variables.sh
+          source scripts/build_mitk.sh
+          source scripts/post-install-mitk.sh
+          
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: MITK Install
+          path: install/mitk.tar
+          if-no-files-found: error
+
+  
+        
+    
+
+    
