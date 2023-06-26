@@ -122,6 +122,13 @@ jobs:
         name: PYTHON Install
         path: install/python.tar
         if-no-files-found: error
+    
+    build-freetype-ubuntu-20:
+    runs-on: self-hosted
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
 
     - name: Install FREETYPE
       shell: bash
