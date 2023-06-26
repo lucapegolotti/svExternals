@@ -8,11 +8,11 @@ on:
   workflow_dispatch:
         
   # This is to schedule run every Monday at 5:30 UTC
-  schedule:
-    # Runs every monday at 5:30 UTC
-    - cron: '30 5 * * 1'
+  # schedule:
+  #   # Runs every monday at 5:30 UTC
+  #   - cron: '30 5 * * 1'
     
-  push:
+  # push:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
