@@ -27,12 +27,13 @@ jobs:
       shell: bash
       run: |
         VBoxManage startvm "Ubuntu20" --type headless
+        rm -rf .git
         sshpass -p ghrunner scp -r ../SVExternals ghrunner@10.65.92.21: 
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 cd SVExternals
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 mkdir -p src
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 source env_variables.sh
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 source scripts/build_tcl.sh > tcl.txt
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 source scripts/build_tk.sh > tk.txt
+        sshpass -p ghrunner ssh ghrunner@10.65.92.21 source scripts/build_tcl.sh
+        sshpass -p ghrunner ssh ghrunner@10.65.92.21 source scripts/build_tk.sh 
         sshpass -p ghrunner scp -r ghrunner@10.65.92.21:SVExternals/install . 
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 rm -r SVExternals
         VBoxManage controlvm "Ubuntu20" savestate
@@ -54,12 +55,13 @@ jobs:
     - name: Install QT
       shell: bash
       run: |
-        VBoxManage startvm "Ubuntu20" --type headless  
+        VBoxManage startvm "Ubuntu20" --type headless
+        rm -rf .git  
         sshpass -p ghrunner scp -r ../SVExternals ghrunner@10.65.92.21: 
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 cd SVExternals
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 mkdir -p src
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 source env_variables.sh
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 source scripts/build_qt.sh > qt.out
+        sshpass -p ghrunner ssh ghrunner@10.65.92.21 source scripts/build_qt.sh 
         sshpass -p ghrunner scp -r ghrunner@10.65.92.21:SVExternals/install . 
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 rm -r SVExternals
         VBoxManage controlvm "Ubuntu20" savestate
@@ -83,11 +85,12 @@ jobs:
       shell: bash
       run: |
         VBoxManage startvm "Ubuntu20" --type headless
+        rm -rf .git
         sshpass -p ghrunner scp -r ../SVExternals ghrunner@10.65.92.21: 
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 cd SVExternals
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 mkdir -p src
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 source env_variables.sh
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 source scripts/build_hdf5.sh  > hdf5.txt
+        sshpass -p ghrunner ssh ghrunner@10.65.92.21 source scripts/build_hdf5.sh
         sshpass -p ghrunner scp -r ghrunner@10.65.92.21:SVExternals/install . 
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 rm -r SVExternals
         VBoxManage controlvm "Ubuntu20" savestate
@@ -110,11 +113,12 @@ jobs:
       shell: bash
       run: |
         VBoxManage startvm "Ubuntu20" --type headless
+        rm -rf .git
         sshpass -p ghrunner scp -r ../SVExternals ghrunner@10.65.92.21: 
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 cd SVExternals
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 mkdir -p src
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 source env_variables.sh
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 source scripts/build_tinyxml2.sh  > tinyxml2.txt
+        sshpass -p ghrunner ssh ghrunner@10.65.92.21 source scripts/build_tinyxml2.sh
         sshpass -p ghrunner scp -r ghrunner@10.65.92.21:SVExternals/install . 
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 rm -r SVExternals
         VBoxManage controlvm "Ubuntu20" savestate
@@ -136,12 +140,13 @@ jobs:
     - name: Install PYTHON
       shell: bash
       run: |
-        VBoxManage startvm "Ubuntu20" --type headless
+        VBoxManage startvm "Ubuntu20" --type headless        
+        rm -rf .git
         sshpass -p ghrunner scp -r ../SVExternals ghrunner@10.65.92.21: 
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 cd SVExternals
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 mkdir -p src
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 source env_variables.sh
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 source scripts/build_python.sh  > python.txt
+        sshpass -p ghrunner ssh ghrunner@10.65.92.21 source scripts/build_python.sh
         sshpass -p ghrunner scp -r ghrunner@10.65.92.21:SVExternals/install . 
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 rm -r SVExternals
         VBoxManage controlvm "Ubuntu20" savestate
@@ -164,11 +169,12 @@ jobs:
       shell: bash
       run: |
         VBoxManage startvm "Ubuntu20" --type headless
+        rm -rf .git
         sshpass -p ghrunner scp -r ../SVExternals ghrunner@10.65.92.21: 
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 cd SVExternals
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 mkdir -p src
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 source env_variables.sh
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 source scripts/build_freetype.sh  > freetype.txt
+        sshpass -p ghrunner ssh ghrunner@10.65.92.21 source scripts/build_freetype.sh
         sshpass -p ghrunner scp -r ghrunner@10.65.92.21:SVExternals/install . 
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 rm -r SVExternals
         VBoxManage controlvm "Ubuntu20" savestate
@@ -191,11 +197,12 @@ jobs:
       shell: bash
       run: |
         VBoxManage startvm "Ubuntu20" --type headless
+        rm -rf .git
         sshpass -p ghrunner scp -r ../SVExternals ghrunner@10.65.92.21: 
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 cd SVExternals
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 mkdir -p src
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 source env_variables.sh
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 source scripts/build_swig.sh  > swig.txt
+        sshpass -p ghrunner ssh ghrunner@10.65.92.21 source scripts/build_swig.sh
         sshpass -p ghrunner scp -r ghrunner@10.65.92.21:SVExternals/install . 
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 rm -r SVExternals
         VBoxManage controlvm "Ubuntu20" savestate
@@ -218,11 +225,12 @@ jobs:
       shell: bash
       run: |
         VBoxManage startvm "Ubuntu20" --type headless
+        rm -rf .git
         sshpass -p ghrunner scp -r ../SVExternals ghrunner@10.65.92.21: 
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 cd SVExternals
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 mkdir -p src
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 source env_variables.sh
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 source scripts/build_mmg.sh  > mmg.txt
+        sshpass -p ghrunner ssh ghrunner@10.65.92.21 source scripts/build_mmg.sh
         sshpass -p ghrunner scp -r ghrunner@10.65.92.21:SVExternals/install . 
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 rm -r SVExternals
         VBoxManage controlvm "Ubuntu20" savestate
@@ -246,11 +254,12 @@ jobs:
       shell: bash
       run: |
         VBoxManage startvm "Ubuntu20" --type headless
+        rm -rf .git
         sshpass -p ghrunner scp -r ../SVExternals ghrunner@10.65.92.21: 
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 cd SVExternals
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 mkdir -p src
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 source env_variables.sh
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 source scripts/build_gdcm.sh  > gdcm.txt
+        sshpass -p ghrunner ssh ghrunner@10.65.92.21 source scripts/build_gdcm.sh
         sshpass -p ghrunner scp -r ghrunner@10.65.92.21:SVExternals/install . 
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 rm -r SVExternals
         VBoxManage controlvm "Ubuntu20" savestate
@@ -302,11 +311,12 @@ jobs:
       shell: bash
       run: |
         VBoxManage startvm "Ubuntu20" --type headless
+        rm -rf .git
         sshpass -p ghrunner scp -r ../SVExternals ghrunner@10.65.92.21: 
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 cd SVExternals
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 mkdir -p src
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 source env_variables.sh
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 source scripts/build_vtk.sh  > vtk.txt
+        sshpass -p ghrunner ssh ghrunner@10.65.92.21 source scripts/build_vtk.sh
         sshpass -p ghrunner scp -r ghrunner@10.65.92.21:SVExternals/install . 
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 rm -r SVExternals
         VBoxManage controlvm "Ubuntu20" savestate
@@ -372,11 +382,12 @@ jobs:
       shell: bash
       run: |
         VBoxManage startvm "Ubuntu20" --type headless
+        rm -rf .git
         sshpass -p ghrunner scp -r ../SVExternals ghrunner@10.65.92.21: 
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 cd SVExternals
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 mkdir -p src
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 source env_variables.sh
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 source scripts/build_itk.sh  > itk.txt
+        sshpass -p ghrunner ssh ghrunner@10.65.92.21 source scripts/build_itk.sh
         sshpass -p ghrunner scp -r ghrunner@10.65.92.21:SVExternals/install . 
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 rm -r SVExternals
         VBoxManage controlvm "Ubuntu20" savestate
@@ -428,11 +439,12 @@ jobs:
       shell: bash
       run: |
         VBoxManage startvm "Ubuntu20" --type headless
+        rm -rf .git
         sshpass -p ghrunner scp -r ../SVExternals ghrunner@10.65.92.21: 
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 cd SVExternals
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 mkdir -p src
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 source env_variables.sh
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 source scripts/build_opencascade.sh  > opencascade.txt
+        sshpass -p ghrunner ssh ghrunner@10.65.92.21 source scripts/build_opencascade.sh
         sshpass -p ghrunner scp -r ghrunner@10.65.92.21:SVExternals/install . 
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 rm -r SVExternals
         VBoxManage controlvm "Ubuntu20" savestate
@@ -542,11 +554,12 @@ jobs:
       shell: bash
       run: |
         VBoxManage startvm "Ubuntu20" --type headless
+        rm -rf .git
         sshpass -p ghrunner scp -r ../SVExternals ghrunner@10.65.92.21: 
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 cd SVExternals
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 mkdir -p src
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 source env_variables.sh
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 source scripts/build_mitk.sh > mitk.sh
+        sshpass -p ghrunner ssh ghrunner@10.65.92.21 source scripts/build_mitk.sh
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 source scripts/post-install-mitk.sh
         sshpass -p ghrunner scp -r ghrunner@10.65.92.21:SVExternals/install . 
         sshpass -p ghrunner ssh ghrunner@10.65.92.21 rm -r SVExternals
