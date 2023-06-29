@@ -21,20 +21,15 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v2
 
     - name: Install TCL and TK
       shell: bash
       run: |
-        VBoxManage startvm "Ubuntu20" --type headless
-        rm -rf .git
-        sshpass -p ghrunner scp -r ../SVExternals ghrunner@10.65.92.21: 
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 "cd SVExternals ; mkdir -p src"
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 "cd SVExternals ; source env_variables.sh ; source scripts/build_tcl.sh"
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 "cd SVExternals ; source scripts/build_tk.sh"
-        sshpass -p ghrunner scp -r ghrunner@10.65.92.21:SVExternals/install . 
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 rm -r SVExternals
-        VBoxManage controlvm "Ubuntu20" savestate
+        mkdir -p src
+        source env_variables.sh
+        source scripts/build_tcl.sh > out.txt
+        source scripts/build_tk.sh > out.txt
   
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
@@ -48,19 +43,14 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v2
 
     - name: Install QT
       shell: bash
       run: |
-        VBoxManage startvm "Ubuntu20" --type headless
-        rm -rf .git  
-        sshpass -p ghrunner scp -r ../SVExternals ghrunner@10.65.92.21: 
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 "cd SVExternals ; mkdir -p src"
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 "cd SVExternals ; source env_variables.sh ; source scripts/build_qt.sh"
-        sshpass -p ghrunner scp -r ghrunner@10.65.92.21:SVExternals/install . 
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 rm -r SVExternals
-        VBoxManage controlvm "Ubuntu20" savestate
+        mkdir -p src
+        source env_variables.sh
+        source scripts/build_qt.sh > qt.out
         
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
@@ -75,20 +65,15 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v2
 
     - name: Install HDF5
       shell: bash
       run: |
-        VBoxManage startvm "Ubuntu20" --type headless
-        rm -rf .git
-        sshpass -p ghrunner scp -r ../SVExternals ghrunner@10.65.92.21: 
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 "cd SVExternals ; mkdir -p src"
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 "cd SVExternals ; source env_variables.sh ; source scripts/build_hdf5.sh"
-        sshpass -p ghrunner scp -r ghrunner@10.65.92.21:SVExternals/install . 
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 rm -r SVExternals
-        VBoxManage controlvm "Ubuntu20" savestate
-
+        mkdir -p src
+        source env_variables.sh
+        source scripts/build_hdf5.sh  > out.txt
+        
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
       with:
@@ -101,19 +86,14 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v2
 
     - name: Install TINYXML2
       shell: bash
       run: |
-        VBoxManage startvm "Ubuntu20" --type headless
-        rm -rf .git
-        sshpass -p ghrunner scp -r ../SVExternals ghrunner@10.65.92.21: 
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 "cd SVExternals ; mkdir -p src"
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 "cd SVExternals ; source env_variables.sh ; source scripts/build_tinyxml2.sh"
-        sshpass -p ghrunner scp -r ghrunner@10.65.92.21:SVExternals/install . 
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 rm -r SVExternals
-        VBoxManage controlvm "Ubuntu20" savestate
+        mkdir -p src
+        source env_variables.sh
+        source scripts/build_tinyxml2.sh  > out.txt
         
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
@@ -127,20 +107,15 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v2
 
     - name: Install PYTHON
       shell: bash
       run: |
-        VBoxManage startvm "Ubuntu20" --type headless        
-        rm -rf .git
-        sshpass -p ghrunner scp -r ../SVExternals ghrunner@10.65.92.21: 
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 "cd SVExternals ; mkdir -p src"
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 "cd SVExternals ; source env_variables.sh ; source scripts/build_python.sh"
-        sshpass -p ghrunner scp -r ghrunner@10.65.92.21:SVExternals/install . 
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 rm -r SVExternals
-        VBoxManage controlvm "Ubuntu20" savestate
-
+        mkdir -p src
+        source env_variables.sh
+        source scripts/build_python.sh  > out.txt
+        
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
       with:
@@ -153,19 +128,14 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v2
 
     - name: Install FREETYPE
       shell: bash
       run: |
-        VBoxManage startvm "Ubuntu20" --type headless
-        rm -rf .git
-        sshpass -p ghrunner scp -r ../SVExternals ghrunner@10.65.92.21: 
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 "cd SVExternals ; mkdir -p src"
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 "cd SVExternals ; source env_variables.sh ; source scripts/build_freetype.sh"
-        sshpass -p ghrunner scp -r ghrunner@10.65.92.21:SVExternals/install . 
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 rm -r SVExternals
-        VBoxManage controlvm "Ubuntu20" savestate
+        mkdir -p src
+        source env_variables.sh
+        source scripts/build_freetype.sh  > out.txt
         
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
@@ -179,19 +149,14 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v2
 
     - name: Install SWIG
       shell: bash
       run: |
-        VBoxManage startvm "Ubuntu20" --type headless
-        rm -rf .git
-        sshpass -p ghrunner scp -r ../SVExternals ghrunner@10.65.92.21: 
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 "cd SVExternals ; mkdir -p src"
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 "cd SVExternals ; source env_variables.sh ; source scripts/build_swig.sh"
-        sshpass -p ghrunner scp -r ghrunner@10.65.92.21:SVExternals/install . 
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 rm -r SVExternals
-        VBoxManage controlvm "Ubuntu20" savestate
+        mkdir -p src
+        source env_variables.sh
+        source scripts/build_swig.sh  > out.txt
           
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
@@ -204,233 +169,208 @@ jobs:
     runs-on: self-hosted
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v2
 
-    - name: Install MMG
-      shell: bash
-      run: |
-        VBoxManage startvm "Ubuntu20" --type headless
-        rm -rf .git
-        sshpass -p ghrunner scp -r ../SVExternals ghrunner@10.65.92.21: 
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 "cd SVExternals ; mkdir -p src"
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 "cd SVExternals ; source env_variables.sh ; source scripts/build_mmg.sh"
-        sshpass -p ghrunner scp -r ghrunner@10.65.92.21:SVExternals/install . 
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 rm -r SVExternals
-        VBoxManage controlvm "Ubuntu20" savestate
+      - name: Install MMG
+        shell: bash
+        run: |
+          mkdir -p src
+          source env_variables.sh
+          source scripts/build_mmg.sh  > out.txt
           
-    - name: Upload build artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: MMG Install
-        path: install/mmg.tar
-        if-no-files-found: error
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: MMG Install
+          path: install/mmg.tar
+          if-no-files-found: error
 
   build-gdcm-ubuntu-20:
     runs-on: self-hosted
     needs: build-qt-ubuntu-20
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v2
 
-    - name: Install GDCM
-      shell: bash
-      run: |
-        VBoxManage startvm "Ubuntu20" --type headless
-        rm -rf .git
-        sshpass -p ghrunner scp -r ../SVExternals ghrunner@10.65.92.21: 
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 "cd SVExternals ; mkdir -p src"
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 "cd SVExternals ; source env_variables.sh ; source scripts/build_gdcm.sh"
-        sshpass -p ghrunner scp -r ghrunner@10.65.92.21:SVExternals/install . 
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 rm -r SVExternals
-        VBoxManage controlvm "Ubuntu20" savestate
-
-    - name: Upload build artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: GDCM Install
-        path: install/gdcm.tar
-        if-no-files-found: error
+      - name: Install GDCM
+        shell: bash
+        run: |
+          mkdir -p src
+          source env_variables.sh
+          source scripts/build_gdcm.sh  > out.txt
+          
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: GDCM Install
+          path: install/gdcm.tar
+          if-no-files-found: error
 
   build-vtk-ubuntu-20:
     runs-on: self-hosted
     needs: [build-tcltk-ubuntu-20, build-qt-ubuntu-20, build-python-ubuntu-20]
     
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v2
 
-    - name: Get TCLTK artifact
-      uses: actions/download-artifact@v3
-      with:
-        name: TCLTK Install
+      - name: Get TCLTK artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: TCLTK Install
 
-    - name: Get QT artifact
-      uses: actions/download-artifact@v3
-      with:
-        name: QT Install
+      - name: Get QT artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: QT Install
 
-    - name: Get PYTHON artifact
-      uses: actions/download-artifact@v3
-      with:
-        name: PYTHON Install
+      - name: Get PYTHON artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: PYTHON Install
 
-    - name: Extract dependencies
-      shell: bash
-      run: |
-        mkdir -p install
-        cd install
-        mv ../tcltk.tar .
-        tar -xvf tcltk.tar
-        mv ../qt.tar .
-        tar -xvf qt.tar
-        mv ../python.tar .
-        tar -xvf python.tar
-        cd ..
+      - name: Extract dependencies
+        shell: bash
+        run: |
+          mkdir -p install
+          cd install
+          mv ../tcltk.tar .
+          tar -xvf tcltk.tar
+          mv ../qt.tar .
+          tar -xvf qt.tar
+          mv ../python.tar .
+          tar -xvf python.tar
+          cd ..
 
-    - name: Install VTK
-      shell: bash
-      run: |
-        VBoxManage startvm "Ubuntu20" --type headless
-        rm -rf .git
-        sshpass -p ghrunner scp -r ../SVExternals ghrunner@10.65.92.21: 
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 "cd SVExternals ; mkdir -p src"
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 "cd SVExternals ; source env_variables.sh ; source scripts/build_vtk.sh"
-        sshpass -p ghrunner scp -r ghrunner@10.65.92.21:SVExternals/install . 
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 rm -r SVExternals
-        VBoxManage controlvm "Ubuntu20" savestate
-        
-    - name: Upload build artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: VTK Install
-        path: install/vtk.tar
-        if-no-files-found: error
+      - name: Install VTK
+        shell: bash
+        run: |
+          mkdir -p src
+          source env_variables.sh
+          source scripts/build_vtk.sh  > out.txt
+          
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: VTK Install
+          path: install/vtk.tar
+          if-no-files-found: error
 
   build-itk-ubuntu-20:
     runs-on: self-hosted
     needs: [build-gdcm-ubuntu-20, build-hdf5-ubuntu-20, build-qt-ubuntu-20,    build-python-ubuntu-20, build-vtk-ubuntu-20]
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v2
 
-    - name: Get GDCM artifact
-      uses: actions/download-artifact@v3
-      with:
-        name: GDCM Install
+      - name: Get GDCM artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: GDCM Install
 
-    - name: Get HDF5 artifact
-      uses: actions/download-artifact@v3
-      with:
-        name: HDF5 Install
+      - name: Get HDF5 artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: HDF5 Install
 
-    - name: Get QT artifact
-      uses: actions/download-artifact@v3
-      with:
-        name: QT Install
+      - name: Get QT artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: QT Install
 
-    - name: Get PYTHON artifact
-      uses: actions/download-artifact@v3
-      with:
-        name: PYTHON Install
+      - name: Get PYTHON artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: PYTHON Install
 
-    - name: Get VTK artifact
-      uses: actions/download-artifact@v3
-      with:
-        name: VTK Install
+      - name: Get VTK artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: VTK Install
 
-    - name: Extract dependencies
-      shell: bash
-      run: |
-        mkdir -p install
-        cd install
-        mv ../gdcm.tar .
-        tar -xvf gdcm.tar
-        mv ../hdf5.tar .
-        tar -xvf hdf5.tar
-        mv ../qt.tar .
-        tar -xvf qt.tar
-        mv ../python.tar .
-        tar -xvf python.tar
-        mv ../vtk.tar .
-        tar -xvf vtk.tar
-        cd ..
+      - name: Extract dependencies
+        shell: bash
+        run: |
+          mkdir -p install
+          cd install
+          mv ../gdcm.tar .
+          tar -xvf gdcm.tar
+          mv ../hdf5.tar .
+          tar -xvf hdf5.tar
+          mv ../qt.tar .
+          tar -xvf qt.tar
+          mv ../python.tar .
+          tar -xvf python.tar
+          mv ../vtk.tar .
+          tar -xvf vtk.tar
+          cd ..
 
-    - name: Install ITK
-      shell: bash
-      run: |
-        VBoxManage startvm "Ubuntu20" --type headless
-        rm -rf .git
-        sshpass -p ghrunner scp -r ../SVExternals ghrunner@10.65.92.21: 
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 "cd SVExternals ; mkdir -p src"
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 "cd SVExternals ; source env_variables.sh ; source scripts/build_itk.sh"
-        sshpass -p ghrunner scp -r ghrunner@10.65.92.21:SVExternals/install . 
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 rm -r SVExternals
-        VBoxManage controlvm "Ubuntu20" savestate
-        
-    - name: Upload build artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: ITK Install
-        path: install/itk.tar
-        if-no-files-found: error
+      - name: Install ITK
+        shell: bash
+        run: |
+          mkdir -p src
+          source env_variables.sh
+          source scripts/build_itk.sh  > out.txt
+          
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ITK Install
+          path: install/itk.tar
+          if-no-files-found: error
 
   build-opencascade-ubuntu-20:
     runs-on: self-hosted
     needs: [build-freetype-ubuntu-20, build-tcltk-ubuntu-20, build-vtk-ubuntu-20,build-qt-ubuntu-20]
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v2
 
-    - name: Get FREETYPE artifact
-      uses: actions/download-artifact@v3
-      with:
-        name: FREETYPE Install
+      - name: Get FREETYPE artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: FREETYPE Install
 
-    - name: Get TCLTK artifact
-      uses: actions/download-artifact@v3
-      with:
-        name: TCLTK Install
+      - name: Get TCLTK artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: TCLTK Install
 
-    - name: Get VTK artifact
-      uses: actions/download-artifact@v3
-      with:
-        name: VTK Install
+      - name: Get VTK artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: VTK Install
 
-    - name: Extract dependencies
-      shell: bash
-      run: |
-        mkdir -p install
-        cd install
-        mv ../freetype.tar .
-        tar -xvf freetype.tar
-        mv ../tcltk.tar .
-        tar -xvf tcltk.tar
-        mv ../vtk.tar .
-        tar -xvf vtk.tar
-        cd ..
+      - name: Extract dependencies
+        shell: bash
+        run: |
+          mkdir -p install
+          cd install
+          mv ../freetype.tar .
+          tar -xvf freetype.tar
+          mv ../tcltk.tar .
+          tar -xvf tcltk.tar
+          mv ../vtk.tar .
+          tar -xvf vtk.tar
+          cd ..
 
-    - name: Install OPENCASCADE
-      shell: bash
-      run: |
-        VBoxManage startvm "Ubuntu20" --type headless
-        rm -rf .git
-        sshpass -p ghrunner scp -r ../SVExternals ghrunner@10.65.92.21: 
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 "cd SVExternals ; mkdir -p src"
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 "cd SVExternals ; source env_variables.sh ; source scripts/build_opencascade.sh"
-        sshpass -p ghrunner scp -r ghrunner@10.65.92.21:SVExternals/install . 
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 rm -r SVExternals
-        VBoxManage controlvm "Ubuntu20" savestate
-        
-    - name: Upload build artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: OPENCASCADE Install
-        path: install/opencascade.tar
-        if-no-files-found: error
+      - name: Install OPENCASCADE
+        shell: bash
+        run: |
+          mkdir -p src
+          source env_variables.sh
+          source scripts/build_opencascade.sh  > out.txt
+          
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: OPENCASCADE Install
+          path: install/opencascade.tar
+          if-no-files-found: error
 
   build-mitk-ubuntu-20:
     runs-on: self-hosted
@@ -441,110 +381,105 @@ jobs:
             build-mmg-ubuntu-20]
   
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v2
 
-    - name: Get GDCM artifact
-      uses: actions/download-artifact@v3
-      with:
-        name: GDCM Install
+      - name: Get GDCM artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: GDCM Install
 
-    - name: Get ITK artifact
-      uses: actions/download-artifact@v3
-      with:
-        name: ITK Install
+      - name: Get ITK artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: ITK Install
 
-    - name: Get VTK artifact
-      uses: actions/download-artifact@v3
-      with:
-        name: VTK Install
+      - name: Get VTK artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: VTK Install
 
-    - name: Get SWIG artifact
-      uses: actions/download-artifact@v3
-      with:
-        name: SWIG Install
+      - name: Get SWIG artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: SWIG Install
 
-    - name: Get PYTHON artifact
-      uses: actions/download-artifact@v3
-      with:
-        name: PYTHON Install
+      - name: Get PYTHON artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: PYTHON Install
 
-    - name: Get QT artifact
-      uses: actions/download-artifact@v3
-      with:
-        name: QT Install
+      - name: Get QT artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: QT Install
 
-    - name: Get TINYXML2 artifact
-      uses: actions/download-artifact@v3
-      with:
-        name: TINYXML2 Install
+      - name: Get TINYXML2 artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: TINYXML2 Install
 
-    - name: Get HDF5 artifact
-      uses: actions/download-artifact@v3
-      with:
-        name: HDF5 Install
+      - name: Get HDF5 artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: HDF5 Install
 
-    - name: Get SWIG artifact
-      uses: actions/download-artifact@v3
-      with:
-        name: SWIG Install
+      - name: Get SWIG artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: SWIG Install
 
-    - name: Get FREETYPE artifact
-      uses: actions/download-artifact@v3
-      with:
-        name: FREETYPE Install
+      - name: Get FREETYPE artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: FREETYPE Install
 
-    - name: Get MMG artifact
-      uses: actions/download-artifact@v3
-      with:
-        name: MMG Install
+      - name: Get MMG artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: MMG Install
 
-    - name: Extract dependencies
-      shell: bash
-      run: |
-        mkdir -p install
-        cd install
-        mv ../gdcm.tar .
-        tar -xvf gdcm.tar
-        mv ../itk.tar .
-        tar -xvf itk.tar
-        mv ../vtk.tar .
-        tar -xvf vtk.tar
-        mv ../swig.tar .
-        tar -xvf swig.tar
-        mv ../python.tar .
-        tar -xvf python.tar
-        mv ../qt.tar .
-        tar -xvf qt.tar
-        mv ../tinyxml2.tar .
-        tar -xvf tinyxml2.tar
-        mv ../hdf5.tar .
-        tar -xvf hdf5.tar
-        mv ../freetype.tar .
-        tar -xvf freetype.tar
-        mv ../mmg.tar .
-        tar -xvf mmg.tar
-        cd ..
+      - name: Extract dependencies
+        shell: bash
+        run: |
+          mkdir -p install
+          cd install
+          mv ../gdcm.tar .
+          tar -xvf gdcm.tar
+          mv ../itk.tar .
+          tar -xvf itk.tar
+          mv ../vtk.tar .
+          tar -xvf vtk.tar
+          mv ../swig.tar .
+          tar -xvf swig.tar
+          mv ../python.tar .
+          tar -xvf python.tar
+          mv ../qt.tar .
+          tar -xvf qt.tar
+          mv ../tinyxml2.tar .
+          tar -xvf tinyxml2.tar
+          mv ../hdf5.tar .
+          tar -xvf hdf5.tar
+          mv ../freetype.tar .
+          tar -xvf freetype.tar
+          mv ../mmg.tar .
+          tar -xvf mmg.tar
+          cd ..
 
-    - name: Install MITK
-      shell: bash
-      run: |
-        VBoxManage startvm "Ubuntu20" --type headless
-        rm -rf .git
-        sshpass -p ghrunner scp -r ../SVExternals ghrunner@10.65.92.21: 
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 "cd SVExternals ; mkdir -p src"
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 "cd SVExternals ; source env_variables.sh ; source scripts/build_mitk.sh"
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 "cd SVExternals ; source env_variables.sh ; source scripts/post-install-mitk.sh"
-        sshpass -p ghrunner scp -r ghrunner@10.65.92.21:SVExternals/install . 
-        sshpass -p ghrunner ssh ghrunner@10.65.92.21 rm -r SVExternals
-        VBoxManage controlvm "Ubuntu20" savestate
-        
-    - name: Upload build artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: MITK Install
-        path: install/mitk.tar
-        if-no-files-found: error
+      - name: Install MITK
+        shell: bash
+        run: |
+          mkdir -p src
+          source env_variables.sh
+          source scripts/build_mitk.sh
+          source scripts/post-install-mitk.sh
+          
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: MITK Install
+          path: install/mitk.tar
+          if-no-files-found: error
 
   
         
