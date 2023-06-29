@@ -26,6 +26,8 @@ jobs:
     - name: Install TCL and TK
       shell: bash
       run: |
+        VBoxManage startvm "Ubuntu20" --type headless
+        VBoxManage startvm "Ubuntu20" --type headless
         alias sshcmd="sshpass -p ghrunner ssh ghrunner@10.65.92.21"
         sshpass -p ghrunner scp ../SVExternals ghrunner@10.65.92.21 
         sshcmd cd SVExternals
@@ -35,7 +37,7 @@ jobs:
         sshcmd source scripts/build_tk.sh > tk.txt
         sshpass -p ghrunner scp -r ghrunner@10.65.92.21:SVExternals/install . 
         sshcmd rm -r SVExternals
-
+        VBoxManage controlvm "Ubuntu20" savestate
   
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
@@ -54,15 +56,15 @@ jobs:
     - name: Install QT
       shell: bash
       run: |
-        alias sshcmd="sshpass -p ghrunner ssh ghrunner@10.65.92.21"
-        sshpass -p ghrunner scp ../SVExternals ghrunner@10.65.92.21 
+        VBoxManage startvm "Ubuntu20" --type headless
+        alias sshcmd="sshpass -p ghrunner ssh ghrunner@10.65.92.21"        sshpass -p ghrunner scp ../SVExternals ghrunner@10.65.92.21 
         sshcmd cd SVExternals
         sshcmd mkdir -p src
         sshcmd source env_variables.sh
         sshcmd source scripts/build_qt.sh > qt.out
         sshpass -p ghrunner scp -r ghrunner@10.65.92.21:SVExternals/install . 
         sshcmd rm -r SVExternals
-
+        VBoxManage controlvm "Ubuntu20" savestate
         
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
@@ -82,6 +84,7 @@ jobs:
     - name: Install HDF5
       shell: bash
       run: |
+        VBoxManage startvm "Ubuntu20" --type headless
         alias sshcmd="sshpass -p ghrunner ssh ghrunner@10.65.92.21"
         sshpass -p ghrunner scp ../SVExternals ghrunner@10.65.92.21 
         sshcmd cd SVExternals
@@ -90,7 +93,7 @@ jobs:
         sshcmd source scripts/build_hdf5.sh  > hdf5.txt
         sshpass -p ghrunner scp -r ghrunner@10.65.92.21:SVExternals/install . 
         sshcmd rm -r SVExternals
-
+        VBoxManage controlvm "Ubuntu20" savestate
 
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
@@ -109,6 +112,7 @@ jobs:
     - name: Install TINYXML2
       shell: bash
       run: |
+        VBoxManage startvm "Ubuntu20" --type headless
         alias sshcmd="sshpass -p ghrunner ssh ghrunner@10.65.92.21"
         sshpass -p ghrunner scp ../SVExternals ghrunner@10.65.92.21 
         sshcmd cd SVExternals
@@ -117,7 +121,7 @@ jobs:
         sshcmd source scripts/build_tinyxml2.sh  > tinyxml2.txt
         sshpass -p ghrunner scp -r ghrunner@10.65.92.21:SVExternals/install . 
         sshcmd rm -r SVExternals
-
+        VBoxManage controlvm "Ubuntu20" savestate
         
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
@@ -136,6 +140,7 @@ jobs:
     - name: Install PYTHON
       shell: bash
       run: |
+        VBoxManage startvm "Ubuntu20" --type headless
         alias sshcmd="sshpass -p ghrunner ssh ghrunner@10.65.92.21"
         sshpass -p ghrunner scp ../SVExternals ghrunner@10.65.92.21 
         sshcmd cd SVExternals
@@ -144,7 +149,7 @@ jobs:
         sshcmd source scripts/build_python.sh  > python.txt
         sshpass -p ghrunner scp -r ghrunner@10.65.92.21:SVExternals/install . 
         sshcmd rm -r SVExternals
-
+        VBoxManage controlvm "Ubuntu20" savestate
 
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
@@ -163,6 +168,7 @@ jobs:
     - name: Install FREETYPE
       shell: bash
       run: |
+        VBoxManage startvm "Ubuntu20" --type headless
         alias sshcmd="sshpass -p ghrunner ssh ghrunner@10.65.92.21"
         sshpass -p ghrunner scp ../SVExternals ghrunner@10.65.92.21 
         sshcmd cd SVExternals
@@ -171,7 +177,7 @@ jobs:
         sshcmd source scripts/build_freetype.sh  > freetype.txt
         sshpass -p ghrunner scp -r ghrunner@10.65.92.21:SVExternals/install . 
         sshcmd rm -r SVExternals
-
+        VBoxManage controlvm "Ubuntu20" savestate
         
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
@@ -190,6 +196,7 @@ jobs:
     - name: Install SWIG
       shell: bash
       run: |
+        VBoxManage startvm "Ubuntu20" --type headless
         alias sshcmd="sshpass -p ghrunner ssh ghrunner@10.65.92.21"
         sshpass -p ghrunner scp ../SVExternals ghrunner@10.65.92.21 
         sshcmd cd SVExternals
@@ -198,7 +205,7 @@ jobs:
         sshcmd source scripts/build_swig.sh  > swig.txt
         sshpass -p ghrunner scp -r ghrunner@10.65.92.21:SVExternals/install . 
         sshcmd rm -r SVExternals
-
+        VBoxManage controlvm "Ubuntu20" savestate
           
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
@@ -217,6 +224,7 @@ jobs:
     - name: Install MMG
       shell: bash
       run: |
+        VBoxManage startvm "Ubuntu20" --type headless
         alias sshcmd="sshpass -p ghrunner ssh ghrunner@10.65.92.21"
         sshpass -p ghrunner scp ../SVExternals ghrunner@10.65.92.21 
         sshcmd cd SVExternals
@@ -225,7 +233,7 @@ jobs:
         sshcmd source scripts/build_mmg.sh  > mmg.txt
         sshpass -p ghrunner scp -r ghrunner@10.65.92.21:SVExternals/install . 
         sshcmd rm -r SVExternals
-
+        VBoxManage controlvm "Ubuntu20" savestate
           
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
@@ -245,6 +253,7 @@ jobs:
     - name: Install GDCM
       shell: bash
       run: |
+        VBoxManage startvm "Ubuntu20" --type headless
         alias sshcmd="sshpass -p ghrunner ssh ghrunner@10.65.92.21"
         sshpass -p ghrunner scp ../SVExternals ghrunner@10.65.92.21 
         sshcmd cd SVExternals
@@ -253,7 +262,7 @@ jobs:
         sshcmd source scripts/build_gdcm.sh  > gdcm.txt
         sshpass -p ghrunner scp -r ghrunner@10.65.92.21:SVExternals/install . 
         sshcmd rm -r SVExternals
-
+        VBoxManage controlvm "Ubuntu20" savestate
 
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
@@ -301,6 +310,7 @@ jobs:
     - name: Install VTK
       shell: bash
       run: |
+        VBoxManage startvm "Ubuntu20" --type headless
         alias sshcmd="sshpass -p ghrunner ssh ghrunner@10.65.92.21"
         sshpass -p ghrunner scp ../SVExternals ghrunner@10.65.92.21 
         sshcmd cd SVExternals
@@ -309,7 +319,7 @@ jobs:
         sshcmd source scripts/build_vtk.sh  > vtk.txt
         sshpass -p ghrunner scp -r ghrunner@10.65.92.21:SVExternals/install . 
         sshcmd rm -r SVExternals
-
+        VBoxManage controlvm "Ubuntu20" savestate
         
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
@@ -371,6 +381,7 @@ jobs:
     - name: Install ITK
       shell: bash
       run: |
+        VBoxManage startvm "Ubuntu20" --type headless
         alias sshcmd="sshpass -p ghrunner ssh ghrunner@10.65.92.21"
         sshpass -p ghrunner scp ../SVExternals ghrunner@10.65.92.21 
         sshcmd cd SVExternals
@@ -379,7 +390,7 @@ jobs:
         sshcmd source scripts/build_itk.sh  > itk.txt
         sshpass -p ghrunner scp -r ghrunner@10.65.92.21:SVExternals/install . 
         sshcmd rm -r SVExternals
-
+        VBoxManage controlvm "Ubuntu20" savestate
         
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
@@ -427,6 +438,7 @@ jobs:
     - name: Install OPENCASCADE
       shell: bash
       run: |
+        VBoxManage startvm "Ubuntu20" --type headless
         alias sshcmd="sshpass -p ghrunner ssh ghrunner@10.65.92.21"
         sshpass -p ghrunner scp ../SVExternals ghrunner@10.65.92.21 
         sshcmd cd SVExternals
@@ -435,7 +447,7 @@ jobs:
         sshcmd source scripts/build_opencascade.sh  > opencascade.txt
         sshpass -p ghrunner scp -r ghrunner@10.65.92.21:SVExternals/install . 
         sshcmd rm -r SVExternals
-
+        VBoxManage controlvm "Ubuntu20" savestate
         
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
@@ -541,6 +553,7 @@ jobs:
     - name: Install MITK
       shell: bash
       run: |
+        VBoxManage startvm "Ubuntu20" --type headless
         alias sshcmd="sshpass -p ghrunner ssh ghrunner@10.65.92.21"
         sshpass -p ghrunner scp ../SVExternals ghrunner@10.65.92.21 
         sshcmd cd SVExternals
@@ -550,7 +563,7 @@ jobs:
         sshcmd source scripts/post-install-mitk.sh
         sshpass -p ghrunner scp -r ghrunner@10.65.92.21:SVExternals/install . 
         sshcmd rm -r SVExternals
-
+        VBoxManage controlvm "Ubuntu20" savestate
         
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
