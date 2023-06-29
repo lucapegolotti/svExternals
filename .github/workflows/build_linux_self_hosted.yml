@@ -27,7 +27,6 @@ jobs:
       shell: bash
       run: |
         VBoxManage startvm "Ubuntu20" --type headless
-        VBoxManage startvm "Ubuntu20" --type headless
         alias sshcmd="sshpass -p ghrunner ssh ghrunner@10.65.92.21"
         sshpass -p ghrunner scp ../SVExternals ghrunner@10.65.92.21 
         sshcmd cd SVExternals
