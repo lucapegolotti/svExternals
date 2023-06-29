@@ -28,7 +28,7 @@ jobs:
       run: |
         VBoxManage startvm "Ubuntu20" --type headless
         alias sshcmd="sshpass -p ghrunner ssh ghrunner@10.65.92.21"
-        sshpass -p ghrunner scp ../SVExternals ghrunner@10.65.92.21 
+        sshpass -p ghrunner scp -r ../SVExternals ghrunner@10.65.92.21 
         sshcmd cd SVExternals
         sshcmd mkdir -p src
         sshcmd source env_variables.sh
@@ -56,7 +56,8 @@ jobs:
       shell: bash
       run: |
         VBoxManage startvm "Ubuntu20" --type headless
-        alias sshcmd="sshpass -p ghrunner ssh ghrunner@10.65.92.21"        sshpass -p ghrunner scp ../SVExternals ghrunner@10.65.92.21 
+        alias sshcmd="sshpass -p ghrunner ssh ghrunner@10.65.92.21"     
+        sshpass -p ghrunner scp -r ../SVExternals ghrunner@10.65.92.21 
         sshcmd cd SVExternals
         sshcmd mkdir -p src
         sshcmd source env_variables.sh
@@ -85,7 +86,7 @@ jobs:
       run: |
         VBoxManage startvm "Ubuntu20" --type headless
         alias sshcmd="sshpass -p ghrunner ssh ghrunner@10.65.92.21"
-        sshpass -p ghrunner scp ../SVExternals ghrunner@10.65.92.21 
+        sshpass -p ghrunner scp -r ../SVExternals ghrunner@10.65.92.21 
         sshcmd cd SVExternals
         sshcmd mkdir -p src
         sshcmd source env_variables.sh
@@ -113,7 +114,7 @@ jobs:
       run: |
         VBoxManage startvm "Ubuntu20" --type headless
         alias sshcmd="sshpass -p ghrunner ssh ghrunner@10.65.92.21"
-        sshpass -p ghrunner scp ../SVExternals ghrunner@10.65.92.21 
+        sshpass -p ghrunner scp -r ../SVExternals ghrunner@10.65.92.21 
         sshcmd cd SVExternals
         sshcmd mkdir -p src
         sshcmd source env_variables.sh
@@ -141,7 +142,7 @@ jobs:
       run: |
         VBoxManage startvm "Ubuntu20" --type headless
         alias sshcmd="sshpass -p ghrunner ssh ghrunner@10.65.92.21"
-        sshpass -p ghrunner scp ../SVExternals ghrunner@10.65.92.21 
+        sshpass -p ghrunner scp -r ../SVExternals ghrunner@10.65.92.21 
         sshcmd cd SVExternals
         sshcmd mkdir -p src
         sshcmd source env_variables.sh
@@ -169,7 +170,7 @@ jobs:
       run: |
         VBoxManage startvm "Ubuntu20" --type headless
         alias sshcmd="sshpass -p ghrunner ssh ghrunner@10.65.92.21"
-        sshpass -p ghrunner scp ../SVExternals ghrunner@10.65.92.21 
+        sshpass -p ghrunner scp -r ../SVExternals ghrunner@10.65.92.21 
         sshcmd cd SVExternals
         sshcmd mkdir -p src
         sshcmd source env_variables.sh
@@ -197,7 +198,7 @@ jobs:
       run: |
         VBoxManage startvm "Ubuntu20" --type headless
         alias sshcmd="sshpass -p ghrunner ssh ghrunner@10.65.92.21"
-        sshpass -p ghrunner scp ../SVExternals ghrunner@10.65.92.21 
+        sshpass -p ghrunner scp -r ../SVExternals ghrunner@10.65.92.21 
         sshcmd cd SVExternals
         sshcmd mkdir -p src
         sshcmd source env_variables.sh
@@ -225,7 +226,7 @@ jobs:
       run: |
         VBoxManage startvm "Ubuntu20" --type headless
         alias sshcmd="sshpass -p ghrunner ssh ghrunner@10.65.92.21"
-        sshpass -p ghrunner scp ../SVExternals ghrunner@10.65.92.21 
+        sshpass -p ghrunner scp -r ../SVExternals ghrunner@10.65.92.21 
         sshcmd cd SVExternals
         sshcmd mkdir -p src
         sshcmd source env_variables.sh
@@ -254,7 +255,7 @@ jobs:
       run: |
         VBoxManage startvm "Ubuntu20" --type headless
         alias sshcmd="sshpass -p ghrunner ssh ghrunner@10.65.92.21"
-        sshpass -p ghrunner scp ../SVExternals ghrunner@10.65.92.21 
+        sshpass -p ghrunner scp -r ../SVExternals ghrunner@10.65.92.21 
         sshcmd cd SVExternals
         sshcmd mkdir -p src
         sshcmd source env_variables.sh
@@ -311,7 +312,7 @@ jobs:
       run: |
         VBoxManage startvm "Ubuntu20" --type headless
         alias sshcmd="sshpass -p ghrunner ssh ghrunner@10.65.92.21"
-        sshpass -p ghrunner scp ../SVExternals ghrunner@10.65.92.21 
+        sshpass -p ghrunner scp -r ../SVExternals ghrunner@10.65.92.21 
         sshcmd cd SVExternals
         sshcmd mkdir -p src
         sshcmd source env_variables.sh
@@ -382,7 +383,7 @@ jobs:
       run: |
         VBoxManage startvm "Ubuntu20" --type headless
         alias sshcmd="sshpass -p ghrunner ssh ghrunner@10.65.92.21"
-        sshpass -p ghrunner scp ../SVExternals ghrunner@10.65.92.21 
+        sshpass -p ghrunner scp -r ../SVExternals ghrunner@10.65.92.21 
         sshcmd cd SVExternals
         sshcmd mkdir -p src
         sshcmd source env_variables.sh
@@ -439,7 +440,7 @@ jobs:
       run: |
         VBoxManage startvm "Ubuntu20" --type headless
         alias sshcmd="sshpass -p ghrunner ssh ghrunner@10.65.92.21"
-        sshpass -p ghrunner scp ../SVExternals ghrunner@10.65.92.21 
+        sshpass -p ghrunner scp -r ../SVExternals ghrunner@10.65.92.21 
         sshcmd cd SVExternals
         sshcmd mkdir -p src
         sshcmd source env_variables.sh
@@ -554,7 +555,7 @@ jobs:
       run: |
         VBoxManage startvm "Ubuntu20" --type headless
         alias sshcmd="sshpass -p ghrunner ssh ghrunner@10.65.92.21"
-        sshpass -p ghrunner scp ../SVExternals ghrunner@10.65.92.21 
+        sshpass -p ghrunner scp -r ../SVExternals ghrunner@10.65.92.21 
         sshcmd cd SVExternals
         sshcmd mkdir -p src
         sshcmd source env_variables.sh
