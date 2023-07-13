@@ -3,7 +3,7 @@ export ROOT_DIR=$(pwd)
 
 export TCL_VERSION=8.6.13
 export TK_VERSION=8.6.13
-export QT_VERSION=5.14.2
+export QT_VERSION=5.15.10
 export HDF5_VERSION=1.12.2
 export TINYXML2_VERSION=6.2.0
 export PYTHON_VERSION=3.9.10
