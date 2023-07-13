@@ -4,13 +4,13 @@ pushd $SRC_DIR
 
 # download tar 
 QT_MAJOR_VERSION=${QT_VERSION%.*}
-wget https://download.qt.io/archive/qt/$QT_MAJOR_VERSION/$QT_VERSION/single/qt-everywhere-src-$QT_VERSION.tar.xz
+wget https://download.qt.io/archive/qt/$QT_MAJOR_VERSION/$QT_VERSION/single/qt-everywhere-opensource-src-$QT_VERSION.tar.xz
 
 # extract source
-tar -xf qt-everywhere-src-$QT_VERSION.tar.xz
+tar -xf qt-everywhere-opensource-src-$QT_VERSION.tar.xz
 
 # delete tar
-rm qt-everywhere-src-$QT_VERSION.tar.xz
+rm qt-everywhere-opensource-src-$QT_VERSION.tar.xz
 
 # create install directory 
 mkdir -p $QT_INSTALL_DIR
