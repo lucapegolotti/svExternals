@@ -26,6 +26,13 @@ popd
 # create tar
 cd install
 # this is required for simvascular installation
-sed -i 's|'${ROOT_DIR}/install'|\$\{SV_EXTERNALS_TOPLEVEL_BIN_DIR\}|g' tinyxml2-$TINYXML2_VERSION/lib/cmake/tinyxml2/tinyxml2Targets.cmake
+if [[ $(uname) == 'Linux' ]]; then
+    sed -i 's|'${ROOT_DIR}/install'|\$\{SV_EXTERNALS_TOPLEVEL_BIN_DIR\}|g' tinyxml2-$TINYXML2_VERSION/lib/cmake/tinyxml2/tinyxml2Targets.cmake
+elif [[ $(uname) == 'Darwin' ]]; then
+    sed -i'.original' -e 's|'${ROOT_DIR}/install'|\$\{SV_EXTERNALS_TOPLEVEL_BIN_DIR\}|g' tinyxml2-$TINYXML2_VERSION/lib/cmake/tinyxml2/tinyxml2Targets.cmake
+else
+    echo 'Operating system not supported'
+    exit 125
+fi
 tar -cf tinyxml2.tar tinyxml2-$TINYXML2_VERSION
 cd ..
