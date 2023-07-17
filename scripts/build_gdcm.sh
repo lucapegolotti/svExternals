@@ -39,6 +39,7 @@ cmake \
 	-DGDCM_BUILD_SHARED_LIBS=1 \
   	-DGDCM_USE_VTK=0 \
   	-DGDCM_BUILD_APPLICATIONS=1 \
+	-DGDCM_BUILD_DOCBOOK_MANPAGES=0 \
 	..
 make -j 2 && make install
 popd

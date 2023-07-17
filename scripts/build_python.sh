@@ -62,7 +62,7 @@ done
 rm -f $PYTHON_INSTALL_DIR/bin-relocate/python
 rm -f $PYTHON_INSTALL_DIR/bin-relocate/python3*
 cp -f $PYTHON_INSTALL_DIR/bin/python $PYTHON_INSTALL_DIR/bin-relocate/ 
-cp -df $PYTHON_INSTALL_DIR/bin/python3* $PYTHON_INSTALL_DIR/bin-relocate/
+cp -f $PYTHON_INSTALL_DIR/bin/python3* $PYTHON_INSTALL_DIR/bin-relocate/
 
 # create tar
 cd install
