@@ -14,6 +14,11 @@ export PATH=$GDCM_INCLUDE_DIR:$PATH
 export PATH=$GDCM_LIB_DIR:$PATH
 export PATH=$VTK_INSTALL_DIR/lib:$PATH
 
+# these can be needed for the MITK install step (otherwise ldd fails)
+export LD_LIBRARY_PATH=$VTK_INSTALL_DIR/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=$GDCM_LIB_DIR:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=$SRC_DIR/MITK-$MITK_VERSION/build/MITK-build/lib:$LD_LIBRARY_PATH
+
 # # download tar 
 wget https://github.com/MITK/MITK/archive/refs/tags/v$MITK_VERSION.tar.gz
 

@@ -15,8 +15,12 @@ rm tk$TCL_VERSION-src.tar.gz
 mkdir -p $TK_INSTALL_DIR
 
 # build and install
-pushd tk$TK_VERSION/unix
-./configure --prefix=$TK_INSTALL_DIR
+if [[ "$(uname)" == 'Linux' ]]; then
+    pushd tk$TK_VERSION/unix
+elif [[ "$(uname)" == 'Darwin' ]]; then
+    pushd tk$TK_VERSION/macosx
+fi
+./configure --prefix=$TK_INSTALL_DIR --exec-prefix=$TK_INSTALL_DIR
 make -j 2 install
 popd
 

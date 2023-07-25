@@ -1,0 +1,14 @@
+diff --color -ur VTK-9.1.0/CMake/vtkModule.cmake VTK-9.1.0-patched/CMake/vtkModule.cmake
+--- VTK-9.1.0/CMake/vtkModule.cmake	2023-07-17 10:00:32
++++ VTK-9.1.0-patched/CMake/vtkModule.cmake	2023-07-17 10:09:07
+@@ -1410,7 +1410,9 @@
+ #]==]
+ function (_vtk_module_target_function prefix)
+   foreach (visibility IN ITEMS INTERFACE PUBLIC PRIVATE)
+-    if (${prefix}_${visibility})
++    # I am not sure why this is needed on Mac, but without this fix
++    # vtk doesn't set tk paths properly
++    if (TRUE)
+       set("${prefix}_${visibility}_args"
+         "${visibility}"
+         ${${prefix}_${visibility}}

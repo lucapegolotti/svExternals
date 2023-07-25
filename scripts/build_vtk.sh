@@ -14,6 +14,13 @@ rm VTK-$VTK_VERSION.tar.gz
 # create install directory 
 mkdir -p $VTK_INSTALL_DIR
 
+# apply patch
+if [[ $(uname) == "Darwin" ]]; then
+    pushd src
+    patch -i ../patches/VTK-$VTK_VERSION-clang.patch
+    popd
+fi
+
 pushd VTK-$VTK_VERSION
 mkdir -p build
 cd build
