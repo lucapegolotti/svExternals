@@ -1,6 +1,6 @@
 # This is a basic workflow that is manually triggered
 
-name: Build SimVascular Externals - Linux
+name: Build SimVascular Externals - Ubuntu 22
 
 # Controls when the action will run.
 on:
@@ -8,20 +8,20 @@ on:
   workflow_dispatch:
         
   # This is to schedule run every Monday at 5:30 UTC
-  # schedule:
-  #   # Runs every monday at 5:30 UTC
-  #   - cron: '30 5 * * 1'
+  schedule:
+    # Runs every monday at 5:30 UTC
+    - cron: '30 5 * * 1'
     
-  # push:
+  push:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  build-tcltk-ubuntu-20:
-    runs-on: self-hosted
+  build-tcltk-ubuntu-22:
+    runs-on: ubuntu22
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Install TCL and TK
       shell: bash
@@ -38,38 +38,12 @@ jobs:
         path: install/tcltk.tar
         if-no-files-found: error
 
-  build-qt-ubuntu-20:
-    runs-on: self-hosted
+  build-qt-ubuntu-22:
+    runs-on: ubuntu22
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
-
-    - name: Install dependencies
-      shell: bash
-      run: |
-        sudo apt-get update
-        sudo apt-get install
-        sudo apt-get install llvm 
-        sudo apt-get install libpcre3 
-        sudo apt-get install libpcre3-dev 
-        sudo apt-get install automake
-        sudo apt-get install build-essential
-        sudo apt-get install libgl1-mesa-dev
-        sudo apt-get install libglu1-mesa-dev
-        sudo apt-get install libxcb-render0-dev
-        sudo apt-get install libdbus-1-dev libnss3-dev
-        sudo apt-get install libxcb-xfixes0-dev
-        sudo apt-get install gperf
-        sudo apt-get install bison flex
-        sudo apt-get install byacc
-        sudo apt-get install libxi-dev libxcomposite-dev libxcursor-dev libxtst-dev 
-        sudo apt-get install libatspi2.0-dev
-        sudo apt-get install libx11-xcb-dev libxcb-util0-dev libxcb-keysyms1-dev libxcb-image0-dev libxcb-shm0-dev libxcb-icccm4-dev libxcb-sync-dev libxcb-render-util0-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev
-        sudo apt-get install libxcomposite-dev
-        sudo apt-get install libdrm-dev
-        sudo apt-get install libxdamage-dev
-        sudo apt-get install libxrandr-dev
+      uses: actions/checkout@v3
 
     - name: Install QT
       shell: bash
@@ -86,33 +60,12 @@ jobs:
         if-no-files-found: error
         
 
-  build-hdf5-ubuntu-20:
-    runs-on: self-hosted
+  build-hdf5-ubuntu-22:
+    runs-on: ubuntu22
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
-
-    - name: Install dependencies
-      shell: bash
-      run: |
-        sudo apt-get update
-        sudo apt-get install
-        sudo apt-get install llvm 
-        sudo apt-get install libpcre3 
-        sudo apt-get install libpcre3-dev 
-        sudo apt-get install automake
-        sudo apt-get install build-essential
-        sudo apt-get install libgl1-mesa-dev
-        sudo apt-get install libglu1-mesa-dev
-        sudo apt-get install libxcb-render0-dev
-        sudo apt-get install libdbus-1-dev libnss3-dev
-        sudo apt-get install libxcb-xfixes0-dev
-        sudo apt-get install gperf
-        sudo apt-get install bison flex
-        sudo apt-get install byacc
-        sudo apt-get install libxi-dev libxcomposite-dev libxcursor-dev libxtst-dev 
-        sudo apt-get install libatspi2.0-dev
+      uses: actions/checkout@v3
 
     - name: Install HDF5
       shell: bash
@@ -128,12 +81,12 @@ jobs:
         path: install/hdf5.tar
         if-no-files-found: error
 
-  build-tinyxml2-ubuntu-20:
-    runs-on: self-hosted
+  build-tinyxml2-ubuntu-22:
+    runs-on: ubuntu22
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Install TINYXML2
       shell: bash
@@ -149,33 +102,12 @@ jobs:
         path: install/tinyxml2.tar
         if-no-files-found: error
 
-  build-python-ubuntu-20:
-    runs-on: self-hosted
+  build-python-ubuntu-22:
+    runs-on: ubuntu22
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
-
-    - name: Install dependencies
-      shell: bash
-      run: |
-        sudo apt-get update
-        sudo apt-get install
-        sudo apt-get install llvm 
-        sudo apt-get install libpcre3 
-        sudo apt-get install libpcre3-dev 
-        sudo apt-get install automake
-        sudo apt-get install build-essential
-        sudo apt-get install libgl1-mesa-dev
-        sudo apt-get install libglu1-mesa-dev
-        sudo apt-get install libxcb-render0-dev
-        sudo apt-get install libdbus-1-dev libnss3-dev
-        sudo apt-get install libxcb-xfixes0-dev
-        sudo apt-get install gperf
-        sudo apt-get install bison flex
-        sudo apt-get install byacc
-        sudo apt-get install libxi-dev libxcomposite-dev libxcursor-dev libxtst-dev 
-        sudo apt-get install libatspi2.0-dev
+      uses: actions/checkout@v3
 
     - name: Install PYTHON
       shell: bash
@@ -190,34 +122,13 @@ jobs:
         name: PYTHON Install
         path: install/python.tar
         if-no-files-found: error
-
-  build-freetype-ubuntu-20:
-    runs-on: self-hosted
+    
+  build-freetype-ubuntu-22:
+    runs-on: ubuntu22
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
-
-    - name: Install dependencies
-      shell: bash
-      run: |
-        sudo apt-get update
-        sudo apt-get install
-        sudo apt-get install llvm 
-        sudo apt-get install libpcre3 
-        sudo apt-get install libpcre3-dev 
-        sudo apt-get install automake
-        sudo apt-get install build-essential
-        sudo apt-get install libgl1-mesa-dev
-        sudo apt-get install libglu1-mesa-dev
-        sudo apt-get install libxcb-render0-dev
-        sudo apt-get install libdbus-1-dev libnss3-dev
-        sudo apt-get install libxcb-xfixes0-dev
-        sudo apt-get install gperf
-        sudo apt-get install bison flex
-        sudo apt-get install byacc
-        sudo apt-get install libxi-dev libxcomposite-dev libxcursor-dev libxtst-dev 
-        sudo apt-get install libatspi2.0-dev
+      uses: actions/checkout@v3
 
     - name: Install FREETYPE
       shell: bash
@@ -233,12 +144,12 @@ jobs:
         path: install/freetype.tar
         if-no-files-found: error
 
-  build-swig-ubuntu-20:
-    runs-on: self-hosted
+  build-swig-ubuntu-22:
+    runs-on: ubuntu22
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Install SWIG
       shell: bash
@@ -254,12 +165,12 @@ jobs:
         path: install/swig.tar
         if-no-files-found: error
 
-  build-mmg-ubuntu-20:
-    runs-on: self-hosted
+  build-mmg-ubuntu-22:
+    runs-on: ubuntu22
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Install MMG
         shell: bash
@@ -275,13 +186,13 @@ jobs:
           path: install/mmg.tar
           if-no-files-found: error
 
-  build-gdcm-ubuntu-20:
-    runs-on: self-hosted
-    needs: build-qt-ubuntu-20
+  build-gdcm-ubuntu-22:
+    runs-on: ubuntu22
+    needs: build-qt-ubuntu-22
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Install GDCM
         shell: bash
@@ -297,34 +208,13 @@ jobs:
           path: install/gdcm.tar
           if-no-files-found: error
 
-  build-vtk-ubuntu-20:
-    runs-on: self-hosted
-    needs: [build-tcltk-ubuntu-20, build-qt-ubuntu-20, build-python-ubuntu-20]
+  build-vtk-ubuntu-22:
+    runs-on: ubuntu22
+    needs: [build-tcltk-ubuntu-22, build-qt-ubuntu-22, build-python-ubuntu-22]
     
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Install dependencies
-        shell: bash
-        run: |
-          sudo apt-get update
-          sudo apt-get install
-          sudo apt-get install llvm 
-          sudo apt-get install libpcre3 
-          sudo apt-get install libpcre3-dev 
-          sudo apt-get install automake
-          sudo apt-get install build-essential
-          sudo apt-get install libgl1-mesa-dev
-          sudo apt-get install libglu1-mesa-dev
-          sudo apt-get install libxcb-render0-dev
-          sudo apt-get install libdbus-1-dev libnss3-dev
-          sudo apt-get install libxcb-xfixes0-dev
-          sudo apt-get install gperf
-          sudo apt-get install bison flex
-          sudo apt-get install byacc
-          sudo apt-get install libxi-dev libxcomposite-dev libxcursor-dev libxtst-dev 
-          sudo apt-get install libatspi2.0-dev
+        uses: actions/checkout@v3
 
       - name: Get TCLTK artifact
         uses: actions/download-artifact@v3
@@ -368,34 +258,13 @@ jobs:
           path: install/vtk.tar
           if-no-files-found: error
 
-  build-itk-ubuntu-20:
-    runs-on: self-hosted
-    needs: [build-gdcm-ubuntu-20, build-hdf5-ubuntu-20, build-qt-ubuntu-20,    build-python-ubuntu-20, build-vtk-ubuntu-20]
+  build-itk-ubuntu-22:
+    runs-on: ubuntu22
+    needs: [build-gdcm-ubuntu-22, build-hdf5-ubuntu-22, build-qt-ubuntu-22,    build-python-ubuntu-22, build-vtk-ubuntu-22]
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Install dependencies
-        shell: bash
-        run: |
-          sudo apt-get update
-          sudo apt-get install
-          sudo apt-get install llvm 
-          sudo apt-get install libpcre3 
-          sudo apt-get install libpcre3-dev 
-          sudo apt-get install automake
-          sudo apt-get install build-essential
-          sudo apt-get install libgl1-mesa-dev
-          sudo apt-get install libglu1-mesa-dev
-          sudo apt-get install libxcb-render0-dev
-          sudo apt-get install libdbus-1-dev libnss3-dev
-          sudo apt-get install libxcb-xfixes0-dev
-          sudo apt-get install gperf
-          sudo apt-get install bison flex
-          sudo apt-get install byacc
-          sudo apt-get install libxi-dev libxcomposite-dev libxcursor-dev libxtst-dev 
-          sudo apt-get install libatspi2.0-dev
+        uses: actions/checkout@v3
 
       - name: Get GDCM artifact
         uses: actions/download-artifact@v3
@@ -453,34 +322,13 @@ jobs:
           path: install/itk.tar
           if-no-files-found: error
 
-  build-opencascade-ubuntu-20:
-    runs-on: self-hosted
-    needs: [build-freetype-ubuntu-20, build-tcltk-ubuntu-20, build-vtk-ubuntu-20,build-qt-ubuntu-20]
+  build-opencascade-ubuntu-22:
+    runs-on: ubuntu22
+    needs: [build-freetype-ubuntu-22, build-tcltk-ubuntu-22, build-vtk-ubuntu-22,build-qt-ubuntu-22]
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Install dependencies
-        shell: bash
-        run: |
-          sudo apt-get update
-          sudo apt-get install
-          sudo apt-get install llvm 
-          sudo apt-get install libpcre3 
-          sudo apt-get install libpcre3-dev 
-          sudo apt-get install automake
-          sudo apt-get install build-essential
-          sudo apt-get install libgl1-mesa-dev
-          sudo apt-get install libglu1-mesa-dev
-          sudo apt-get install libxcb-render0-dev
-          sudo apt-get install libdbus-1-dev libnss3-dev
-          sudo apt-get install libxcb-xfixes0-dev
-          sudo apt-get install gperf
-          sudo apt-get install bison flex
-          sudo apt-get install byacc
-          sudo apt-get install libxi-dev libxcomposite-dev libxcursor-dev libxtst-dev 
-          sudo apt-get install libatspi2.0-dev
+        uses: actions/checkout@v3
 
       - name: Get FREETYPE artifact
         uses: actions/download-artifact@v3
@@ -524,43 +372,17 @@ jobs:
           path: install/opencascade.tar
           if-no-files-found: error
 
-  build-mitk-ubuntu-20:
-    runs-on: self-hosted
-    needs: [build-gdcm-ubuntu-20, build-itk-ubuntu-20, build-vtk-ubuntu-20,
-            build-swig-ubuntu-20, build-python-ubuntu-20, build-qt-ubuntu-20,
-            build-tinyxml2-ubuntu-20, build-hdf5-ubuntu-20,
-            build-swig-ubuntu-20, build-freetype-ubuntu-20,
-            build-mmg-ubuntu-20]
+  build-mitk-ubuntu-22:
+    runs-on: ubuntu22
+    needs: [build-gdcm-ubuntu-22, build-itk-ubuntu-22, build-vtk-ubuntu-22,
+            build-swig-ubuntu-22, build-python-ubuntu-22, build-qt-ubuntu-22,
+            build-tinyxml2-ubuntu-22, build-hdf5-ubuntu-22,
+            build-swig-ubuntu-22, build-freetype-ubuntu-22,
+            build-mmg-ubuntu-22]
   
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Install dependencies
-        shell: bash
-        run: |
-          sudo apt-get update
-          sudo apt-get install
-          sudo apt-get install llvm 
-          sudo apt-get install libpcre3 
-          sudo apt-get install libpcre3-dev 
-          sudo apt-get install automake
-          sudo apt-get install build-essential
-          sudo apt-get install libgl1-mesa-dev
-          sudo apt-get install libglu1-mesa-dev
-          sudo apt-get install libxcb-render0-dev
-          sudo apt-get install libdbus-1-dev libnss3-dev
-          sudo apt-get install libxcb-xfixes0-dev
-          sudo apt-get install gperf
-          sudo apt-get install bison flex
-          sudo apt-get install byacc
-          sudo apt-get install libxi-dev libxcomposite-dev libxcursor-dev libxtst-dev 
-          sudo apt-get install libatspi2.0-dev
-          sudo apt-get install libxcb-util0-dev libxcb-keysyms1-dev libxcb-image0-dev libxcb-shm0-dev libxcb-icccm4-dev libxcb-sync-dev libxcb-render-util0-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev
-          sudo apt-get install libxcomposite-dev
-          sudo apt-get install libdrm-dev
-          sudo apt-get install libxdamage-dev
-          sudo apt-get install libxrandr-dev
+        uses: actions/checkout@v3
 
       - name: Get GDCM artifact
         uses: actions/download-artifact@v3
