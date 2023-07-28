@@ -188,16 +188,11 @@ jobs:
 
   build-vtk-ubuntu-22:
     runs-on: ubuntu22
-    needs: [build-tcltk-ubuntu-22, build-qt-ubuntu-22, build-python-ubuntu-22]
+    needs: [build-qt-ubuntu-22, build-python-ubuntu-22]
     
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
-      - name: Get TCLTK artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: TCLTK Install
 
       - name: Get QT artifact
         uses: actions/download-artifact@v3
@@ -214,8 +209,6 @@ jobs:
         run: |
           mkdir -p install
           cd install
-          mv ../tcltk.tar .
-          tar -xvf tcltk.tar
           mv ../qt.tar .
           tar -xvf qt.tar
           mv ../python.tar .
@@ -302,7 +295,7 @@ jobs:
 
   build-opencascade-ubuntu-22:
     runs-on: ubuntu22
-    needs: [build-freetype-ubuntu-22, build-tcltk-ubuntu-22, build-vtk-ubuntu-22,build-qt-ubuntu-22]
+    needs: [build-freetype-ubuntu-22, build-vtk-ubuntu-22, build-qt-ubuntu-22]
 
     steps:
       - name: Checkout
@@ -312,11 +305,6 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: FREETYPE Install
-
-      - name: Get TCLTK artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: TCLTK Install
 
       - name: Get VTK artifact
         uses: actions/download-artifact@v3
@@ -330,8 +318,6 @@ jobs:
           cd install
           mv ../freetype.tar .
           tar -xvf freetype.tar
-          mv ../tcltk.tar .
-          tar -xvf tcltk.tar
           mv ../vtk.tar .
           tar -xvf vtk.tar
           cd ..
