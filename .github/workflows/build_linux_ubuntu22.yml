@@ -16,28 +16,6 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  build-tcltk-ubuntu-22:
-    runs-on: ubuntu22
-
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-
-    - name: Install TCL and TK
-      shell: bash
-      run: |
-        mkdir -p src
-        source env_variables.sh
-        source scripts/build_tcl.sh > out.txt
-        source scripts/build_tk.sh > out.txt
-  
-    - name: Upload build artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: TCLTK Install
-        path: install/tcltk.tar
-        if-no-files-found: error
-
   build-qt-ubuntu-22:
     runs-on: ubuntu22
 

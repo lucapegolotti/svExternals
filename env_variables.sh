@@ -1,8 +1,6 @@
 #!/bin/bash
 export ROOT_DIR=$(pwd)
 
-export TCL_VERSION=8.6.13
-export TK_VERSION=8.6.13
 export QT_VERSION=5.15.10
 export HDF5_VERSION=1.12.2
 export TINYXML2_VERSION=6.2.0
@@ -29,20 +27,6 @@ CUR_DIR=$(pwd)
 export SRC_DIR=$CUR_DIR'/src'
 export INSTALL_DIR=$CUR_DIR'/install'
 export PATCH_DIR=$CUR_DIR'/patches'
-
-# TCL
-
-TCL_MAJOR_VERSION=${TCL_VERSION%.*}
-export TCL_LIB_NAME=libtcl$TCL_MAJOR_VERSION.so
-export TCL_EXE_NAME=tclsh$TCL_MAJOR_VERSION
-export TCL_INSTALL_DIR=$INSTALL_DIR/tcltk-$TCL_VERSION
-
-# TK
-
-TK_MAJOR_VERSION=${TK_VERSION%.*}
-export TK_LIB_NAME=libtk$TK_MAJOR_VERSION.so
-export TK_EXE_NAME=wish$TK_MAJOR_VERSION
-export TK_INSTALL_DIR=$INSTALL_DIR/tcltk-$TK_VERSION
 
 # Qt
 

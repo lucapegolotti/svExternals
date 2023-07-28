@@ -16,28 +16,6 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  build-tcltk-ubuntu-20:
-    runs-on: ubuntu20
-
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-
-    - name: Install TCL and TK
-      shell: bash
-      run: |
-        mkdir -p src
-        source env_variables.sh
-        source scripts/build_tcl.sh > out.txt
-        source scripts/build_tk.sh > out.txt
-  
-    - name: Upload build artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: TCLTK Install
-        path: install/tcltk.tar
-        if-no-files-found: error
-
   build-qt-ubuntu-20:
     runs-on: ubuntu20
 
@@ -210,16 +188,11 @@ jobs:
 
   build-vtk-ubuntu-20:
     runs-on: ubuntu20
-    needs: [build-tcltk-ubuntu-20, build-qt-ubuntu-20, build-python-ubuntu-20]
+    needs: [build-qt-ubuntu-20, build-python-ubuntu-20]
     
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
-      - name: Get TCLTK artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: TCLTK Install
 
       - name: Get QT artifact
         uses: actions/download-artifact@v3
@@ -236,8 +209,6 @@ jobs:
         run: |
           mkdir -p install
           cd install
-          mv ../tcltk.tar .
-          tar -xvf tcltk.tar
           mv ../qt.tar .
           tar -xvf qt.tar
           mv ../python.tar .
@@ -324,7 +295,7 @@ jobs:
 
   build-opencascade-ubuntu-20:
     runs-on: ubuntu20
-    needs: [build-freetype-ubuntu-20, build-tcltk-ubuntu-20, build-vtk-ubuntu-20,build-qt-ubuntu-20]
+    needs: [build-freetype-ubuntu-20, build-vtk-ubuntu-20,build-qt-ubuntu-20]
 
     steps:
       - name: Checkout
@@ -334,11 +305,6 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: FREETYPE Install
-
-      - name: Get TCLTK artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: TCLTK Install
 
       - name: Get VTK artifact
         uses: actions/download-artifact@v3
@@ -352,8 +318,6 @@ jobs:
           cd install
           mv ../freetype.tar .
           tar -xvf freetype.tar
-          mv ../tcltk.tar .
-          tar -xvf tcltk.tar
           mv ../vtk.tar .
           tar -xvf vtk.tar
           cd ..
