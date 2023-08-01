@@ -33,7 +33,7 @@ jobs:
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
       with:
-        name: QT Install
+        name: QT Install Ubuntu 22
         path: install/qt.tar
         if-no-files-found: error
         
@@ -55,7 +55,7 @@ jobs:
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
       with:
-        name: HDF5 Install
+        name: HDF5 Install Ubuntu 22
         path: install/hdf5.tar
         if-no-files-found: error
 
@@ -76,7 +76,7 @@ jobs:
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
       with:
-        name: TINYXML2 Install
+        name: TINYXML2 Install Ubuntu 22
         path: install/tinyxml2.tar
         if-no-files-found: error
 
@@ -97,7 +97,7 @@ jobs:
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
       with:
-        name: PYTHON Install
+        name: PYTHON Install Ubuntu 22
         path: install/python.tar
         if-no-files-found: error
     
@@ -118,7 +118,7 @@ jobs:
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
       with:
-        name: FREETYPE Install
+        name: FREETYPE Install Ubuntu 22
         path: install/freetype.tar
         if-no-files-found: error
 
@@ -139,7 +139,7 @@ jobs:
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
       with:
-        name: SWIG Install
+        name: SWIG Install Ubuntu 22
         path: install/swig.tar
         if-no-files-found: error
 
@@ -160,7 +160,7 @@ jobs:
       - name: Upload build artifact
         uses: actions/upload-artifact@v3
         with:
-          name: MMG Install
+          name: MMG Install Ubuntu 22
           path: install/mmg.tar
           if-no-files-found: error
 
@@ -182,7 +182,7 @@ jobs:
       - name: Upload build artifact
         uses: actions/upload-artifact@v3
         with:
-          name: GDCM Install
+          name: GDCM Install Ubuntu 22
           path: install/gdcm.tar
           if-no-files-found: error
 
@@ -197,12 +197,12 @@ jobs:
       - name: Get QT artifact
         uses: actions/download-artifact@v3
         with:
-          name: QT Install
+          name: QT Install Ubuntu 22
 
       - name: Get PYTHON artifact
         uses: actions/download-artifact@v3
         with:
-          name: PYTHON Install
+          name: PYTHON Install Ubuntu 22
 
       - name: Extract dependencies
         shell: bash
@@ -225,7 +225,7 @@ jobs:
       - name: Upload build artifact
         uses: actions/upload-artifact@v3
         with:
-          name: VTK Install
+          name: VTK Install Ubuntu 22
           path: install/vtk.tar
           if-no-files-found: error
 
@@ -240,27 +240,27 @@ jobs:
       - name: Get GDCM artifact
         uses: actions/download-artifact@v3
         with:
-          name: GDCM Install
+          name: GDCM Install Ubuntu 22
 
       - name: Get HDF5 artifact
         uses: actions/download-artifact@v3
         with:
-          name: HDF5 Install
+          name: HDF5 Install Ubuntu 22
 
       - name: Get QT artifact
         uses: actions/download-artifact@v3
         with:
-          name: QT Install
+          name: QT Install Ubuntu 22
 
       - name: Get PYTHON artifact
         uses: actions/download-artifact@v3
         with:
-          name: PYTHON Install
+          name: PYTHON Install Ubuntu 22
 
       - name: Get VTK artifact
         uses: actions/download-artifact@v3
         with:
-          name: VTK Install
+          name: VTK Install Ubuntu 22
 
       - name: Extract dependencies
         shell: bash
@@ -289,7 +289,7 @@ jobs:
       - name: Upload build artifact
         uses: actions/upload-artifact@v3
         with:
-          name: ITK Install
+          name: ITK Install Ubuntu 22
           path: install/itk.tar
           if-no-files-found: error
 
@@ -304,12 +304,12 @@ jobs:
       - name: Get FREETYPE artifact
         uses: actions/download-artifact@v3
         with:
-          name: FREETYPE Install
+          name: FREETYPE Install Ubuntu 22
 
       - name: Get VTK artifact
         uses: actions/download-artifact@v3
         with:
-          name: VTK Install
+          name: VTK Install Ubuntu 22
 
       - name: Extract dependencies
         shell: bash
@@ -332,7 +332,7 @@ jobs:
       - name: Upload build artifact
         uses: actions/upload-artifact@v3
         with:
-          name: OPENCASCADE Install
+          name: OPENCASCADE Install Ubuntu 22
           path: install/opencascade.tar
           if-no-files-found: error
 
@@ -351,57 +351,57 @@ jobs:
       - name: Get GDCM artifact
         uses: actions/download-artifact@v3
         with:
-          name: GDCM Install
+          name: GDCM Install Ubuntu 22
 
       - name: Get ITK artifact
         uses: actions/download-artifact@v3
         with:
-          name: ITK Install
+          name: ITK Install Ubuntu 22
 
       - name: Get VTK artifact
         uses: actions/download-artifact@v3
         with:
-          name: VTK Install
+          name: VTK Install Ubuntu 22
 
       - name: Get SWIG artifact
         uses: actions/download-artifact@v3
         with:
-          name: SWIG Install
+          name: SWIG Install Ubuntu 22
 
       - name: Get PYTHON artifact
         uses: actions/download-artifact@v3
         with:
-          name: PYTHON Install
+          name: PYTHON Install Ubuntu 22
 
       - name: Get QT artifact
         uses: actions/download-artifact@v3
         with:
-          name: QT Install
+          name: QT Install Ubuntu 22
 
       - name: Get TINYXML2 artifact
         uses: actions/download-artifact@v3
         with:
-          name: TINYXML2 Install
+          name: TINYXML2 Install Ubuntu 22
 
       - name: Get HDF5 artifact
         uses: actions/download-artifact@v3
         with:
-          name: HDF5 Install
+          name: HDF5 Install Ubuntu 22
 
       - name: Get SWIG artifact
         uses: actions/download-artifact@v3
         with:
-          name: SWIG Install
+          name: SWIG Install Ubuntu 22
 
       - name: Get FREETYPE artifact
         uses: actions/download-artifact@v3
         with:
-          name: FREETYPE Install
+          name: FREETYPE Install Ubuntu 22
 
       - name: Get MMG artifact
         uses: actions/download-artifact@v3
         with:
-          name: MMG Install
+          name: MMG Install Ubuntu 22
 
       - name: Extract dependencies
         shell: bash
@@ -441,7 +441,7 @@ jobs:
       - name: Upload build artifact
         uses: actions/upload-artifact@v3
         with:
-          name: MITK Install
+          name: MITK Install Ubuntu 22
           path: install/mitk.tar
           if-no-files-found: error
 
