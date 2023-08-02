@@ -1,6 +1,6 @@
 # This is a basic workflow that is manually triggered
 
-name: Build SimVascular Externals - Ubuntu 20
+name: Ubuntu 20
 
 # Controls when the action will run.
 on:

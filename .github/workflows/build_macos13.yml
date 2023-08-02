@@ -1,6 +1,6 @@
 # This is a basic workflow that is manually triggered
 
-name: Build SimVascular Externals - MacOS 13
+name: MacOS 13
 
 # Controls when the action will run.
 on:
