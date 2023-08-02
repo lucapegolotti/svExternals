@@ -1,6 +1,6 @@
 # This is a basic workflow that is manually triggered
 
-name: Build SimVascular Externals - Ubuntu 22
+name: Build SimVascular Externals - MacOS 13
 
 # Controls when the action will run.
 on:
@@ -10,14 +10,14 @@ on:
   # This is to schedule run every Monday at 5:30 UTC
   schedule:
     # Runs every monday at 5:30 UTC
-    - cron: '30 5 * * 1'
+    - cron: '30 5 * * 3'
     
   # push:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  build-qt-ubuntu-22:
-    runs-on: ubuntu22
+  build-qt-macos-13:
+    runs-on: macos13
 
     steps:
     - name: Checkout
@@ -33,13 +33,13 @@ jobs:
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
       with:
-        name: QT Install Ubuntu 22
+        name: QT Install MacOS 13
         path: install/qt.tar
         if-no-files-found: error
         
 
-  build-hdf5-ubuntu-22:
-    runs-on: ubuntu22
+  build-hdf5-macos-13:
+    runs-on: macos13
 
     steps:
     - name: Checkout
@@ -55,12 +55,12 @@ jobs:
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
       with:
-        name: HDF5 Install Ubuntu 22
+        name: HDF5 Install MacOS 13
         path: install/hdf5.tar
         if-no-files-found: error
 
-  build-tinyxml2-ubuntu-22:
-    runs-on: ubuntu22
+  build-tinyxml2-macos-13:
+    runs-on: macos13
 
     steps:
     - name: Checkout
@@ -76,12 +76,12 @@ jobs:
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
       with:
-        name: TINYXML2 Install Ubuntu 22
+        name: TINYXML2 Install MacOS 13
         path: install/tinyxml2.tar
         if-no-files-found: error
 
-  build-python-ubuntu-22:
-    runs-on: ubuntu22
+  build-python-macos-13:
+    runs-on: macos13
 
     steps:
     - name: Checkout
@@ -97,12 +97,12 @@ jobs:
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
       with:
-        name: PYTHON Install Ubuntu 22
+        name: PYTHON Install MacOS 13
         path: install/python.tar
         if-no-files-found: error
     
-  build-freetype-ubuntu-22:
-    runs-on: ubuntu22
+  build-freetype-macos-13:
+    runs-on: macos13
 
     steps:
     - name: Checkout
@@ -118,12 +118,12 @@ jobs:
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
       with:
-        name: FREETYPE Install Ubuntu 22
+        name: FREETYPE Install MacOS 13
         path: install/freetype.tar
         if-no-files-found: error
 
-  build-swig-ubuntu-22:
-    runs-on: ubuntu22
+  build-swig-macos-13:
+    runs-on: macos13
 
     steps:
     - name: Checkout
@@ -139,12 +139,12 @@ jobs:
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
       with:
-        name: SWIG Install Ubuntu 22
+        name: SWIG Install MacOS 13
         path: install/swig.tar
         if-no-files-found: error
 
-  build-mmg-ubuntu-22:
-    runs-on: ubuntu22
+  build-mmg-macos-13:
+    runs-on: macos13
 
     steps:
       - name: Checkout
@@ -160,13 +160,13 @@ jobs:
       - name: Upload build artifact
         uses: actions/upload-artifact@v3
         with:
-          name: MMG Install Ubuntu 22
+          name: MMG Install MacOS 13
           path: install/mmg.tar
           if-no-files-found: error
 
-  build-gdcm-ubuntu-22:
-    runs-on: ubuntu22
-    needs: build-qt-ubuntu-22
+  build-gdcm-macos-13:
+    runs-on: macos13
+    needs: build-qt-macos-13
 
     steps:
       - name: Checkout
@@ -182,13 +182,13 @@ jobs:
       - name: Upload build artifact
         uses: actions/upload-artifact@v3
         with:
-          name: GDCM Install Ubuntu 22
+          name: GDCM Install MacOS 13
           path: install/gdcm.tar
           if-no-files-found: error
 
-  build-vtk-ubuntu-22:
-    runs-on: ubuntu22
-    needs: [build-qt-ubuntu-22, build-python-ubuntu-22]
+  build-vtk-macos-13:
+    runs-on: macos13
+    needs: [build-qt-macos-13, build-python-macos-13]
     
     steps:
       - name: Checkout
@@ -197,12 +197,12 @@ jobs:
       - name: Get QT artifact
         uses: actions/download-artifact@v3
         with:
-          name: QT Install Ubuntu 22
+          name: QT Install MacOS 13
 
       - name: Get PYTHON artifact
         uses: actions/download-artifact@v3
         with:
-          name: PYTHON Install Ubuntu 22
+          name: PYTHON Install MacOS 13
 
       - name: Extract dependencies
         shell: bash
@@ -225,13 +225,13 @@ jobs:
       - name: Upload build artifact
         uses: actions/upload-artifact@v3
         with:
-          name: VTK Install Ubuntu 22
+          name: VTK Install MacOS 13
           path: install/vtk.tar
           if-no-files-found: error
 
-  build-itk-ubuntu-22:
-    runs-on: ubuntu22
-    needs: [build-gdcm-ubuntu-22, build-hdf5-ubuntu-22, build-qt-ubuntu-22,    build-python-ubuntu-22, build-vtk-ubuntu-22]
+  build-itk-macos-13:
+    runs-on: macos13
+    needs: [build-gdcm-macos-13, build-hdf5-macos-13, build-qt-macos-13,    build-python-macos-13, build-vtk-macos-13]
 
     steps:
       - name: Checkout
@@ -240,27 +240,27 @@ jobs:
       - name: Get GDCM artifact
         uses: actions/download-artifact@v3
         with:
-          name: GDCM Install Ubuntu 22
+          name: GDCM Install MacOS 13
 
       - name: Get HDF5 artifact
         uses: actions/download-artifact@v3
         with:
-          name: HDF5 Install Ubuntu 22
+          name: HDF5 Install MacOS 13
 
       - name: Get QT artifact
         uses: actions/download-artifact@v3
         with:
-          name: QT Install Ubuntu 22
+          name: QT Install MacOS 13
 
       - name: Get PYTHON artifact
         uses: actions/download-artifact@v3
         with:
-          name: PYTHON Install Ubuntu 22
+          name: PYTHON Install MacOS 13
 
       - name: Get VTK artifact
         uses: actions/download-artifact@v3
         with:
-          name: VTK Install Ubuntu 22
+          name: VTK Install MacOS 13
 
       - name: Extract dependencies
         shell: bash
@@ -289,13 +289,13 @@ jobs:
       - name: Upload build artifact
         uses: actions/upload-artifact@v3
         with:
-          name: ITK Install Ubuntu 22
+          name: ITK Install MacOS 13
           path: install/itk.tar
           if-no-files-found: error
 
-  build-opencascade-ubuntu-22:
-    runs-on: ubuntu22
-    needs: [build-freetype-ubuntu-22, build-vtk-ubuntu-22, build-qt-ubuntu-22]
+  build-opencascade-macos-13:
+    runs-on: macos13
+    needs: [build-freetype-macos-13, build-vtk-macos-13, build-qt-macos-13]
 
     steps:
       - name: Checkout
@@ -304,12 +304,12 @@ jobs:
       - name: Get FREETYPE artifact
         uses: actions/download-artifact@v3
         with:
-          name: FREETYPE Install Ubuntu 22
+          name: FREETYPE Install MacOS 13
 
       - name: Get VTK artifact
         uses: actions/download-artifact@v3
         with:
-          name: VTK Install Ubuntu 22
+          name: VTK Install MacOS 13
 
       - name: Extract dependencies
         shell: bash
@@ -332,17 +332,17 @@ jobs:
       - name: Upload build artifact
         uses: actions/upload-artifact@v3
         with:
-          name: OPENCASCADE Install Ubuntu 22
+          name: OPENCASCADE Install MacOS 13
           path: install/opencascade.tar
           if-no-files-found: error
 
-  build-mitk-ubuntu-22:
-    runs-on: ubuntu22
-    needs: [build-gdcm-ubuntu-22, build-itk-ubuntu-22, build-vtk-ubuntu-22,
-            build-swig-ubuntu-22, build-python-ubuntu-22, build-qt-ubuntu-22,
-            build-tinyxml2-ubuntu-22, build-hdf5-ubuntu-22,
-            build-swig-ubuntu-22, build-freetype-ubuntu-22,
-            build-mmg-ubuntu-22]
+  build-mitk-macos-13:
+    runs-on: macos13
+    needs: [build-gdcm-macos-13, build-itk-macos-13, build-vtk-macos-13,
+            build-swig-macos-13, build-python-macos-13, build-qt-macos-13,
+            build-tinyxml2-macos-13, build-hdf5-macos-13,
+            build-swig-macos-13, build-freetype-macos-13,
+            build-mmg-macos-13]
   
     steps:
       - name: Checkout
@@ -351,57 +351,57 @@ jobs:
       - name: Get GDCM artifact
         uses: actions/download-artifact@v3
         with:
-          name: GDCM Install Ubuntu 22
+          name: GDCM Install MacOS 13
 
       - name: Get ITK artifact
         uses: actions/download-artifact@v3
         with:
-          name: ITK Install Ubuntu 22
+          name: ITK Install MacOS 13
 
       - name: Get VTK artifact
         uses: actions/download-artifact@v3
         with:
-          name: VTK Install Ubuntu 22
+          name: VTK Install MacOS 13
 
       - name: Get SWIG artifact
         uses: actions/download-artifact@v3
         with:
-          name: SWIG Install Ubuntu 22
+          name: SWIG Install MacOS 13
 
       - name: Get PYTHON artifact
         uses: actions/download-artifact@v3
         with:
-          name: PYTHON Install Ubuntu 22
+          name: PYTHON Install MacOS 13
 
       - name: Get QT artifact
         uses: actions/download-artifact@v3
         with:
-          name: QT Install Ubuntu 22
+          name: QT Install MacOS 13
 
       - name: Get TINYXML2 artifact
         uses: actions/download-artifact@v3
         with:
-          name: TINYXML2 Install Ubuntu 22
+          name: TINYXML2 Install MacOS 13
 
       - name: Get HDF5 artifact
         uses: actions/download-artifact@v3
         with:
-          name: HDF5 Install Ubuntu 22
+          name: HDF5 Install MacOS 13
 
       - name: Get SWIG artifact
         uses: actions/download-artifact@v3
         with:
-          name: SWIG Install Ubuntu 22
+          name: SWIG Install MacOS 13
 
       - name: Get FREETYPE artifact
         uses: actions/download-artifact@v3
         with:
-          name: FREETYPE Install Ubuntu 22
+          name: FREETYPE Install MacOS 13
 
       - name: Get MMG artifact
         uses: actions/download-artifact@v3
         with:
-          name: MMG Install Ubuntu 22
+          name: MMG Install MacOS 13
 
       - name: Extract dependencies
         shell: bash
@@ -441,7 +441,7 @@ jobs:
       - name: Upload build artifact
         uses: actions/upload-artifact@v3
         with:
-          name: MITK Install Ubuntu 22
+          name: MITK Install MacOS 13
           path: install/mitk.tar
           if-no-files-found: error
 

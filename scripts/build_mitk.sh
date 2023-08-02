@@ -48,6 +48,13 @@ cd build
 # -DMITK_ADDITIONAL_C_FLAGS:STRING="-fpermissive -DVCL_CAN_STATIC_CONST_INIT_FLOAT=0 -isystem /usr/local/sv/ext/2022.10/release/gl2/bin/gnu/7.5/x64/gdcm-2.6.3/include/gdcm-2.6/" \
 #         -Dtinyxml2_DIR:PATH=$TINYXML2_INSTALL_DIR \
 
+CMAKE_C_FLAGS=""
+CMAKE_CXX_FLAGS=""
+if [[ $(uname) == 'Linux' ]]; then
+    CMAKE_C_FLAGS="-I$GDCM_INCLUDE_DIR -Wl,-rpath=$GDCM_LIB_DIR"
+    CMAKE_CXX_FLAGS=$CMAKE_C_FLAGS
+fi
+
 cmake \
     -DMITK_USE_SUPERBUILD=1 \
     -DMITK_USE_GDCM=1 \
@@ -85,9 +92,9 @@ cmake \
     -DPython3_ROOT_DIR=$PYTHON_INSTALL_DIR \
     -DCMAKE_PREFIX_PATH:PATH="$ITK_INSTALL_DIR_CMAKE" \
     -DQt5_DIR:PATH=$QT_INSTALL_DIR_CMAKE \
-    -DCMAKE_C_FLAGS="-I$GDCM_INCLUDE_DIR -Wl,-rpath=$GDCM_LIB_DIR" \
-    -DCMAKE_CXX_FLAGS="-I$GDCM_INCLUDE_DIR -Wl,-rpath=$GDCM_LIB_DIR" \
-    -DCMAKE_BUILD_TYPE=Debug \
+    -DCMAKE_C_FLAGS=$CMAKE_C_FLAGS \
+    -DCMAKE_CXX_FLAGS=$CMAKE_CXX_FLAGS \
+    -DCMAKE_BUILD_TYPE=Release \
 ..
 
 make -j 4

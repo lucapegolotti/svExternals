@@ -16,9 +16,7 @@ mkdir -p $VTK_INSTALL_DIR
 
 # apply patch
 if [[ $(uname) == "Darwin" ]]; then
-    pushd src
     patch -i ../patches/VTK-$VTK_VERSION-clang.patch
-    popd
 fi
 
 pushd VTK-$VTK_VERSION
@@ -43,8 +41,6 @@ cmake \
     -DVTK_MODULE_ENABLE_VTK_GUISupportQt=YES \
     -DVTK_MODULE_ENABLE_VTK_ViewsQt=YES \
     -DVTK_MODULE_ENABLE_VTK_RenderingQt=YES \
-    -DVTK_MODULE_ENABLE_VTK_RenderingTk=YES \
-    -DCMAKE_BUILD_TYPE=Debug \
     ..
 
 make -j 2
