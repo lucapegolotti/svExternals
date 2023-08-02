@@ -20,7 +20,13 @@ mkdir -p $QT_INSTALL_DIR
 pushd qt-everywhere-src-$QT_VERSION
 ./configure -opensource -confirm-license --prefix=$QT_INSTALL_DIR -release -nomake examples -nomake tests -opengl desktop -skip qtconnectivity -skip qtdoc -skip qtsensors -skip qtgamepad -skip qtlocation -skip qtspeech -skip qtscxml -skip qtremoteobjects -skip qtquickcontrols -skip qtquickcontrols2 -skip qtmacextras -skip qtlottie -skip qtserialbus -skip qttranslations
 patch -p1 < $PATCH_DIR/qt-$QT_VERSION-clang.patch
-make -j 4
+
+if [[ $(uname) == 'Linux' ]]; then 
+    make -j 4
+elif [[ $(uname) == 'Darwin' ]]; then 
+    # in mac there might be a race condition so we use one processor
+    make -j 1
+fi
 make install
 popd
 
