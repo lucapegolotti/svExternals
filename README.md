@@ -1,8 +1,8 @@
 # SVExternals
 
-[![Build Ubuntu 20](https://github.com/lucapegolotti/SVExternals/actions/workflows/build_linux.yml/badge.svg)](https://github.com/lucapegolotti/SVExternals/actions/workflows/build_linux_ubuntu20.yml)
-[![Build Ubuntu 22](https://github.com/lucapegolotti/SVExternals/actions/workflows/build_linux.yml/badge.svg)](https://github.com/lucapegolotti/SVExternals/actions/workflows/build_linux_ubuntu22.yml)
-[![Build MacOS Ventura](https://github.com/lucapegolotti/SVExternals/actions/workflows/build_mac.yml/badge.svg)](https://github.com/lucapegolotti/SVExternals/actions/workflows/build_macos13.yml)
+[![Build Ubuntu 20](https://github.com/lucapegolotti/SVExternals/actions/workflows/build_linux_20.yml/badge.svg)](https://github.com/lucapegolotti/SVExternals/actions/workflows/build_linux_ubuntu20.yml)
+[![Build Ubuntu 22](https://github.com/lucapegolotti/SVExternals/actions/workflows/build_linux_22.yml/badge.svg)](https://github.com/lucapegolotti/SVExternals/actions/workflows/build_linux_ubuntu22.yml)
+[![Build MacOS Ventura](https://github.com/lucapegolotti/SVExternals/actions/workflows/build_macos13.yml/badge.svg)](https://github.com/lucapegolotti/SVExternals/actions/workflows/build_macos13.yml)
 
 Scripts to build the external libraries needed for SimVascular. To launch the main script, simply run
 
