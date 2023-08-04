@@ -17,9 +17,6 @@ echo $GDCM_INSTALL_DIR
 # build and install
 pwd
 pushd GDCM-$GDCM_VERSION
-if [ "$(uname)" == "Darwin" ]; then
-	patch -p1 < $PATCH_DIR/gdcm-$GDCM_VERSION-clang.patch
-fi
 mkdir -p build && cd build
 
 # -DGDCM_WRAP_PYTHON=1 \
