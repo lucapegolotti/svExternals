@@ -1,0 +1,453 @@
+# This is a basic workflow that is manually triggered
+
+name: MacOS 12
+
+# Controls when the action will run.
+on:
+  # Workflow runs when manually triggered using the UI or API.
+  workflow_dispatch:
+        
+  # This is to schedule run every Monday at 5:30 UTC
+  schedule:
+    # Runs every monday at 5:30 UTC
+    - cron: '30 5 * * 3'
+    
+  # push:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build-qt-macos-12:
+    runs-on: macos12
+    timeout-minutes: 1000
+  
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Install QT
+      shell: bash
+      run: |
+        mkdir -p src
+        source env_variables.sh
+        source scripts/build_qt.sh > qt.out
+        
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: QT Install MacOS 13
+        path: install/qt.tar
+        if-no-files-found: error
+        
+
+  build-hdf5-macos-12:
+    runs-on: macos12
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Install HDF5
+      shell: bash
+      run: |
+        mkdir -p src
+        source env_variables.sh
+        source scripts/build_hdf5.sh  > out.txt
+        
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: HDF5 Install MacOS 13
+        path: install/hdf5.tar
+        if-no-files-found: error
+
+  build-tinyxml2-macos-12:
+    runs-on: macos12
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Install TINYXML2
+      shell: bash
+      run: |
+        mkdir -p src
+        source env_variables.sh
+        source scripts/build_tinyxml2.sh  > out.txt
+        
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: TINYXML2 Install MacOS 13
+        path: install/tinyxml2.tar
+        if-no-files-found: error
+
+  build-python-macos-12:
+    runs-on: macos12
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Install PYTHON
+      shell: bash
+      run: |
+        mkdir -p src
+        source env_variables.sh
+        source scripts/build_python.sh  > out.txt
+        
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: PYTHON Install MacOS 13
+        path: install/python.tar
+        if-no-files-found: error
+    
+  build-freetype-macos-12:
+    runs-on: macos12
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Install FREETYPE
+      shell: bash
+      run: |
+        mkdir -p src
+        source env_variables.sh
+        source scripts/build_freetype.sh  > out.txt
+        
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: FREETYPE Install MacOS 13
+        path: install/freetype.tar
+        if-no-files-found: error
+
+  build-swig-macos-12:
+    runs-on: macos12
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Install SWIG
+      shell: bash
+      run: |
+        mkdir -p src
+        source env_variables.sh
+        source scripts/build_swig.sh  > out.txt
+          
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: SWIG Install MacOS 13
+        path: install/swig.tar
+        if-no-files-found: error
+
+  build-mmg-macos-12:
+    runs-on: macos12
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install MMG
+        shell: bash
+        run: |
+          mkdir -p src
+          source env_variables.sh
+          source scripts/build_mmg.sh  > out.txt
+          
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: MMG Install MacOS 13
+          path: install/mmg.tar
+          if-no-files-found: error
+
+  build-gdcm-macos-12:
+    runs-on: macos12
+    needs: build-qt-macos-12
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install GDCM
+        shell: bash
+        run: |
+          mkdir -p src
+          source env_variables.sh
+          source scripts/build_gdcm.sh  > out.txt
+          
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: GDCM Install MacOS 13
+          path: install/gdcm.tar
+          if-no-files-found: error
+
+  build-vtk-macos-12:
+    runs-on: macos12
+    needs: [build-qt-macos-12, build-python-macos-12]
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Get QT artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: QT Install MacOS 13
+
+      - name: Get PYTHON artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: PYTHON Install MacOS 13
+
+      - name: Extract dependencies
+        shell: bash
+        run: |
+          mkdir -p install
+          cd install
+          mv ../qt.tar .
+          tar -xvf qt.tar
+          mv ../python.tar .
+          tar -xvf python.tar
+          cd ..
+
+      - name: Install VTK
+        shell: bash
+        run: |
+          mkdir -p src
+          source env_variables.sh
+          source scripts/build_vtk.sh  > out.txt
+          
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: VTK Install MacOS 13
+          path: install/vtk.tar
+          if-no-files-found: error
+
+  build-itk-macos-12:
+    runs-on: macos12
+    needs: [build-gdcm-macos-12, build-hdf5-macos-12, build-qt-macos-12,    build-python-macos-12, build-vtk-macos-12]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Get GDCM artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: GDCM Install MacOS 13
+
+      - name: Get HDF5 artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: HDF5 Install MacOS 13
+
+      - name: Get QT artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: QT Install MacOS 13
+
+      - name: Get PYTHON artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: PYTHON Install MacOS 13
+
+      - name: Get VTK artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: VTK Install MacOS 13
+
+      - name: Extract dependencies
+        shell: bash
+        run: |
+          mkdir -p install
+          cd install
+          mv ../gdcm.tar .
+          tar -xvf gdcm.tar
+          mv ../hdf5.tar .
+          tar -xvf hdf5.tar
+          mv ../qt.tar .
+          tar -xvf qt.tar
+          mv ../python.tar .
+          tar -xvf python.tar
+          mv ../vtk.tar .
+          tar -xvf vtk.tar
+          cd ..
+
+      - name: Install ITK
+        shell: bash
+        run: |
+          mkdir -p src
+          source env_variables.sh
+          source scripts/build_itk.sh  > out.txt
+          
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ITK Install MacOS 13
+          path: install/itk.tar
+          if-no-files-found: error
+
+  build-opencascade-macos-12:
+    runs-on: macos12
+    needs: [build-freetype-macos-12, build-vtk-macos-12, build-qt-macos-12]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Get FREETYPE artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: FREETYPE Install MacOS 13
+
+      - name: Get VTK artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: VTK Install MacOS 13
+
+      - name: Extract dependencies
+        shell: bash
+        run: |
+          mkdir -p install
+          cd install
+          mv ../freetype.tar .
+          tar -xvf freetype.tar
+          mv ../vtk.tar .
+          tar -xvf vtk.tar
+          cd ..
+
+      - name: Install OPENCASCADE
+        shell: bash
+        run: |
+          mkdir -p src
+          source env_variables.sh
+          source scripts/build_opencascade.sh  > out.txt
+          
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: OPENCASCADE Install MacOS 13
+          path: install/opencascade.tar
+          if-no-files-found: error
+
+  build-mitk-macos-12:
+    runs-on: macos12
+    needs: [build-gdcm-macos-12, build-itk-macos-12, build-vtk-macos-12,
+            build-swig-macos-12, build-python-macos-12, build-qt-macos-12,
+            build-tinyxml2-macos-12, build-hdf5-macos-12,
+            build-swig-macos-12, build-freetype-macos-12,
+            build-mmg-macos-12]
+  
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Get GDCM artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: GDCM Install MacOS 13
+
+      - name: Get ITK artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: ITK Install MacOS 13
+
+      - name: Get VTK artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: VTK Install MacOS 13
+
+      - name: Get SWIG artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: SWIG Install MacOS 13
+
+      - name: Get PYTHON artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: PYTHON Install MacOS 13
+
+      - name: Get QT artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: QT Install MacOS 13
+
+      - name: Get TINYXML2 artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: TINYXML2 Install MacOS 13
+
+      - name: Get HDF5 artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: HDF5 Install MacOS 13
+
+      - name: Get SWIG artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: SWIG Install MacOS 13
+
+      - name: Get FREETYPE artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: FREETYPE Install MacOS 13
+
+      - name: Get MMG artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: MMG Install MacOS 13
+
+      - name: Extract dependencies
+        shell: bash
+        run: |
+          mkdir -p install
+          cd install
+          mv ../gdcm.tar .
+          tar -xvf gdcm.tar
+          mv ../itk.tar .
+          tar -xvf itk.tar
+          mv ../vtk.tar .
+          tar -xvf vtk.tar
+          mv ../swig.tar .
+          tar -xvf swig.tar
+          mv ../python.tar .
+          tar -xvf python.tar
+          mv ../qt.tar .
+          tar -xvf qt.tar
+          mv ../tinyxml2.tar .
+          tar -xvf tinyxml2.tar
+          mv ../hdf5.tar .
+          tar -xvf hdf5.tar
+          mv ../freetype.tar .
+          tar -xvf freetype.tar
+          mv ../mmg.tar .
+          tar -xvf mmg.tar
+          cd ..
+
+      - name: Install MITK
+        shell: bash
+        run: |
+          mkdir -p src
+          source env_variables.sh
+          source scripts/build_mitk.sh
+          source scripts/post-install-mitk.sh
+          
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: MITK Install MacOS 13
+          path: install/mitk.tar
+          if-no-files-found: error
+
+  
+        
+    
+
+    
