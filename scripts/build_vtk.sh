@@ -16,7 +16,7 @@ mkdir -p $VTK_INSTALL_DIR
 
 # apply patch
 if [[ $(uname) == "Darwin" ]]; then
-    patch -i ../patches/VTK-$VTK_VERSION-clang.patch
+    patch -i $PATCH_DIR/VTK-$VTK_VERSION-clang.patch
 fi
 
 pushd VTK-$VTK_VERSION

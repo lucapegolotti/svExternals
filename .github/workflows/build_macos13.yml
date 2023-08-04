@@ -10,7 +10,7 @@ on:
   # This is to schedule run every Monday at 5:30 UTC
   schedule:
     # Runs every monday at 5:30 UTC
-    - cron: '30 5 * * 3'
+    - cron: '30 5 * * 4'
     
   # push:
 
