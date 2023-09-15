@@ -94,7 +94,7 @@ cmake \
     -DQt5_DIR:PATH=$QT_INSTALL_DIR_CMAKE \
     -DCMAKE_C_FLAGS=$CMAKE_C_FLAGS \
     -DCMAKE_CXX_FLAGS=$CMAKE_CXX_FLAGS \
-    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_BUILD_TYPE=Debug \
 ..
 
 make -j 4

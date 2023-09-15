@@ -1,7 +1,6 @@
-Only in MITK-2022.10: build
-diff -ur MITK-2022.10/Modules/Annotation/src/mitkLogoAnnotation.cpp MITK-2022.10-patch/Modules/Annotation/src/mitkLogoAnnotation.cpp
---- MITK-2022.10/Modules/Annotation/src/mitkLogoAnnotation.cpp	2022-10-29 01:08:41.000000000 -0700
-+++ MITK-2022.10-patch/Modules/Annotation/src/mitkLogoAnnotation.cpp	2023-05-08 04:43:10.787754113 -0700
+diff -Naur MITK-2022.10/Modules/Annotation/src/mitkLogoAnnotation.cpp MITK-2022.10-patch/Modules/Annotation/src/mitkLogoAnnotation.cpp
+--- MITK-2022.10/Modules/Annotation/src/mitkLogoAnnotation.cpp	2022-10-29 01:08:41
++++ MITK-2022.10-patch/Modules/Annotation/src/mitkLogoAnnotation.cpp	2023-09-14 23:14:47
 @@ -12,7 +12,7 @@
  
  #include "mitkLogoAnnotation.h"
@@ -11,9 +10,9 @@ diff -ur MITK-2022.10/Modules/Annotation/src/mitkLogoAnnotation.cpp MITK-2022.10
  #include <vtkImageData.h>
  #include <vtkImageData.h>
  #include <vtkImageMapper.h>
-diff -ur MITK-2022.10/Modules/Annotation/src/mitkTextAnnotation2D.cpp MITK-2022.10-patch/Modules/Annotation/src/mitkTextAnnotation2D.cpp
---- MITK-2022.10/Modules/Annotation/src/mitkTextAnnotation2D.cpp	2022-10-29 01:08:41.000000000 -0700
-+++ MITK-2022.10-patch/Modules/Annotation/src/mitkTextAnnotation2D.cpp	2023-05-08 04:44:39.954035716 -0700
+diff -Naur MITK-2022.10/Modules/Annotation/src/mitkTextAnnotation2D.cpp MITK-2022.10-patch/Modules/Annotation/src/mitkTextAnnotation2D.cpp
+--- MITK-2022.10/Modules/Annotation/src/mitkTextAnnotation2D.cpp	2022-10-29 01:08:41
++++ MITK-2022.10-patch/Modules/Annotation/src/mitkTextAnnotation2D.cpp	2023-09-14 23:14:47
 @@ -11,7 +11,7 @@
  ============================================================================*/
  
@@ -23,9 +22,9 @@ diff -ur MITK-2022.10/Modules/Annotation/src/mitkTextAnnotation2D.cpp MITK-2022.
  #include <vtkPropAssembly.h>
  #include <vtkTextActor.h>
  #include <vtkTextProperty.h>
-diff -ur MITK-2022.10/Modules/Core/include/itkVtkAbstractTransform.h MITK-2022.10-patch/Modules/Core/include/itkVtkAbstractTransform.h
---- MITK-2022.10/Modules/Core/include/itkVtkAbstractTransform.h	2022-10-29 01:08:41.000000000 -0700
-+++ MITK-2022.10-patch/Modules/Core/include/itkVtkAbstractTransform.h	2023-05-08 03:49:40.544238485 -0700
+diff -Naur MITK-2022.10/Modules/Core/include/itkVtkAbstractTransform.h MITK-2022.10-patch/Modules/Core/include/itkVtkAbstractTransform.h
+--- MITK-2022.10/Modules/Core/include/itkVtkAbstractTransform.h	2022-10-29 01:08:41
++++ MITK-2022.10-patch/Modules/Core/include/itkVtkAbstractTransform.h	2023-09-14 23:14:47
 @@ -74,7 +74,7 @@
      void SetParameters(const ParametersType &) override;
      void SetFixedParameters(const ParametersType &) override;
@@ -35,9 +34,9 @@ diff -ur MITK-2022.10/Modules/Core/include/itkVtkAbstractTransform.h MITK-2022.1
  
      itk::ModifiedTimeType GetMTime() const override;
  
-diff -ur MITK-2022.10/Modules/Core/include/itkVtkAbstractTransform.txx MITK-2022.10-patch/Modules/Core/include/itkVtkAbstractTransform.txx
---- MITK-2022.10/Modules/Core/include/itkVtkAbstractTransform.txx	2022-10-29 01:08:41.000000000 -0700
-+++ MITK-2022.10-patch/Modules/Core/include/itkVtkAbstractTransform.txx	2023-05-08 02:50:04.799114925 -0700
+diff -Naur MITK-2022.10/Modules/Core/include/itkVtkAbstractTransform.txx MITK-2022.10-patch/Modules/Core/include/itkVtkAbstractTransform.txx
+--- MITK-2022.10/Modules/Core/include/itkVtkAbstractTransform.txx	2022-10-29 01:08:41
++++ MITK-2022.10-patch/Modules/Core/include/itkVtkAbstractTransform.txx	2023-09-14 23:14:47
 @@ -226,11 +226,5 @@
      // TODO
    }
@@ -50,9 +49,20 @@ diff -ur MITK-2022.10/Modules/Core/include/itkVtkAbstractTransform.txx MITK-2022
 -  }
  
  } // namespace itk
-diff -ur MITK-2022.10/Modules/DICOM/src/legacy/mitkDicomSeriesReader.h MITK-2022.10-patch/Modules/DICOM/src/legacy/mitkDicomSeriesReader.h
---- MITK-2022.10/Modules/DICOM/src/legacy/mitkDicomSeriesReader.h	2022-10-29 01:08:41.000000000 -0700
-+++ MITK-2022.10-patch/Modules/DICOM/src/legacy/mitkDicomSeriesReader.h	2023-05-08 04:52:55.568220501 -0700
+diff -Naur MITK-2022.10/Modules/Core/src/DataManagement/mitkSlicedGeometry3D.cpp MITK-2022.10-patch/Modules/Core/src/DataManagement/mitkSlicedGeometry3D.cpp
+--- MITK-2022.10/Modules/Core/src/DataManagement/mitkSlicedGeometry3D.cpp	2022-10-29 01:08:41
++++ MITK-2022.10-patch/Modules/Core/src/DataManagement/mitkSlicedGeometry3D.cpp	2023-09-14 23:16:21
+@@ -41,6 +41,7 @@
+   m_DirectionVector.Fill(0);
+   SetSpacing(other.GetSpacing());
+   SetDirectionVector(other.GetDirectionVector());
++  m_PlaneGeometries.assign(other.m_Slices, gnull);
+ 
+   if (m_EvenlySpaced)
+   {
+diff -Naur MITK-2022.10/Modules/DICOM/src/legacy/mitkDicomSeriesReader.h MITK-2022.10-patch/Modules/DICOM/src/legacy/mitkDicomSeriesReader.h
+--- MITK-2022.10/Modules/DICOM/src/legacy/mitkDicomSeriesReader.h	2022-10-29 01:08:41
++++ MITK-2022.10-patch/Modules/DICOM/src/legacy/mitkDicomSeriesReader.h	2023-09-14 23:14:47
 @@ -26,7 +26,7 @@
  #undef NOMINMAX
  #endif
@@ -62,9 +72,9 @@ diff -ur MITK-2022.10/Modules/DICOM/src/legacy/mitkDicomSeriesReader.h MITK-2022
  
  #ifdef DEF_NOMINMAX
  #ifndef NOMINMAX
-diff -ur MITK-2022.10/Modules/Multilabel/mitkLabelSetImageHelper.cpp MITK-2022.10-patch/Modules/Multilabel/mitkLabelSetImageHelper.cpp
---- MITK-2022.10/Modules/Multilabel/mitkLabelSetImageHelper.cpp	2022-10-29 01:08:41.000000000 -0700
-+++ MITK-2022.10-patch/Modules/Multilabel/mitkLabelSetImageHelper.cpp	2023-05-08 07:35:28.643664859 -0700
+diff -Naur MITK-2022.10/Modules/Multilabel/mitkLabelSetImageHelper.cpp MITK-2022.10-patch/Modules/Multilabel/mitkLabelSetImageHelper.cpp
+--- MITK-2022.10/Modules/Multilabel/mitkLabelSetImageHelper.cpp	2022-10-29 01:08:41
++++ MITK-2022.10-patch/Modules/Multilabel/mitkLabelSetImageHelper.cpp	2023-09-14 23:14:47
 @@ -23,7 +23,7 @@
  namespace
  {
@@ -83,9 +93,9 @@ diff -ur MITK-2022.10/Modules/Multilabel/mitkLabelSetImageHelper.cpp MITK-2022.1
  
        if (std::find(colorsInUse.begin(), colorsInUse.end(), quantizedLabelColor) == std::end(colorsInUse))
          colorsInUse.push_back(quantizedLabelColor);
-diff -ur MITK-2022.10/Modules/QtWidgets/src/QmitkMxNMultiWidget.cpp MITK-2022.10-patch/Modules/QtWidgets/src/QmitkMxNMultiWidget.cpp
---- MITK-2022.10/Modules/QtWidgets/src/QmitkMxNMultiWidget.cpp	2022-10-29 01:08:41.000000000 -0700
-+++ MITK-2022.10-patch/Modules/QtWidgets/src/QmitkMxNMultiWidget.cpp	2023-05-08 08:27:15.342860078 -0700
+diff -Naur MITK-2022.10/Modules/QtWidgets/src/QmitkMxNMultiWidget.cpp MITK-2022.10-patch/Modules/QtWidgets/src/QmitkMxNMultiWidget.cpp
+--- MITK-2022.10/Modules/QtWidgets/src/QmitkMxNMultiWidget.cpp	2022-10-29 01:08:41
++++ MITK-2022.10-patch/Modules/QtWidgets/src/QmitkMxNMultiWidget.cpp	2023-09-14 23:14:47
 @@ -240,7 +240,7 @@
      return;
    }
@@ -95,9 +105,9 @@ diff -ur MITK-2022.10/Modules/QtWidgets/src/QmitkMxNMultiWidget.cpp MITK-2022.10
  
    SetWidgetPlaneMode(mitk::InteractionSchemeSwitcher::MITKStandard);
  }
-diff -ur MITK-2022.10/Modules/QtWidgetsExt/src/QmitkPlotWidget.cpp MITK-2022.10-patch/Modules/QtWidgetsExt/src/QmitkPlotWidget.cpp
---- MITK-2022.10/Modules/QtWidgetsExt/src/QmitkPlotWidget.cpp	2022-10-29 01:08:41.000000000 -0700
-+++ MITK-2022.10-patch/Modules/QtWidgetsExt/src/QmitkPlotWidget.cpp	2023-05-08 13:56:58.825834343 -0700
+diff -Naur MITK-2022.10/Modules/QtWidgetsExt/src/QmitkPlotWidget.cpp MITK-2022.10-patch/Modules/QtWidgetsExt/src/QmitkPlotWidget.cpp
+--- MITK-2022.10/Modules/QtWidgetsExt/src/QmitkPlotWidget.cpp	2022-10-29 01:08:41
++++ MITK-2022.10-patch/Modules/QtWidgetsExt/src/QmitkPlotWidget.cpp	2023-09-14 23:14:47
 @@ -100,7 +100,7 @@
    double *rawDataX = ConvertToRawArray(xValues);
    double *rawDataY = ConvertToRawArray(yValues);
@@ -116,9 +126,9 @@ diff -ur MITK-2022.10/Modules/QtWidgetsExt/src/QmitkPlotWidget.cpp MITK-2022.10-
    delete[] rawDataX;
    delete[] rawDataY;
    return true;
-diff -ur MITK-2022.10/Modules/Segmentation/Algorithms/mitkGrowCutSegmentationFilter.cpp MITK-2022.10-patch/Modules/Segmentation/Algorithms/mitkGrowCutSegmentationFilter.cpp
---- MITK-2022.10/Modules/Segmentation/Algorithms/mitkGrowCutSegmentationFilter.cpp	2022-10-29 01:08:41.000000000 -0700
-+++ MITK-2022.10-patch/Modules/Segmentation/Algorithms/mitkGrowCutSegmentationFilter.cpp	2023-05-08 12:33:45.851503736 -0700
+diff -Naur MITK-2022.10/Modules/Segmentation/Algorithms/mitkGrowCutSegmentationFilter.cpp MITK-2022.10-patch/Modules/Segmentation/Algorithms/mitkGrowCutSegmentationFilter.cpp
+--- MITK-2022.10/Modules/Segmentation/Algorithms/mitkGrowCutSegmentationFilter.cpp	2022-10-29 01:08:41
++++ MITK-2022.10-patch/Modules/Segmentation/Algorithms/mitkGrowCutSegmentationFilter.cpp	2023-09-14 23:14:47
 @@ -10,7 +10,7 @@
  
  ============================================================================*/
@@ -140,26 +150,6 @@ diff -ur MITK-2022.10/Modules/Segmentation/Algorithms/mitkGrowCutSegmentationFil
 -{
 -  using ImageType = itk::Image<TPixel, VImageDimension>;
 -  using LabelType = itk::Image<mitk::Label::PixelType, VImageDimension>;
--
--  using FGCType = itk::FastGrowCut<ImageType, LabelType>;
--  typename FGCType::Pointer fgcFilter = FGCType::New();
--
--  fgcFilter->SetInput(inputImage);
--  fgcFilter->SetSeedImage(seedImage);
--  fgcFilter->SetDistancePenalty(distancePenalty);
--
--  try
--  {
--    fgcFilter->Update();
--  }
--  catch (...)
--  {
--    mitkThrow() << "An error occurred while using the itkFastGrowCut filter Update()-Method.";
--  }
--
--  mitk::CastToMitkImage<LabelType>(fgcFilter->GetOutput(), output);
--  return;
--}
 +// template <typename TPixel, unsigned int VImageDimension>
 +// void AccessItkGrowCutFilter(const itk::Image<TPixel, VImageDimension> *inputImage,
 +//                             const itk::Image<mitk::Label::PixelType, VImageDimension> *seedImage,
@@ -168,14 +158,27 @@ diff -ur MITK-2022.10/Modules/Segmentation/Algorithms/mitkGrowCutSegmentationFil
 +// {
 +//   using ImageType = itk::Image<TPixel, VImageDimension>;
 +//   using LabelType = itk::Image<mitk::Label::PixelType, VImageDimension>;
-+
+ 
+-  using FGCType = itk::FastGrowCut<ImageType, LabelType>;
+-  typename FGCType::Pointer fgcFilter = FGCType::New();
 +//   using FGCType = itk::FastGrowCut<ImageType, LabelType>;
 +//   typename FGCType::Pointer fgcFilter = FGCType::New();
-+
+ 
+-  fgcFilter->SetInput(inputImage);
+-  fgcFilter->SetSeedImage(seedImage);
+-  fgcFilter->SetDistancePenalty(distancePenalty);
 +//   fgcFilter->SetInput(inputImage);
 +//   fgcFilter->SetSeedImage(seedImage);
 +//   fgcFilter->SetDistancePenalty(distancePenalty);
-+
+ 
+-  try
+-  {
+-    fgcFilter->Update();
+-  }
+-  catch (...)
+-  {
+-    mitkThrow() << "An error occurred while using the itkFastGrowCut filter Update()-Method.";
+-  }
 +//   try
 +//   {
 +//     fgcFilter->Update();
@@ -184,7 +187,10 @@ diff -ur MITK-2022.10/Modules/Segmentation/Algorithms/mitkGrowCutSegmentationFil
 +//   {
 +//     mitkThrow() << "An error occurred while using the itkFastGrowCut filter Update()-Method.";
 +//   }
-+
+ 
+-  mitk::CastToMitkImage<LabelType>(fgcFilter->GetOutput(), output);
+-  return;
+-}
 +//   mitk::CastToMitkImage<LabelType>(fgcFilter->GetOutput(), output);
 +//   return;
 +// }
@@ -201,9 +207,16 @@ diff -ur MITK-2022.10/Modules/Segmentation/Algorithms/mitkGrowCutSegmentationFil
 -    {
 -      return;
 -    }
--
++  // void GrowCutSegmentationFilter::GenerateData()
++  // {
++  //   if (nullptr == m_itkSeedImage)
++  //   {
++  //     return;
++  //   }
+ 
 -    mitk::Image::ConstPointer mitkInputImage = GetInput();
--
++  //   mitk::Image::ConstPointer mitkInputImage = GetInput();
+ 
 -    AccessFixedDimensionByItk_n(mitkInputImage,
 -                                AccessItkGrowCutFilter,
 -                                3,
@@ -211,15 +224,6 @@ diff -ur MITK-2022.10/Modules/Segmentation/Algorithms/mitkGrowCutSegmentationFil
 -                                 m_DistancePenalty,
 -                                 this->GetOutput()));
 -  }
-+  // void GrowCutSegmentationFilter::GenerateData()
-+  // {
-+  //   if (nullptr == m_itkSeedImage)
-+  //   {
-+  //     return;
-+  //   }
-+
-+  //   mitk::Image::ConstPointer mitkInputImage = GetInput();
-+
 +  //   AccessFixedDimensionByItk_n(mitkInputImage,
 +  //                               AccessItkGrowCutFilter,
 +  //                               3,
@@ -228,9 +232,9 @@ diff -ur MITK-2022.10/Modules/Segmentation/Algorithms/mitkGrowCutSegmentationFil
 +  //                                this->GetOutput()));
 +  // }
  } // namespace mitk
-diff -ur MITK-2022.10/Modules/Segmentation/Algorithms/mitkGrowCutSegmentationFilter.h MITK-2022.10-patch/Modules/Segmentation/Algorithms/mitkGrowCutSegmentationFilter.h
---- MITK-2022.10/Modules/Segmentation/Algorithms/mitkGrowCutSegmentationFilter.h	2022-10-29 01:08:41.000000000 -0700
-+++ MITK-2022.10-patch/Modules/Segmentation/Algorithms/mitkGrowCutSegmentationFilter.h	2023-05-08 12:33:40.091435286 -0700
+diff -Naur MITK-2022.10/Modules/Segmentation/Algorithms/mitkGrowCutSegmentationFilter.h MITK-2022.10-patch/Modules/Segmentation/Algorithms/mitkGrowCutSegmentationFilter.h
+--- MITK-2022.10/Modules/Segmentation/Algorithms/mitkGrowCutSegmentationFilter.h	2022-10-29 01:08:41
++++ MITK-2022.10-patch/Modules/Segmentation/Algorithms/mitkGrowCutSegmentationFilter.h	2023-09-14 23:14:47
 @@ -44,7 +44,7 @@
    protected:
      GrowCutSegmentationFilter();
@@ -240,9 +244,9 @@ diff -ur MITK-2022.10/Modules/Segmentation/Algorithms/mitkGrowCutSegmentationFil
  
    private:
      itk::Image<mitk::Label::PixelType, 3>::Pointer m_itkSeedImage = nullptr;
-diff -ur MITK-2022.10/Modules/Segmentation/CMakeLists.txt MITK-2022.10-patch/Modules/Segmentation/CMakeLists.txt
---- MITK-2022.10/Modules/Segmentation/CMakeLists.txt	2022-10-29 01:08:41.000000000 -0700
-+++ MITK-2022.10-patch/Modules/Segmentation/CMakeLists.txt	2023-05-08 12:48:29.858185198 -0700
+diff -Naur MITK-2022.10/Modules/Segmentation/CMakeLists.txt MITK-2022.10-patch/Modules/Segmentation/CMakeLists.txt
+--- MITK-2022.10/Modules/Segmentation/CMakeLists.txt	2022-10-29 01:08:41
++++ MITK-2022.10-patch/Modules/Segmentation/CMakeLists.txt	2023-09-14 23:14:47
 @@ -4,7 +4,6 @@
    PACKAGE_DEPENDS
      PUBLIC ITK|QuadEdgeMesh+RegionGrowing
