@@ -12,8 +12,6 @@ mkdir -p $INSTALL_DIR
 # export CC=gcc-8
 # export CXX=g++-8
 
-BUILD_TCL=1
-BUILD_TK=1
 BUILD_QT=1
 BUILD_HDF5=1
 BUILD_TINYXML2=1
@@ -28,14 +26,7 @@ BUILD_OPENCASCADE=1
 BUILD_MITK=1
 
 mkdir -p output
-if [[ $BUILD_TCL -eq 1 ]]
-then
-    source scripts/build_tcl.sh > output/tcl.out
-fi
-if [[ $BUILD_TK -eq 1 ]]
-then
-    source scripts/build_tk.sh > output/tk.out
-fi
+
 if [[ $BUILD_QT -eq 1 ]]
 then
     source scripts/build_qt.sh > output/qt.out
