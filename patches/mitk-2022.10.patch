@@ -50,9 +50,9 @@ diff -Naur MITK-2022.10/Modules/Core/include/itkVtkAbstractTransform.txx MITK-20
  
  } // namespace itk
 diff -Naur MITK-2022.10/Modules/Core/src/DataManagement/mitkSlicedGeometry3D.cpp MITK-2022.10-patch/Modules/Core/src/DataManagement/mitkSlicedGeometry3D.cpp
---- MITK-2022.10/Modules/Core/src/DataManagement/mitkSlicedGeometry3D.cpp	2022-10-29 01:08:41
-+++ MITK-2022.10-patch/Modules/Core/src/DataManagement/mitkSlicedGeometry3D.cpp	2023-09-14 23:16:21
-@@ -41,6 +41,7 @@
+--- MITK-2022.10/Modules/Core/src/DataManagement/mitkSlicedGeometry3D.cpp    2022-10-29 01:08:41
++++ MITK-2022.10-patch/Modules/Core/src/DataManagement/mitkSlicedGeometry3D.cpp    2023-09-14 23:16:21
+@@ -41,6 +41,8 @@
    m_DirectionVector.Fill(0);
    SetSpacing(other.GetSpacing());
    SetDirectionVector(other.GetDirectionVector());
