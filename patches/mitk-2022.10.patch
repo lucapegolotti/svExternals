@@ -56,6 +56,7 @@ diff -Naur MITK-2022.10/Modules/Core/src/DataManagement/mitkSlicedGeometry3D.cpp
    m_DirectionVector.Fill(0);
    SetSpacing(other.GetSpacing());
    SetDirectionVector(other.GetDirectionVector());
++  PlaneGeometry::Pointer gnull = nullptr;
 +  m_PlaneGeometries.assign(other.m_Slices, gnull);
  
    if (m_EvenlySpaced)
