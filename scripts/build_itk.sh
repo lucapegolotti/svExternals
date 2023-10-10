@@ -23,6 +23,8 @@ cd build
 # this option makes compilation fail
 # -DBUILD_SHARED_LIBS=1 \
 
+export PATH=$PYTHON_INSTALL_DIR/bin:$PATH
+
 cmake \
     -DCMAKE_INSTALL_PREFIX=$ITK_INSTALL_DIR \
     -DCMAKE_BUILD_TYPE=Release \
@@ -38,6 +40,9 @@ cmake \
     -DQt5_DIR=$QT_INSTALL_DIR/lib/cmake/Qt5 \
     -DITK_USE_SYSTEM_ZLIB:BOOL=ON \
     -DPython3_ROOT_DIR=$PYTHON_INSTALL_DIR \
+    -DPython3_INCLUDE_DIR=$PYTHON_INSTALL_DIR/$PYTHON_INCLUDE_DIR \
+    -DPython3_LIBRARY=$PYTHON_INSTALL_DIR/$PYTHON_LIBRARY \
+    -DPython3_EXECUTABLE=$PYTHON_INSTALL_DIR/$PYTHON_EXECUTABLE \
 ..
 
 make -j 2
@@ -50,4 +55,3 @@ popd
 cd install
 tar -cf itk.tar itk-$ITK_VERSION
 cd ..
-
