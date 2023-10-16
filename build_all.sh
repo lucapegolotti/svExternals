@@ -74,4 +74,5 @@ fi
 if [[ $BUILD_MITK -eq 1 ]]
 then
     source scripts/build_mitk.sh # > output/mitk.out
+    source scripts/post-install-mitk.sh
 fi
