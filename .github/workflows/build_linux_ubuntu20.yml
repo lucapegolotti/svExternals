@@ -18,6 +18,7 @@ on:
 jobs:
   build-qt-ubuntu-20:
     runs-on: ubuntu20
+    timeout-minutes: 1000
 
     steps:
     - name: Checkout
